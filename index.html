@@ -15,57 +15,49 @@
     }
     a { text-decoration:none; color:inherit; }
 
-    /* Overlay container for content */
-    .overlay {
-      background: rgba(255,255,255,0.95);
-      padding: 2rem 0;
-    }
-
     /* Header */
     header {
-      text-align: center;
-      padding: 3rem 1rem;
-      /* Fond EcoFlow header */
       background: url('https://www.ecoflow.com/cdn/shop/files/ecoflow-header.jpg') center/cover no-repeat;
-      color: #fff;
-      position: relative;
+      padding:3rem 1rem;
+      text-align:center;
+      position:relative;
+      color:#fff;
     }
-    header h1 { font-size:3rem; color:#1b5e20; font-weight:700; }
-    header p { font-size:1.2rem; color:#555; }
+    header::after {
+      content:'';
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      background:rgba(27,94,32,0.7);
+    }
+    header h1, header p {
+      position:relative; z-index:1;
+    }
+    header h1 { font-size:3.5rem; font-weight:700; }
+    header p { font-size:1.2rem; margin-top:0.5rem; }
 
     /* Nav */
-    nav { background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
+    nav { background: #fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
     nav ul { display:flex; justify-content:center; list-style:none; }
-    nav li { margin:0 1rem; }
+    nav li { margin:0 1rem; position:relative; }
     nav a { padding:1rem; display:block; color:#1b5e20; font-weight:500; transition:color 0.3s; }
     nav a:hover { color:#004d40; }
-    .cart-count { background:#e53935; color:#fff; border-radius:50%; padding:2px 6px; font-size:0.75rem; vertical-align:top; margin-left:4px; }
+    .cart-count { background:#d32f2f; color:#fff; border-radius:50%; padding:2px 6px; font-size:0.75rem; position:absolute; top:8px; right:-8px; }
 
     /* Hero */
-    .hero { position:relative; height:300px; display:flex; align-items:center; justify-content:center; }
-    .hero::after { content:''; position:absolute;top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,0.4); }
-    .hero h2 { position:relative; color:#fff; font-size:2.5rem; text-shadow:1px 1px 6px rgba(0,0,0,0.7); }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1504595403659-9088ce801e29?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      height:350px; display:flex; align-items:center; justify-content:center; position:relative;
+    }
+    .hero::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.4); }
+    .hero h2 { position:relative; color:#fff; font-size:2.5rem; text-shadow:2px 2px 8px rgba(0,0,0,0.7); }
 
     /* Products */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      /* Suppression du fond blanc pour laisser apparaître le décor EcoFlow */
-    }
+    .container { max-width:1200px; margin:0 auto; padding:0 1rem; }
     .section-title { text-align:center; font-size:2rem; color:#1b5e20; margin:2rem 0; }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      /* Ajout d'un léger fond EcoFlow derrière les cartes */
-      background: url('https://www.ecoflow.com/cdn/shop/files/homepage-banner.jpg') center/cover no-repeat;
-      padding: 2rem;
-      border-radius: 8px;
-    }
-    .product-card { background:#fff; border-radius:6px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.1); display:flex; flex-direction:column; }
+    .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; background:url('https://www.ecoflow.com/cdn/shop/files/homepage-banner.jpg') center/cover no-repeat; padding:2rem; border-radius:8px; }
+    .product-card { background:#fff; border-radius:6px; box-shadow:0 2px 10px rgba(0,0,0,0.1); overflow:hidden; transition:transform 0.3s; }
+    .product-card:hover { transform:translateY(-5px); }
     .product-card img { width:100%; height:180px; object-fit:cover; }
-    .product-info { padding:1rem; flex:1; display:flex; flex-direction:column; }
+    .product-info { padding:1rem; display:flex; flex-direction:column; height:calc(100% - 180px); }
     .product-info h3 { margin-bottom:0.5rem; font-size:1.2rem; color:#004d40; }
     .product-info p { flex:1; font-size:0.95rem; margin-bottom:1rem; color:#555; }
     .add-btn { background:#1b5e20; color:#fff; border:none; padding:0.6rem; border-radius:4px; font-weight:500; cursor:pointer; transition:background 0.3s; }
@@ -74,24 +66,30 @@
     /* Contact */
     footer { background:#fff; padding:3rem 1rem; margin-top:3rem; }
     footer h2 { text-align:center; font-size:1.8rem; color:#1b5e20; margin-bottom:1rem; }
-    form { max-width:500px; margin:0 auto; display:grid; gap:1rem; }
-    form label { font-size:1rem; color:#333; }
-    form input, form textarea { padding:0.6rem; border:1px solid #ccc; border-radius:4px; }
-    form button { justify-self:center; background:#1b5e20; color:#fff; padding:0.6rem 1.5rem; border:none; border-radius:4px; cursor:pointer; }
+    form { max-width:600px; margin:0 auto; display:grid; gap:1rem; }
+    form label { font-size:1rem; display:flex; flex-direction:column; }
+    form input, form textarea { padding:0.75rem; border:1px solid #ccc; border-radius:4px; font-size:1rem; }
+    form button { justify-self:center; background:#1b5e20; color:#fff; padding:0.75rem 1.5rem; border:none; border-radius:4px; cursor:pointer; }
 
     /* PayPal */
     #paypal-button-container { text-align:center; margin:2rem 0; }
 
     /* Responsive */
-    @media(max-width:768px){ .hero{height:200px;} .hero h2{font-size:2rem;} .products-grid{grid-template-columns:1fr;} }
+    @media(max-width:768px){ header h1{font-size:2.5rem;} .hero{height:300px;} .hero h2{font-size:2rem;} .products-grid{grid-template-columns:1fr;} }
   </style>
-  <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=EUR"></script>
 </head>
 <body>
   <header>
     <h1>CarpÉnergie</h1>
     <p>Votre spécialiste du catalogue EcoFlow</p>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#produits">Produits</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a></li>
+    </ul>
   </nav>
   <section class="hero">
     <h2>L'énergie où que vous soyez</h2>
@@ -111,7 +109,7 @@
         <img src="https://www.ecoflow.com/cdn/shop/files/delta-3.jpg" alt="EcoFlow Delta 3">
         <div class="product-info">
           <h3>EcoFlow Delta 3</h3>
-          <p>1800W & 1024Wh – Puissant et extensible.</p>
+          <p>1024Wh & 1800W – Puissant et extensible pour vos besoins intensifs.</p>
           <button class="add-btn" data-id="2">799 € – Ajouter</button>
         </div>
       </div>
@@ -119,7 +117,7 @@
         <img src="https://www.ecoflow.com/cdn/shop/files/river-2.jpg" alt="EcoFlow River 2">
         <div class="product-info">
           <h3>EcoFlow River 2</h3>
-          <p>256Wh – Compact, parfait pour le camping.</p>
+          <p>256Wh – Compact et rapide, parfait pour les petits appareils.</p>
           <button class="add-btn" data-id="3">129 € – Ajouter</button>
         </div>
       </div>
@@ -127,7 +125,7 @@
         <img src="https://www.ecoflow.com/cdn/shop/files/river-3.jpg" alt="EcoFlow River 3">
         <div class="product-info">
           <h3>EcoFlow River 3</h3>
-          <p>512Wh – Nouvelle génération, ultra-compact.</p>
+          <p>512Wh – Nouvelle génération, puissance et portabilité.</p>
           <button class="add-btn" data-id="4">179 € – Ajouter</button>
         </div>
       </div>
@@ -171,4 +169,3 @@
   </script>
 </body>
 </html>
-
