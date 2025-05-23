@@ -77,21 +77,25 @@
   </div>
   <footer>© 2025 CarpÉnergie</footer>
   <script>
-    document.querySelectorAll('.buy-btn').forEach(btn => {
-      const cartCountEl = document.querySelector('.cart-count');
-      let cart = JSON.parse(localStorage.getItem('cart')||'[]');
-      function update() { cartCountEl.textContent = cart.length; }
-      update();
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.id;
-        const qty = parseInt(document.getElementById('qty-'+id.split('-')[1]).value, 10) || 1;
-        for (let i = 0; i < qty; i++) cart.push({ id });
-        localStorage.setItem('cart', JSON.stringify(cart));
-        update();
-        alert(qty + ' article(s) ajouté(s) au panier !');
-      });
+  document.querySelectorAll('.buy-btn').forEach(btn => {
+    const cartCountEl = document.querySelector('.cart-count');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    function updateCount() {
+      cartCountEl.textContent = cart.length;
+    }
+    updateCount();
+    btn.addEventListener('click', () => {
+      const details = btn.closest('.details');
+      const qtyInput = details.querySelector('input[type="number"]');
+      const qty = parseInt(qtyInput.value, 10) || 1;
+      for (let i = 0; i < qty; i++) {
+        cart.push({ id: btn.dataset.id });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCount();
+      alert(qty + ' article(s) ajouté(s) au panier !');
     });
-  </script>
+  });
+</script>
 </body>
 </html>
-
