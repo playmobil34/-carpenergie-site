@@ -33,7 +33,6 @@
     .action { text-align:center; }
     .buy-btn { background:#ff6200; color:#fff; padding:0.8rem 2rem; border:none; border-radius:4px; font-size:1rem; cursor:pointer; }
     footer { background:#e0e0e0; text-align:center; padding:1rem; margin-top:2rem; }
-    /* Modal styles */
     .modal-backdrop { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; }
     .modal { background:#fff; padding:2rem; border-radius:8px; max-width:320px; width:90%; text-align:center; box-shadow:0 6px 20px rgba(0,0,0,0.2); }
     .modal p { margin-bottom:1rem; font-size:1.1rem; }
@@ -67,7 +66,7 @@
       <div class="desc-box">
         <ul>
           <li>1024 Wh – Batterie portable haute capacité.</li>
-          <li>Recharge X-Stream 0 → 80 % en 50 min.</li>
+          <li>Recharge X-Stream 0 → 80 % en 50 min.</li>
           <li>6 prises AC & ports USB.</li>
         </ul>
       </div>
@@ -82,8 +81,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Modal -->
   <div id="modal-backdrop" class="modal-backdrop">
     <div class="modal">
       <p>Article ajouté au panier !</p>
@@ -91,34 +88,23 @@
       <button class="btn-cart">Voir le panier</button>
     </div>
   </div>
-
   <footer>© 2025 CarpÉnergie</footer>
-
   <script>
     document.querySelectorAll('.buy-btn').forEach(btn => {
       const cartCountEl = document.querySelector('.cart-count');
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
       function updateCount() { cartCountEl.textContent = cart.length; }
       updateCount();
-
       btn.addEventListener('click', () => {
         const details = btn.closest('.details');
         const qty = parseInt(details.querySelector('input[type="number"]').value, 10) || 1;
         for (let i = 0; i < qty; i++) cart.push({ id: btn.dataset.id });
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCount();
-
-        // Afficher la modale personnalisée
         const backdrop = document.getElementById('modal-backdrop');
         backdrop.style.display = 'flex';
-        // Continuer achats
-        backdrop.querySelector('.btn-continue').onclick = () => {
-          backdrop.style.display = 'none';
-        };
-        // Voir panier
-        backdrop.querySelector('.btn-cart').onclick = () => {
-          window.location.href = 'cart.html';
-        };
+        backdrop.querySelector('.btn-continue').onclick = () => backdrop.style.display = 'none';
+        backdrop.querySelector('.btn-cart').onclick = () => window.location.href = 'cart.html';
       });
     });
   </script>
