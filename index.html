@@ -1,10 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="stylesheet" href="style.css" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CarpÉnergie - Boutique EcoFlow</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   
   <!-- PayPal SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=EUR"></script>
@@ -12,85 +14,100 @@
 <body>
   <header>
     <h1>CarpÉnergie</h1>
-    <p>Votre boutique spécialisée en solutions EcoFlow</p>
+    <p>Votre spécialiste du catalogue EcoFlow</p>
   </header>
   <nav>
     <ul>
       <li><a href="#">Accueil</a></li>
       <li><a href="#produits">Produits</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#" id="cart-btn">Panier 🛒 <span class="cart-count" id="cart-count">0</span></a></li>
+      <li style="position:relative;"><a href="#" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a></li>
     </ul>
   </nav>
   <section class="hero">
-    <h2>Énergie Portable pour Tous Vos Besoins</h2>
+    <h2>L'énergie où que vous soyez</h2>
   </section>
   <div class="container" id="produits">
     <h2 class="section-title">Nos Produits</h2>
     <div class="products-grid">
-      <template id="product-template">
-        <div class="product-card">
-          <img src="" alt="">
-          <div class="product-content">
-            <h3></h3>
-            <p></p>
-            <button class="btn add-to-cart">Ajouter au panier</button>
-          </div>
+      <!-- Cards -->
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-2.jpg" alt="EcoFlow Delta 2" />
+        <div class="product-info">
+          <h3>EcoFlow Delta 2</h3>
+          <p>1024Wh – Recharge rapide, idéale pour la maison et les sorties.</p>
+          <button class="add-btn" data-id="1">699 € – Ajouter</button>
         </div>
-      </template>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-3.jpg" alt="EcoFlow Delta 3" />
+        <div class="product-info">
+          <h3>EcoFlow Delta 3</h3>
+          <p>1024Wh & 1800W – Puissant et extensible pour vos besoins intensifs.</p>
+          <button class="add-btn" data-id="2">799 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/river-2.jpg" alt="EcoFlow River 2" />
+        <div class="product-info">
+          <h3>EcoFlow River 2</h3>
+          <p>256Wh – Compact et rapide, parfait pour les petits appareils.</p>
+          <button class="add-btn" data-id="3">129 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/river-3.jpg" alt="EcoFlow River 3" />
+        <div class="product-info">
+          <h3>EcoFlow River 3</h3>
+          <p>512Wh – Nouvelle génération, puissance et portabilité.</p>
+          <button class="add-btn" data-id="4">179 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-110w.jpg" alt="Panneau solaire 110W" />
+        <div class="product-info">
+          <h3>Panneau 110W</h3>
+          <p>Portable, IP68, pliable – recharge solaire mobile.</p>
+          <button class="add-btn" data-id="5">109 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-220w.jpg" alt="Panneau solaire 220W" />
+        <div class="product-info">
+          <h3>Panneau 220W</h3>
+          <p>Bifacial – double face pour maximiser l’énergie solaire.</p>
+          <button class="add-btn" data-id="6">199 € – Ajouter</button>
+        </div>
+      </div>
     </div>
     <div id="paypal-button-container"></div>
   </div>
   <footer id="contact">
-    <h2>Contactez-nous</h2>
+    <h2>Contact</h2>
     <form name="contact" method="POST" data-netlify="true">
-      <input type="hidden" name="form-name" value="contact">
-      <label>Nom
-        <input type="text" name="name" required>
-      </label>
-      <label>Email
-        <input type="email" name="email" required>
-      </label>
-      <label>Message
-        <textarea name="message" rows="4" required></textarea>
-      </label>
-      <button type="submit" class="btn">Envoyer</button>
+      <input type="hidden" name="form-name" value="contact" />
+      <label>Nom<input type="text" name="name" required /></label>
+      <label>Email<input type="email" name="email" required /></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <button type="submit" class="add-btn">Envoyer</button>
     </form>
-    <p style="text-align:center; margin-top:1.5rem;">© 2025 CarpÉnergie</p>
+    <p style="text-align:center; margin-top:2rem;">© 2025 CarpÉnergie</p>
   </footer>
   <script>
-    const products = [
-      { id:1,name:'EcoFlow Delta 2',price:699, img:'https://www.ecoflow.com/cdn/shop/files/delta-2.jpg' },
-      { id:2,name:'EcoFlow Delta 3',price:799, img:'https://www.ecoflow.com/cdn/shop/files/delta-3.jpg' },
-      { id:3,name:'EcoFlow River 2',price:129, img:'https://www.ecoflow.com/cdn/shop/files/river-2.jpg' },
-      { id:4,name:'EcoFlow River 3',price:179, img:'https://www.ecoflow.com/cdn/shop/files/river-3.jpg' },
-      { id:5,name:'Panneau Solaire 110W',price:109, img:'https://www.ecoflow.com/cdn/shop/files/solar-panel-110w.jpg' },
-      { id:6,name:'Panneau Solaire 220W',price:199, img:'https://www.ecoflow.com/cdn/shop/files/solar-panel-220w.jpg' }
-    ];
-    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
-    const cartCount = document.getElementById('cart-count');
-    const grid = document.querySelector('.products-grid');
-    // Afficher produits
-    products.forEach(p => {
-      const tpl = document.getElementById('product-template').content.cloneNode(true);
-      tpl.querySelector('img').src = p.img; tpl.querySelector('img').alt = p.name;
-      tpl.querySelector('h3').textContent = p.name;
-      tpl.querySelector('p').textContent = p.price + ' €';
-      tpl.querySelector('.add-to-cart').dataset.id = p.id;
-      grid.appendChild(tpl);
-    });
-    function updateCount(){ cartCount.textContent = cart.length; localStorage.setItem('cart', JSON.stringify(cart)); }
-    updateCount();
-    grid.addEventListener('click', e => { if(e.target.classList.contains('add-to-cart')){ cart.push(e.target.dataset.id); updateCount(); } });
-    document.getElementById('cart-btn').addEventListener('click', e=>{ e.preventDefault(); alert(cart.length? 'Articles dans le panier: '+cart.length:'Votre panier est vide'); });
-    // PayPal
+    const prices = {1:699,2:799,3:129,4:179,5:109,6:199};
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const countEl = document.getElementById('cart-count');
+    document.querySelectorAll('.add-btn').forEach(btn => btn.addEventListener('click', () => {
+      cart.push(btn.dataset.id);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      countEl.textContent = cart.length;
+    }));
+    countEl.textContent = cart.length;
     paypal.Buttons({
-      createOrder: (data, actions) => {
-        const total = cart.reduce((sum,id)=> sum + products.find(p=>p.id==id).price, 0);
-        return actions.order.create({ purchase_units:[{ amount:{ value: total.toString() } }] });
-      },
-      onApprove: (data, actions) => actions.order.capture().then(details => alert('Merci '+details.payer.name.given_name+' pour votre achat!'))
+      createOrder: (data,actions) => actions.order.create({ purchase_units:[{ amount:{ value: cart.reduce((sum,id)=> sum+prices[id],0).toString() } }] }),
+      onApprove: (data,actions) => actions.order.capture().then(() => alert('Merci pour votre achat!'))
     }).render('#paypal-button-container');
   </script>
 </body>
 </html>
+ “Externalisation du CSS dans style.css”
