@@ -52,7 +52,7 @@
   </header>
   <div class="container">
     <div class="gallery">
-      <img src="https://raw.githubusercontent.com/<TON_UTILISATEUR>/<TON_REPO>/main/images/delta-2.png" alt="EcoFlow Delta 2" />
+      <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="EcoFlow Delta 2" />
     </div>
     <div class="details">
       <span class="badge">Nouveau</span>
@@ -81,5 +81,25 @@
     </div>
   </div>
   <footer>© 2025 CarpÉnergie</footer>
+  <script>
+    // Gestion du panier
+    const cartCountEl = document.querySelector('.cart-count');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    // Met à jour le compteur affiché
+    function updateCount() {
+      cartCountEl.textContent = cart.length;
+    }
+    updateCount();
+    // Au clic sur le bouton Ajouter au panier
+    document.querySelector('.buy-btn').addEventListener('click', () => {
+      const qty = parseInt(document.getElementById('qty').value, 10) || 1;
+      for (let i = 0; i < qty; i++) {
+        cart.push({ id: 'delta-2', qty: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCount();
+      alert(qty + ' article(s) ajouté(s) au panier !');
+    });
+  </script>
 </body>
 </html>
