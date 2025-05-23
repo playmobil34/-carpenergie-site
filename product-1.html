@@ -16,9 +16,9 @@
     nav a { padding: 0.75rem; font-weight: 500; color: #1b5e20; display: block; }
     .cart-count { position: absolute; top: 8px; right: -8px; background: #d32f2f; color: #fff; border-radius: 50%; padding: 2px 6px; font-size: 0.75rem; }
     .container { display: flex; flex-wrap: wrap; max-width: 1000px; margin: 2rem auto; gap: 2rem; }
-    .gallery { flex: 1 1 400px; }
+    .gallery { flex: 1; min-width: 300px; }
     .gallery img { width: 100%; border-radius: 8px; }
-    .details { flex: 1 1 400px; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .details { flex: 1; min-width: 300px; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .details h2 { font-size: 2rem; margin-bottom: 0.5rem; }
     .badge { color: #ff6200; font-weight: 500; margin-bottom: 0.5rem; display: inline-block; }
     .rating { color: #f0c14b; margin-bottom: 1rem; }
@@ -33,14 +33,12 @@
     .action { text-align: center; }
     .buy-btn { background: #ff6200; color: #fff; padding: 0.8rem 2rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; }
     footer { background: #e0e0e0; text-align: center; padding: 1rem; margin-top: 2rem; }
-  </style>
-  <!-- Modal CSS -->
-  <style>
-    .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; }
-    .modal { background: #fff; padding: 2rem; border-radius: 8px; max-width: 400px; text-align: center; }
-    .modal button { margin: 0.5rem; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; }
-    .btn-continue { background: #1b5e20; color: #fff; }
-    .btn-cart { background: #ff6200; color: #fff; }
+    /* Modal */
+    .modal-backdrop { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:none; align-items:center; justify-content:center; }
+    .modal { background:#fff; padding:2rem; border-radius:8px; max-width:400px; text-align:center; }
+    .modal button { margin:0.5rem; padding:0.5rem 1rem; border:none; border-radius:4px; cursor:pointer; }
+    .btn-continue { background:#1b5e20; color:#fff; }
+    .btn-cart { background:#ff6200; color:#fff; }
   </style>
 </head>
 <body>
@@ -57,7 +55,7 @@
   </header>
   <div class="container">
     <div class="gallery">
-      <img src="https://raw.githubusercontent.com/<TON_UTILISATEUR>/<TON_REPO>/main/images/delta-2.png" alt="EcoFlow Delta 2" />
+      <img src="images/delta-2.png" alt="EcoFlow Delta 2" />
     </div>
     <div class="details">
       <span class="badge">Nouveau</span>
@@ -69,7 +67,7 @@
         <ul>
           <li>1024 Wh – Batterie portable haute capacité.</li>
           <li>Recharge X-Stream 0 → 80 % en 50 min.</li>
-          <li>6 prises AC & ports USB.</li>
+          <li>6 prises AC & ports USB.</li>
         </ul>
       </div>
       <div class="options">
@@ -83,27 +81,36 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div id="modal-backdrop" class="modal-backdrop">
+    <div class="modal">
+      <p>Article ajouté au panier !</p>
+      <button class="btn-continue">Continuer vos achats</button>
+      <button class="btn-cart">Aller au panier</button>
+    </div>
+  </div>
+
   <footer>© 2025 CarpÉnergie</footer>
+
   <script>
-  document.querySelectorAll('.buy-btn').forEach(btn => {
-    const cartCountEl = document.querySelector('.cart-count');
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    function updateCount() {
-      cartCountEl.textContent = cart.length;
-    }
-    updateCount();
-    btn.addEventListener('click', () => {
-      const details = btn.closest('.details');
-      const qtyInput = details.querySelector('input[type="number"]');
-      const qty = parseInt(qtyInput.value, 10) || 1;
-      for (let i = 0; i < qty; i++) {
-        cart.push({ id: btn.dataset.id });
-      }
-      localStorage.setItem('cart', JSON.stringify(cart));
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      const cartCountEl = document.querySelector('.cart-count');
+      let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+      function updateCount() { cartCountEl.textContent = cart.length; }
       updateCount();
-      alert(qty + ' article(s) ajouté(s) au panier !');
+      btn.addEventListener('click',()=>{
+        const details=btn.closest('.details');
+        const qty=parseInt(details.querySelector('input[type="number"]').value,10)||1;
+        for(let i=0;i<qty;i++) cart.push({id:btn.dataset.id});
+        localStorage.setItem('cart',JSON.stringify(cart));
+        updateCount();
+        const backdrop=document.getElementById('modal-backdrop');
+        backdrop.style.display='flex';
+        backdrop.querySelector('.btn-continue').onclick=()=>backdrop.style.display='none';
+        backdrop.querySelector('.btn-cart').onclick=()=>window.location.href='cart.html';
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
