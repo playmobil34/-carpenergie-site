@@ -18,24 +18,15 @@
     /* Header */
     header {
       background: url('https://www.ecoflow.com/cdn/shop/files/ecoflow-header.jpg') center/cover no-repeat;
-      padding:3rem 1rem;
-      text-align:center;
-      position:relative;
-      color:#fff;
+      padding:3rem 1rem; text-align:center; position:relative; color:#fff;
     }
-    header::after {
-      content:'';
-      position:absolute; top:0; left:0; right:0; bottom:0;
-      background:rgba(27,94,32,0.7);
-    }
-    header h1, header p {
-      position:relative; z-index:1;
-    }
+    header::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(27,94,32,0.7); }
+    header h1, header p { position:relative; z-index:1; }
     header h1 { font-size:3.5rem; font-weight:700; }
     header p { font-size:1.2rem; margin-top:0.5rem; }
 
     /* Nav */
-    nav { background: #fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
+    nav { background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
     nav ul { display:flex; justify-content:center; list-style:none; }
     nav li { margin:0 1rem; position:relative; }
     nav a { padding:1rem; display:block; color:#1b5e20; font-weight:500; transition:color 0.3s; }
@@ -62,6 +53,12 @@
     .product-info p { flex:1; font-size:0.95rem; margin-bottom:1rem; color:#555; }
     .select-btn { display:inline-block; background:#1b5e20; color:#fff; padding:0.6rem 1rem; border-radius:4px; text-align:center; font-weight:500; transition:background 0.3s; }
     .select-btn:hover { background:#004d40; }
+
+    /* Detail Sections */
+    .detail-section { background:rgba(255,255,255,0.9); padding:2rem; margin:2rem 0; border-radius:8px; }
+    .detail-section h2 { color:#1b5e20; margin-bottom:1rem; }
+    .detail-section img { max-width:100%; border-radius:4px; margin-bottom:1rem; }
+    .price { font-size:1.2rem; font-weight:700; margin-bottom:1rem; color:#1b5e20; }
 
     /* Contact */
     footer { background:#fff; padding:3rem 1rem; margin-top:3rem; }
@@ -110,7 +107,7 @@
         <div class="product-info">
           <h3>EcoFlow Delta 3</h3>
           <p>1024Wh & 1800W – Puissant et extensible pour vos besoins intensifs.</p>
-          <a href="product-2.html" class="select-btn">Choisir</a>
+          <a href="#prod2" class="select-btn">Choisir</a>
         </div>
       </div>
       <div class="product-card">
@@ -118,7 +115,7 @@
         <div class="product-info">
           <h3>EcoFlow River 2</h3>
           <p>256Wh – Compact et rapide, parfait pour les petits appareils.</p>
-          <a href="product-3.html" class="select-btn">Choisir</a>
+          <a href="#prod3" class="select-btn">Choisir</a>
         </div>
       </div>
       <div class="product-card">
@@ -126,7 +123,7 @@
         <div class="product-info">
           <h3>EcoFlow River 3</h3>
           <p>512Wh – Nouvelle génération, puissance et portabilité.</p>
-          <a href="product-4.html" class="select-btn">Choisir</a>
+          <a href="#prod4" class="select-btn">Choisir</a>
         </div>
       </div>
       <div class="product-card">
@@ -134,7 +131,7 @@
         <div class="product-info">
           <h3>Panneau Solaire 110W</h3>
           <p>Portable, IP68, pliable – recharge solaire mobile.</p>
-          <a href="product-5.html" class="select-btn">Choisir</a>
+          <a href="#prod5" class="select-btn">Choisir</a>
         </div>
       </div>
       <div class="product-card">
@@ -142,12 +139,59 @@
         <div class="product-info">
           <h3>Panneau Solaire 220W</h3>
           <p>Bifacial – double face pour maximiser l’énergie solaire.</p>
-          <a href="product-6.html" class="select-btn">Choisir</a>
+          <a href="#prod6" class="select-btn">Choisir</a>
         </div>
       </div>
     </div>
     <div id="paypal-button-container"></div>
   </div>
+
+  <!-- Détails Produits -->
+  <div class="container overlay">
+    <section id="prod1" class="detail-section">
+      <h2>EcoFlow Delta 2</h2>
+      <img src="https://www.ecoflow.com/cdn/shop/files/delta-2.jpg" alt="EcoFlow Delta 2">
+      <p>Station portable 1024Wh avec recharge ultra-rapide et extension disponible.</p>
+      <p class="price">Prix : 699 €</p>
+      <button class="select-btn">Acheter</button>
+    </section>
+    <section id="prod2" class="detail-section">
+      <h2>EcoFlow Delta 3</h2>
+      <img src="https://www.ecoflow.com/cdn/shop/files/delta-3.jpg" alt="EcoFlow Delta 3">
+      <p>1024Wh & 1800W, recharge X-Stream en moins d'1h, extensible.</p>
+      <p class="price">Prix : 799 €</p>
+      <button class="select-btn">Acheter</button>
+    </section>
+    <section id="prod3" class="detail-section">
+      <h2>EcoFlow River 2</h2>
+      <img src="https://www.ecoflow.com/cdn/shop/files/river-2.jpg" alt="EcoFlow River 2">
+      <p>Batterie 256Wh légère, charge rapide et polyvalente.</p>
+      <p class="price">Prix : 129 €</p>
+      <button class="select-btn">Acheter</button>
+    </section>
+    <section id="prod4" class="detail-section">
+      <h2>EcoFlow River 3</h2>
+      <img src="https://www.ecoflow.com/cdn/shop/files/river-3.jpg" alt="EcoFlow River 3">
+      <p>512Wh, taille compacte, fonctionnalités avancées.</p>
+      <p class="price">Prix : 179 €</p>
+      <button class="select-btn">Acheter</button>
+    </section>
+    <section id="prod5" class="detail-section">
+      <h2>Panneau Solaire 110W</h2>
+      <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-110w.jpg" alt="Panneau solaire 110W">
+      <p>Compact, IP68, pliable, parfait pour vos sorties en plein air.</p>
+      <p class="price">Prix : 109 €</p>
+      <button class="select-btn">Acheter</button>
+    </section>
+    <section id="prod6" class="detail-section">
+      <h2>Panneau Solaire 220W</h2>
+      <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-220w.jpg" alt="Panneau solaire 220W">
+      <p>220W bifacial, double face pour captation maximale.</p>
+      <p class="price">Prix : 199 €</p>
+      <button class="select-btn">Acheter</button>
+    </section>
+  </div>
+
   <footer id="contact">
     <h2>Contact</h2>
     <form name="contact" method="POST" data-netlify="true">
@@ -155,7 +199,7 @@
       <label>Nom<input type="text" name="name" required /></label>
       <label>Email<input type="email" name="email" required /></label>
       <label>Message<textarea name="message" rows="5" required></textarea></label>
-      <button type="submit" class="add-btn">Envoyer</button>
+      <button type="submit" class="select-btn">Envoyer</button>
     </form>
     <p style="text-align:center; margin-top:2rem;">© 2025 CarpÉnergie</p>
   </footer>
