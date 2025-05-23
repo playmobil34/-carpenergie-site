@@ -9,7 +9,6 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      /* Fond d'écran : lac avec carpistes */
       background: url('https://images.unsplash.com/photo-1582911155457-f9b0b2e34323?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat fixed;
       color: #333;
       line-height: 1.6;
@@ -21,7 +20,7 @@
     header h1 { font-size: 3rem; font-weight: 700; }
     header p { font-size: 1.1rem; margin-top: 0.5rem; opacity: 0.9; }
 
-    /* Navigation */
+    /* Nav */
     nav { background: rgba(255,255,255,0.9); box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
     nav ul { display: flex; justify-content: center; list-style: none; }
     nav li { margin: 0 1.5rem; }
@@ -29,11 +28,11 @@
     nav a:hover { background: #e8f5e9; border-radius: 4px; }
     .cart-count { background: #d32f2f; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.75rem; }
 
-    /* Hero Section */
-    .hero { background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat; height: 350px; display: flex; align-items: center; justify-content: center; margin-bottom: 3rem; }
+    /* Hero */
+    .hero { background: url('https://images.unsplash.com/photo-1504595403659-9088ce801e29?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat; height: 350px; display: flex; align-items: center; justify-content: center; margin-bottom: 3rem; }
     .hero h2 { color: #fff; font-size: 2.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.7); }
 
-    /* Main Content */
+    /* Main */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; background: rgba(255,255,255,0.9); border-radius: 8px; }
     .section-title { text-align: center; font-size: 2rem; color: #1b5e20; margin: 2rem 0; }
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
@@ -79,17 +78,76 @@
   <div class="container" id="produits">
     <h2 class="section-title">Nos Produits</h2>
     <div class="products-grid">
-      <!-- Product Cards Here -->
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-2.jpg" alt="EcoFlow Delta 2">
+        <div class="product-info">
+          <h3>EcoFlow Delta 2</h3>
+          <p>1024Wh – Recharge rapide, idéale pour la maison et les sorties.</p>
+          <button class="add-btn" data-id="1">699 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-3.jpg" alt="EcoFlow Delta 3">
+        <div class="product-info">
+          <h3>EcoFlow Delta 3</h3>
+          <p>1800W & 1024Wh – Puissant et extensible.</p>
+          <button class="add-btn" data-id="2">799 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/river-2.jpg" alt="EcoFlow River 2">
+        <div class="product-info">
+          <h3>EcoFlow River 2</h3>
+          <p>256Wh – Compact, parfait pour le camping.</p>
+          <button class="add-btn" data-id="3">129 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/river-3.jpg" alt="EcoFlow River 3">
+        <div class="product-info">
+          <h3>EcoFlow River 3</h3>
+          <p>512Wh – Nouvelle génération, ultra-compact.</p>
+          <button class="add-btn" data-id="4">179 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-110w.jpg" alt="Panneau solaire 110W">
+        <div class="product-info">
+          <h3>Panneau Solaire 110W</h3>
+          <p>Portable, IP68, pliable – recharge solaire mobile.</p>
+          <button class="add-btn" data-id="5">109 € – Ajouter</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-220w.jpg" alt="Panneau solaire 220W">
+        <div class="product-info">
+          <h3>Panneau Solaire 220W</h3>
+          <p>Bifacial – double face pour maximiser l’énergie solaire.</p>
+          <button class="add-btn" data-id="6">199 € – Ajouter</button>
+        </div>
+      </div>
     </div>
     <div id="paypal-button-container"></div>
   </div>
   <footer id="contact">
     <h2>Contact</h2>
-    <!-- Contact Form Here -->
+    <form name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact" />
+      <label>Nom<input type="text" name="name" required /></label>
+      <label>Email<input type="email" name="email" required /></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <button type="submit" class="add-btn">Envoyer</button>
+    </form>
     <p style="text-align:center; margin-top:2rem;">© 2025 CarpÉnergie</p>
   </footer>
   <script>
-    // JS Code for Cart & PayPal
+    const prices={1:699,2:799,3:129,4:179,5:109,6:199};
+    let cart=JSON.parse(localStorage.getItem('cart')||'[]');
+    const countEl=document.getElementById('cart-count');
+    document.querySelectorAll('.add-btn').forEach(btn=>btn.addEventListener('click',()=>{cart.push(btn.dataset.id);localStorage.setItem('cart',JSON.stringify(cart));countEl.textContent=cart.length;}));
+    countEl.textContent=cart.length;
+    paypal.Buttons({createOrder:(d,a)=>a.order.create({purchase_units:[{amount:{value:cart.reduce((s,i)=>s+prices[i],0).toString()}}]}),onApprove:(d,a)=>a.order.capture().then(()=>alert('Merci pour votre achat!'))}).render('#paypal-button-container');
   </script>
 </body>
 </html>
+
