@@ -8,139 +8,61 @@
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Roboto', sans-serif; background:#f0f2f5; color:#333; }
     a { text-decoration:none; color:inherit; }
-
-    /* Header */
     header { background:#1b5e20; color:#fff; padding:2rem 1rem; text-align:center; }
     header h1 { font-size:3rem; font-weight:700; }
     header p { font-size:1.1rem; margin-top:0.5rem; opacity:0.8; }
-
-    /* Nav */
     nav { background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
     nav ul { display:flex; justify-content:center; list-style:none; }
     nav li { margin:0 1.5rem; position:relative; }
     nav a { display:block; padding:1rem; font-weight:500; color:#1b5e20; transition:background 0.2s; }
     nav a:hover { background:#e8f5e9; border-radius:4px; }
     .cart-count { position:absolute; top:8px; right:-8px; background:#d32f2f; color:#fff; border-radius:50%; padding:2px 6px; font-size:0.75rem; }
-
-    /* Hero */
     .hero { background:url('https://www.ecoflow.com/cdn/shop/files/delta-2-max-banner.jpg') center/cover no-repeat; height:350px; display:flex; align-items:center; justify-content:center; margin-bottom:3rem; }
     .hero h2 { color:#fff; font-size:2.5rem; text-shadow:2px 2px 10px rgba(0,0,0,0.7); }
-
-    /* Products grid */
+    .container { max-width:1200px; margin:0 auto; padding:0 1rem; }
+    .section-title { text-align:center; font-size:2rem; color:#1b5e20; margin-bottom:2rem; }
+    /* --- 2 colonnes --- */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
     }
-    .product-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      padding-bottom: 1.5rem;
-      position: relative;
-      border: 1.5px solid #f5f5f5;
-    }
-    .promo-badge {
-      background: #ff8241;
+    .product-card { background:#fff; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); overflow:hidden; display:flex; flex-direction:column; transition:transform 0.3s; }
+    .product-card:hover { transform:translateY(-5px); }
+    .product-badge { background:#ff8500; color:#fff; font-size:0.95rem; font-weight:600; border-radius:4px; padding:3px 10px; display:inline-block; margin:15px 0 0 15px; }
+    .product-card img { width:110px; height:110px; object-fit:contain; margin:25px auto 10px auto; display:block; }
+    .product-info { padding:1.5rem 1.5rem 1rem 1.5rem; flex:1; display:flex; flex-direction:column; }
+    .product-info h3 { font-size:1.2rem; color:#222; margin-bottom:0.5rem; }
+    .product-info .desc { font-size:0.98rem; color:#666; margin-bottom:0.8rem; }
+    .product-pricing { margin-bottom:0.5rem; }
+    .price { font-size:1.15rem; color:#e94e0f; font-weight:bold; }
+    .oldprice { font-size:0.99rem; color:#aaa; margin-left:7px; text-decoration:line-through; }
+    .product-badge2 { color:#e94e0f; background:#ffeae0; border-radius:4px; padding:1px 6px; font-size:0.85rem; margin-left:4px;}
+    .select-btn {
+      background: #ff8500;
       color: #fff;
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 0.4rem 1.1rem;
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      border-radius: 5px;
-      z-index: 2;
-      letter-spacing: 0.5px;
-    }
-    .product-card img {
-      width: 80%;
-      max-width: 150px;
-      margin: 2.5rem auto 1.2rem auto;
-      display: block;
-      height: 120px;
-      object-fit: contain;
-      background: #f7f7f7;
-      border-radius: 7px;
-    }
-    .product-card h3 {
-      font-size: 1.06rem;
-      color: #181818;
-      font-weight: 700;
-      margin: 0.3rem 0 0.2rem 0;
-      text-align: left;
-      padding: 0 1.1rem;
-    }
-    .product-card .desc {
-      font-size: 0.98rem;
-      color: #595959;
-      padding: 0 1.1rem;
-      margin-bottom: 0.5rem;
-      min-height: 2.4em;
-    }
-    .prices {
-      display: flex;
-      align-items: center;
-      padding: 0 1.1rem 0.7rem 1.1rem;
-      gap: 0.6rem;
-    }
-    .price {
-      font-size: 1.3rem;
-      color: #ff8200;
-      font-weight: 700;
-    }
-    .old-price {
-      font-size: 1rem;
-      color: #a0a0a0;
-      text-decoration: line-through;
-    }
-    .tag {
-      background: #ffe7d2;
-      color: #ff8200;
-      font-weight: 500;
-      font-size: 0.93rem;
-      padding: 0.16rem 0.65rem;
-      border-radius: 3px;
-      margin-left: 0.2rem;
-    }
-    .choose-btn {
-      margin: 1rem 1.1rem 0 1.1rem;
-      background: #ff8200;
-      color: #fff;
-      font-weight: bold;
+      padding: 0.75rem 0;
       border: none;
-      border-radius: 7px;
-      padding: 0.7rem 0;
-      font-size: 1rem;
-      cursor: pointer;
-      display: block;
-      text-align: center;
-      transition: background 0.18s;
-      text-decoration: none;
-      letter-spacing: 0.2px;
+      border-radius: 4px;
+      font-weight:600;
+      text-align:center;
+      cursor:pointer;
+      transition:background 0.2s;
+      font-size: 1.05rem;
+      margin-top: 18px;
     }
-    .choose-btn:hover {
-      background: #d66105;
-    }
-
-    /* Contact */
+    .select-btn:hover { background:#e94e0f; }
     footer { background:#e0e0e0; padding:2rem 1rem; margin-top:3rem; }
     footer h2 { text-align:center; margin-bottom:1rem; }
     form { max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:1rem; }
     form label { font-size:1rem; display:flex; flex-direction:column; }
     form input, form textarea { padding:0.5rem; border:1px solid #ccc; border-radius:4px; }
     form button { align-self:center; background:#2e7d32; color:#fff; padding:0.75rem 1.5rem; border:none; border-radius:4px; cursor:pointer; }
-
-    @media(max-width:768px){
-      header h1{font-size:2rem;}
-      .hero{height:250px;}
-      .hero h2{font-size:1.8rem;}
-      .products-grid{grid-template-columns:1fr;}
+    @media(max-width:900px){
+      .products-grid { grid-template-columns:1fr; }
+      .hero{height:250px;} .hero h2{font-size:1.8rem;}
     }
+    @media(max-width:600px){ header h1{font-size:2rem;} .products-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
@@ -165,88 +87,89 @@
   <div class="container" id="produits">
     <h2 class="section-title">Nos Produits</h2>
     <div class="products-grid">
-      <!-- Produit 1 -->
       <div class="product-card">
-        <div class="promo-badge">Économisez 29%</div>
-        <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="EcoFlow Delta 2">
-        <h3>EcoFlow Delta 2</h3>
-        <p class="desc">1024Wh – Recharge rapide, idéale pour la maison et les sorties.</p>
-        <div class="prices">
-          <span class="price">699 €</span>
-          <span class="old-price">799 €</span>
-          <span class="tag">Offre exclusive</span>
+        <span class="product-badge">Économisez 29%</span>
+        <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="EcoFlow Delta 2" />
+        <div class="product-info">
+          <h3>EcoFlow Delta 2</h3>
+          <div class="desc">1024Wh – Recharge rapide, idéale pour la maison et les sorties.</div>
+          <div class="product-pricing">
+            <span class="price">699 €</span>
+            <span class="oldprice">999 €</span>
+            <span class="product-badge2">Offre exclusive</span>
+          </div>
+          <a href="product-1.html" class="select-btn">Choisir</a>
         </div>
-        <a href="product-1.html" class="choose-btn">Choisir</a>
       </div>
-
-      <!-- Produit 2 -->
       <div class="product-card">
-        <div class="promo-badge">Économisez 20%</div>
-        <img src="https://www.ecoflow.com/cdn/shop/files/delta-3.jpg" alt="EcoFlow Delta 3">
-        <h3>EcoFlow Delta 3</h3>
-        <p class="desc">1800W & 1024Wh – Puissant et extensible pour vos besoins intensifs.</p>
-        <div class="prices">
-          <span class="price">799 €</span>
-          <span class="old-price">999 €</span>
-          <span class="tag">Offre exclusive</span>
+        <span class="product-badge">Économisez 20%</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-3.jpg" alt="EcoFlow Delta 3" />
+        <div class="product-info">
+          <h3>EcoFlow Delta 3</h3>
+          <div class="desc">1800W & 1024Wh – Puissant et extensible pour les usages intensifs.</div>
+          <div class="product-pricing">
+            <span class="price">799 €</span>
+            <span class="oldprice">999 €</span>
+            <span class="product-badge2">Offre exclusive</span>
+          </div>
+          <a href="product-2.html" class="select-btn">Choisir</a>
         </div>
-        <a href="product-2.html" class="choose-btn">Choisir</a>
       </div>
-
-      <!-- Produit 3 -->
       <div class="product-card">
-        <div class="promo-badge">Économisez 12%</div>
-        <img src="https://www.ecoflow.com/cdn/shop/files/river-2.jpg" alt="EcoFlow River 2">
-        <h3>EcoFlow River 2</h3>
-        <p class="desc">256Wh – Compact et rapide, parfait pour les petits appareils.</p>
-        <div class="prices">
-          <span class="price">129 €</span>
-          <span class="old-price">149 €</span>
-          <span class="tag">Offre exclusive</span>
+        <span class="product-badge">Économisez 12%</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/river-2.jpg" alt="EcoFlow River 2" />
+        <div class="product-info">
+          <h3>EcoFlow River 2</h3>
+          <div class="desc">256Wh – Compact et rapide, parfait pour les petits appareils.</div>
+          <div class="product-pricing">
+            <span class="price">129 €</span>
+            <span class="oldprice">149 €</span>
+            <span class="product-badge2">Offre exclusive</span>
+          </div>
+          <a href="product-3.html" class="select-btn">Choisir</a>
         </div>
-        <a href="product-3.html" class="choose-btn">Choisir</a>
       </div>
-
-      <!-- Produit 4 -->
       <div class="product-card">
-        <div class="promo-badge">Économisez 24%</div>
-        <img src="https://www.ecoflow.com/cdn/shop/files/river-3.jpg" alt="EcoFlow River 3">
-        <h3>EcoFlow River 3</h3>
-        <p class="desc">512Wh – Nouvelle génération, ultra-compact et portable.</p>
-        <div class="prices">
-          <span class="price">179 €</span>
-          <span class="old-price">239 €</span>
-          <span class="tag">Offre exclusive</span>
+        <span class="product-badge">Économisez 24%</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/river-3.jpg" alt="EcoFlow River 3" />
+        <div class="product-info">
+          <h3>EcoFlow River 3</h3>
+          <div class="desc">512Wh – Nouvelle génération, ultra-compact et portable.</div>
+          <div class="product-pricing">
+            <span class="price">179 €</span>
+            <span class="oldprice">239 €</span>
+            <span class="product-badge2">Offre exclusive</span>
+          </div>
+          <a href="product-4.html" class="select-btn">Choisir</a>
         </div>
-        <a href="product-4.html" class="choose-btn">Choisir</a>
       </div>
-
-      <!-- Produit 5 -->
       <div class="product-card">
-        <div class="promo-badge">Économisez 10%</div>
-        <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-110w.jpg" alt="Panneau Solaire 110W">
-        <h3>Panneau Solaire 110W</h3>
-        <p class="desc">Portable, IP68, pliable – recharge solaire mobile pour tous vos usages.</p>
-        <div class="prices">
-          <span class="price">109 €</span>
-          <span class="old-price">121 €</span>
-          <span class="tag">Offre exclusive</span>
+        <span class="product-badge">Économisez 10%</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-110w.jpg" alt="Panneau solaire 110W" />
+        <div class="product-info">
+          <h3>Panneau Solaire 110W</h3>
+          <div class="desc">Portable, IP68, pliable – recharge solaire mobile pour tous usages.</div>
+          <div class="product-pricing">
+            <span class="price">109 €</span>
+            <span class="oldprice">121 €</span>
+            <span class="product-badge2">Offre exclusive</span>
+          </div>
+          <a href="product-5.html" class="select-btn">Choisir</a>
         </div>
-        <a href="product-5.html" class="choose-btn">Choisir</a>
       </div>
-
-      <!-- Produit 6 -->
       <div class="product-card">
-        <div class="promo-badge">Économisez 15%</div>
-        <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-220w.jpg" alt="Panneau Solaire 220W">
-        <h3>Panneau Solaire 220W</h3>
-        <p class="desc">Bifacial – double face pour maximiser l’énergie solaire.</p>
-        <div class="prices">
-          <span class="price">199 €</span>
-          <span class="old-price">235 €</span>
-          <span class="tag">Offre exclusive</span>
+        <span class="product-badge">Économisez 15%</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-220w.jpg" alt="Panneau solaire 220W" />
+        <div class="product-info">
+          <h3>Panneau Solaire 220W</h3>
+          <div class="desc">Bifacial – double face pour maximiser l'énergie solaire.</div>
+          <div class="product-pricing">
+            <span class="price">199 €</span>
+            <span class="oldprice">234 €</span>
+            <span class="product-badge2">Offre exclusive</span>
+          </div>
+          <a href="product-6.html" class="select-btn">Choisir</a>
         </div>
-        <a href="product-6.html" class="choose-btn">Choisir</a>
       </div>
     </div>
   </div>
@@ -258,16 +181,15 @@
       <label>Nom<input type="text" name="name" required /></label>
       <label>Email<input type="email" name="email" required /></label>
       <label>Message<textarea name="message" rows="4" required></textarea></label>
-      <button type="submit" class="choose-btn" style="width:auto">Envoyer</button>
+      <button type="submit" class="select-btn">Envoyer</button>
     </form>
     <p style="text-align:center; margin-top:1.5rem;">© 2025 CarpÉnergie</p>
   </footer>
-
   <script>
     const prices = {1:699,2:799,3:129,4:179,5:109,6:199};
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     const countEl = document.getElementById('cart-count');
-    document.querySelectorAll('.choose-btn').forEach(btn=>{
+    document.querySelectorAll('.select-btn').forEach(btn=>{
       btn.addEventListener('click',()=>{
         const id = btn.getAttribute('href').match(/product-(\d+)\.html/);
         if(id){ cart.push(id[1]); localStorage.setItem('cart', JSON.stringify(cart)); countEl.textContent = cart.length; }
@@ -277,5 +199,6 @@
   </script>
 </body>
 </html>
+
 
 
