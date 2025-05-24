@@ -21,7 +21,6 @@
     .hero h2 { color:#fff; font-size:2.5rem; text-shadow:2px 2px 10px rgba(0,0,0,0.7); }
     .container { max-width:1200px; margin:0 auto; padding:0 1rem; }
     .section-title { text-align:center; font-size:2rem; color:#1b5e20; margin-bottom:2rem; }
-    /* --- 2 colonnes --- */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -30,7 +29,14 @@
     .product-card { background:#fff; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); overflow:hidden; display:flex; flex-direction:column; transition:transform 0.3s; }
     .product-card:hover { transform:translateY(-5px); }
     .product-badge { background:#ff8500; color:#fff; font-size:0.95rem; font-weight:600; border-radius:4px; padding:3px 10px; display:inline-block; margin:15px 0 0 15px; }
-    .product-card img { width:110px; height:110px; object-fit:contain; margin:25px auto 10px auto; display:block; }
+    /* AGRANDIR LES IMAGES */
+    .product-card img {
+      width:220px;
+      height:220px;
+      object-fit:contain;
+      margin:25px auto 10px auto;
+      display:block;
+    }
     .product-info { padding:1.5rem 1.5rem 1rem 1.5rem; flex:1; display:flex; flex-direction:column; }
     .product-info h3 { font-size:1.2rem; color:#222; margin-bottom:0.5rem; }
     .product-info .desc { font-size:0.98rem; color:#666; margin-bottom:0.8rem; }
@@ -199,5 +205,3 @@
   </script>
 </body>
 </html>
-
-
