@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -126,43 +126,40 @@
 </head>
 <body>
   <nav>
-  <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="produits.html">Batteries Nomades</a></li>
-    <li><a href="panneaux-solaire.html">Panneaux solaires</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li style="position:relative;">
-      <a href="cart.html" id="cart-btn">Panier 🛒
-        <span class="cart-count" id="cart-count">0</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="produits.html">Produits</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="position:relative;">
+        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+      </li>
+      <li style="margin-left: 1.5rem;">
+        <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+      </li>
+    </ul>
+  </nav>
   <div class="product-detail-container">
-    <div class="product-title">[EcoFlow River 2 Pro]</div>
+    <div class="product-title">[NOM_PRODUIT_7]</div>
     <img class="product-detail-img" src="[URL_IMAGE]" alt="[NOM_PRODUIT_7]">
     <div class="product-desc">[Description du produit 7...]</div>
     <div class="product-price">[PRIX] €</div>
-    <button class="product-btn" data-id="River-2-Pro">Ajouter au panier</button>
+    <button class="product-btn" data-id="[River-2-Pro]">Ajouter au panier</button>
   </div>
   <script>
-    document.querySelectorAll('.product-btn').forEach(btn => {
-      const cartCountEl = document.querySelector('.cart-count');
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      function updateCount() { cartCountEl.textContent = cart.length; }
-      updateCount();
-      btn.addEventListener('click', () => {
-        const details = btn.closest('.details');
-        const qty = parseInt(details.querySelector('input[type="number"]').value, 10) || 1;
-        for (let i = 0; i < qty; i++) cart.push({ id: btn.dataset.id });
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCount();
-        const backdrop = document.getElementById('modal-backdrop');
-        backdrop.style.display = 'flex';
-        backdrop.querySelector('.btn-continue').onclick = () => backdrop.style.display = 'none';
-        backdrop.querySelector('.btn-cart').onclick = () => window.location.href = 'cart.html';
-      });
-    });
+    // Affichage compteur panier
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    document.getElementById('cart-count').textContent = cart.length;
+
+    // Ajouter au panier (identique autres pages)
+    document.querySelector('.product-btn').onclick = function(){
+      let id = this.dataset.id;
+      let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+      cart.push({id});
+      localStorage.setItem('cart', JSON.stringify(cart));
+      document.getElementById('cart-count').textContent = cart.length;
+      this.textContent = "Ajouté !";
+      setTimeout(()=>{ this.textContent = "Ajouter au panier"; }, 1400);
+    };
   </script>
 </body>
 </html>
