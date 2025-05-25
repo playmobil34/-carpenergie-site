@@ -23,7 +23,6 @@
       position: relative;
       overflow-x: hidden;
     }
-    /* NAV FUTURISTE */
     nav {
       width: 100vw;
       z-index: 30;
@@ -85,6 +84,21 @@
       padding-top: 6.5rem;
       margin-bottom: 0.8rem;
     }
+    .brands-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #00ffe7;
+      font-size: 1.55rem;
+      font-weight: 900;
+      letter-spacing: 3.5px;
+      margin-bottom: 18px;
+      text-shadow: 0 0 18px #0ffb, 0 0 9px #fff3, 0 1px 10px #01ffb0;
+      text-transform: uppercase;
+      animation: brandsGlow 2s infinite alternate;
+    }
+    @keyframes brandsGlow {
+      0% { text-shadow: 0 0 18px #0ffb, 0 0 9px #fff3, 0 1px 10px #01ffb0;}
+      100% { text-shadow: 0 0 38px #fff, 0 0 29px #0ff, 0 1px 19px #01ffb0;}
+    }
     .logo-ecoflow {
       font-family: 'Orbitron', sans-serif;
       font-size: 3.1rem;
@@ -97,15 +111,14 @@
       box-shadow: 0 0 38px #0ffb, 0 0 12px #fff3, 0 1px 44px #01ffb0;
       border: 2.5px solid #0ff;
       text-shadow: 0 0 18px #fff, 0 0 29px #0ff, 0 1px 16px #099;
-      cursor: pointer;
+      cursor: default;
       transition: transform 0.2s, box-shadow 0.2s;
       animation: logoShine 2.2s infinite linear;
+      user-select: none;
+      pointer-events: none;
     }
     .logo-ecoflow:hover {
-      transform: scale(1.09) rotate(-1.4deg);
-      box-shadow: 0 0 74px #00ffe7, 0 0 18px #3ff, 0 1px 44px #01fff0;
-      background: rgba(13,24,36,0.92);
-      color: #fff;
+      /* Le hover ne fait rien maintenant */
     }
     .hero h2 {
       font-family: 'Orbitron', sans-serif;
@@ -216,9 +229,10 @@
     </ul>
   </nav>
   <div class="hero">
-    <div class="logo-ecoflow" onclick="window.location.href='produits.html'">ECOFLOW</div>
-    <h2>CarpÉnergie</h2>
-    <p>Votre spécialiste du catalogue EcoFlow<br>Énergie portable pour toutes vos aventures.</p>
+    <div class="brands-title">Nos marques</div>
+    <div class="logo-ecoflow">ECOFLOW</div>
+    <h2>Énergie Solaire</h2>
+    <p>Votre spécialiste<br>Énergie portable pour toutes vos aventures.</p>
   </div>
   <section class="univers-container">
     <div class="univers-title">Nos Univers &amp; Technologies</div>
