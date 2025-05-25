@@ -6,12 +6,8 @@
   <title>Stations Nomades – CarpÉnergie</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-   body {
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body {
       min-height: 100vh;
       background: linear-gradient(rgba(0,22,36,0.7),rgba(9,40,44,0.7)),
         url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
@@ -194,38 +190,84 @@
       border-color: #fff;
       box-shadow: 0 0 28px #0ffb;
     }
+
+    /* ----- Responsive mobile/tablette ----- */
     @media (max-width: 900px) {
-      .products-grid { grid-template-columns: 1fr; }
-      .products-container { padding: 1rem; }
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1.3rem;
+      }
+      .products-container {
+        padding: 1rem 2vw;
+      }
+      nav ul {
+        gap: 0.8rem;
+      }
+    }
+    @media (max-width: 570px) {
+      .products-container {
+        margin-top: 78px !important;
+        padding: 1.2rem 0.5rem 2.5rem 0.5rem;
+      }
+      .products-title {
+        font-size: 1.23rem;
+        margin-bottom: 1.1rem;
+      }
+      .product-card {
+        border-radius: 12px;
+        font-size: 0.95rem;
+        padding: 0.4rem 0.2rem;
+      }
+      .product-img-wrap {
+        width: 95vw; max-width: 260px;
+        height: 160px;
+        margin: 1.2rem 0 0.7rem 0;
+        border-radius: 9px;
+      }
+      .product-card img {
+        max-width: 85vw;
+        max-height: 140px;
+      }
+      nav {
+        font-size: 0.99rem;
+      }
+      nav a {
+        padding: 0.5em 0.7em;
+        font-size: 0.96rem;
+        border-radius: 7px;
+      }
+    }
+    @media (max-width: 400px) {
+      .product-img-wrap {
+        width: 92vw; max-width: 190px; height: 110px;
+      }
+      .product-card img {
+        max-height: 97px;
+      }
+      .products-title { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Barre de navigation style index futuriste -->
- 
- <nav>
-  <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="batterie-nomade.html">Batterie nomade</a></li>
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="batterie-nomade.html">Batterie nomade</a></li>
       <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li style="position:relative;">
-      <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
-    </li>
-    <li style="margin-left: 1.5rem;">
-      <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
-    </li>
-  </ul>
-</nav>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="position:relative;">
+        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+      </li>
+      <li style="margin-left: 1.5rem;">
+        <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+      </li>
+    </ul>
+  </nav>
 
-<div class="products-container">
+  <div class="products-container">
     <div class="products-title">Stations Nomades EcoFlow</div>
     <div class="products-grid">
 
-      <!-- RIVER Series -->
-       <div class="products-container">
-    <div class="products-title">Stations Nomades EcoFlow</div>
-    <div class="products-grid">
       <!-- RIVER Series -->
       <div class="product-card">
         <div class="product-img-wrap">
@@ -245,7 +287,7 @@
         <div class="product-price">499&nbsp;€ <del>599&nbsp;€</del></div>
         <a href="product-8.html" class="product-btn">Choisir</a>
       </div>
- <div class="product-card">
+      <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://fr.ecoflow.com/cdn/shop/files/batterie-solaire-portable-ecoflow-river-3-58407554187611_2000x.png?v=1730870047" alt="EcoFlow River 3">
         </div>
@@ -254,7 +296,7 @@
         <div class="product-price">329&nbsp;€ <del>399&nbsp;€</del></div>
         <a href="product-4.html" class="product-btn">Choisir</a>
       </div>
- 
+
       <!-- DELTA Series -->
       <div class="product-card">
         <div class="product-img-wrap">
@@ -265,8 +307,8 @@
         <div class="product-price">699&nbsp;€ <del>799&nbsp;€</del></div>
         <a href="product-1.html" class="product-btn">Choisir</a>
       </div>
-      
-        <div class="product-card">
+
+      <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-max-51102831411547_2000x.png?v=1739849008" alt="EcoFlow Delta 2 Max">
         </div>
@@ -275,6 +317,7 @@
         <div class="product-price">1 199&nbsp;€ <del>1 799&nbsp;€</del></div>
         <a href="product-11.html" class="product-btn">Choisir</a>
       </div>
+
       <!-- DELTA 3 Series -->
       <div class="product-card">
         <div class="product-img-wrap">
@@ -287,7 +330,7 @@
       </div>
       <div class="product-card">
         <div class="product-img-wrap">
-          <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-de-la-gamme-ecoflow-delta-3-reconditionnee-1155248232_2000x.png?v=1744283244" alt="EcoFlow Delta 3 Max">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-de-la-gamme-ecoflow-delta-3-reconditionnee-1155248232_2000x.png?v=1744283244" alt="EcoFlow Delta 3 Plus">
         </div>
         <div class="product-title">EcoFlow Delta 3 Plus</div>
         <div class="product-desc">1024&nbsp;Wh — Capacité extensible, puissance pro, recharge rapide, multi-usages.</div>
@@ -303,9 +346,8 @@
         <div class="product-price">2 199&nbsp;€ <del>2 399&nbsp;€</del></div>
         <a href="product-10.html" class="product-btn">Choisir</a>
       </div>
-
-     
-      
+    </div>
+  </div>
 
   <script>
     // Compteur panier
