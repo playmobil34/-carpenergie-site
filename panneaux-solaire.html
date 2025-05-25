@@ -28,17 +28,41 @@
       position: fixed;
       top: 0; left: 0;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       background: rgba(20,44,37, 0.38);
       box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
       backdrop-filter: blur(7px);
       border-bottom: 2px solid #0ff;
+      padding: 0.8rem 2rem;
     }
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.7rem;
+      color: #0ff;
+      letter-spacing: 4px;
+      user-select: none;
+      font-weight: bold;
+      text-shadow: 0 0 12px #0ff7, 0 0 2px #fff;
+      margin-left: 10px;
+      text-decoration: none;
+      transition: color .18s;
+      cursor: pointer;
+    }
+    .nav-logo:hover { color: #fff; }
+    .nav-burger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2.3rem;
+      color: #0ff;
+      cursor: pointer;
+    }
+
     nav ul {
       display: flex;
       gap: 2.2rem;
       list-style: none;
-      margin: 0.45em 0;
+      margin: 0;
       padding: 0;
       align-items: center;
     }
@@ -60,12 +84,10 @@
       box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
       border: 1.3px solid #0ff;
     }
-
-    /* --- COMPTEUR PANIER --- */
     .cart-count {
       position: absolute;
       top: 50%;
-      left: 110%;
+      right: -10px;
       transform: translateY(-50%);
       background: #0ff;
       color: #033;
@@ -75,30 +97,34 @@
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
-      min-width: 22px;
+      min-width: 24px;
       text-align: center;
-      z-index: 1;
     }
-
-    /* ---- RESPONSIVE ---- */
+    
+    /* --- MOBILE --- */
     @media (max-width: 900px) {
+      .nav-burger {
+        display: block;
+      }
+
       nav ul {
+        display: none;
         flex-direction: column;
         gap: 0;
         position: absolute;
-        top: 58px;
+        top: 68px;
         left: 0;
         width: 100vw;
         background: rgba(16, 30, 40, 0.97);
         box-shadow: 0 4px 22px #0ff4;
         padding: 0;
         margin-left: 0;
-        display: none;
         z-index: 100;
         border-bottom-left-radius: 18px;
         border-bottom-right-radius: 18px;
         border-top: 1px solid #0ff7;
       }
+
       nav ul.show {
         display: flex;
       }
@@ -107,18 +133,12 @@
         padding: 1.08em 2.6em 1.08em 2.4em;
         font-size: 1.13rem;
       }
-
       .cart-count {
-        left: unset;
-        right: 22px;
+        position: absolute;
         top: 50%;
+        right: 22px;
         transform: translateY(-50%);
       }
-    }
-
-    @media (max-width: 500px) {
-      .nav-logo { left: 42px; font-size: 1rem;}
-      .nav-burger { font-size: 2.0rem; }
     }
 
     .products-container {
@@ -235,16 +255,18 @@
       border-color: #fff;
       box-shadow: 0 0 28px #0ffb;
     }
-    @media (max-width: 900px) {
-      .products-grid { grid-template-columns: 1fr; }
-      .products-container { padding: 1rem; }
-    }
+
   </style>
 </head>
 <body>
-  <!-- Barre de navigation -->
+
+  <!-- Navigation -->
   <nav>
-    <ul>
+    <a href="index.html" class="nav-logo">CarpÉnergie</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <i class="ri-menu-line"></i>
+    </button>
+    <ul id="nav-links">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="batterie-nomade.html">Batterie nomade</a></li>
       <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
@@ -252,8 +274,8 @@
       <li style="position:relative;">
         <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
       </li>
-      <li style="margin-left: 1.5rem;">
-        <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+      <li>
+        <a href="login.html" id="login-btn">Connexion</a>
       </li>
     </ul>
   </nav>
@@ -261,7 +283,7 @@
   <div class="products-container">
     <div class="products-title">Nos Panneaux Solaires</div>
     <div class="products-grid">
-      <!-- Panneau Solaire  -->
+      <!-- Panneaux solaires produits ici -->
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-de-160-w-38953167519970_2000x.png?v=1708331506" alt="Panneau Solaire 160W">
@@ -291,10 +313,18 @@
         <div class="product-price">799&nbsp;€ <del>899&nbsp;€</del></div>
         <a href="product-13.html" class="product-btn">Choisir</a>
       </div>
+
     </div>
   </div>
-  
+
   <script>
+    // Burger menu JS
+    const burger = document.getElementById('nav-burger');
+    const navLinks = document.getElementById('nav-links');
+    burger.onclick = function () {
+      navLinks.classList.toggle('show');
+    };
+
     // Compteur panier
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     document.getElementById('cart-count').textContent = cart.length || 0;
