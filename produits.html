@@ -3,18 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nos produits – CarpÉnergie</title>
+  <title>Stations Nomades – CarpÉnergie</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
+      margin: 0; padding: 0;
       min-height: 100vh;
-      background: linear-gradient(rgba(0,22,36,0.7),rgba(9,40,44,0.7)),
-        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
-      color: #f0fffb;
-      font-family: 'Roboto', sans-serif;
-      letter-spacing: 0.6px;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #fff;
       position: relative;
-      overflow-x: hidden;
     }
     body::before {
       content: "";
@@ -27,8 +25,7 @@
     .navbar {
       width: 100%;
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       z-index: 10;
       background: rgba(12,30,24,0.97);
       box-shadow: 0 0 24px #0ff2;
@@ -196,7 +193,8 @@
   <nav class="navbar">
     <ul>
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="produits.html">Produits</a></li>
+      <li><a href="produits.html">Stations nomades</a></li>
+      <li><a href="panneaux.html">Panneaux solaires</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li style="position:relative;">
         <a href="cart.html">Panier
@@ -207,76 +205,79 @@
   </nav>
 
   <div class="products-container">
-    <div class="products-title">Nos Produits</div>
+    <div class="products-title">Stations Nomades EcoFlow</div>
     <div class="products-grid">
 
-      <!-- 1. RIVER 2 -->
+      <!-- RIVER Series -->
       <div class="product-card">
         <div class="product-img-wrap">
-          <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-river-2_1200x.png?v=1697712120" alt="EcoFlow River 2">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/river-2_1.png?v=1709033005" alt="EcoFlow River 2">
         </div>
         <div class="product-title">EcoFlow River 2</div>
-        <div class="product-desc">256Wh – Compacte, ultra-légère, recharge rapide pour tous vos appareils essentiels.</div>
+        <div class="product-desc">256&nbsp;Wh — Compact, ultra-léger et recharge rapide, idéal mobilité urbaine & outdoor.</div>
         <div class="product-price">129&nbsp;€ <del>149&nbsp;€</del></div>
         <a href="product-3.html" class="product-btn">Choisir</a>
       </div>
-      <!-- 2. DELTA 2 -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/river-2-max_1.png?v=1709033281" alt="EcoFlow River 2 Max">
+        </div>
+        <div class="product-title">EcoFlow River 2 Max</div>
+        <div class="product-desc">512&nbsp;Wh — Batterie portable, parfaite pour camping, bivouac et nomadisme numérique.</div>
+        <div class="product-price">329&nbsp;€ <del>399&nbsp;€</del></div>
+        <a href="#" class="product-btn">Choisir</a>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/river-2-pro_1.png?v=1709033552" alt="EcoFlow River 2 Pro">
+        </div>
+        <div class="product-title">EcoFlow River 2 Pro</div>
+        <div class="product-desc">768&nbsp;Wh — Ultra-polyvalente, recharge ultra-rapide (70&nbsp;min.), tous vos appareils nomades.</div>
+        <div class="product-price">499&nbsp;€ <del>599&nbsp;€</del></div>
+        <a href="#" class="product-btn">Choisir</a>
+      </div>
+
+      <!-- DELTA Series -->
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="EcoFlow Delta 2">
         </div>
         <div class="product-title">EcoFlow Delta 2</div>
-        <div class="product-desc">1024Wh – Batterie portable haute capacité, idéale pour la maison et les sorties.</div>
+        <div class="product-desc">1024&nbsp;Wh — Batterie portable, recharge X-Stream (0-80% en 50min), 6 prises AC & USB.</div>
         <div class="product-price">699&nbsp;€ <del>799&nbsp;€</del></div>
         <a href="product-1.html" class="product-btn">Choisir</a>
       </div>
-      <!-- 3. DELTA 3 -->
       <div class="product-card">
         <div class="product-img-wrap">
-          <img src="https://www.ecoflow.com/cdn/shop/files/delta-3.jpg" alt="EcoFlow Delta 3">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/delta-2-max_1.png?v=1709033203" alt="EcoFlow Delta 2 Max">
         </div>
-        <div class="product-title">EcoFlow Delta 3</div>
-        <div class="product-desc">1800W &amp; 1024Wh – Puissant, extensible, pour besoins intensifs.</div>
-        <div class="product-price">799&nbsp;€ <del>999&nbsp;€</del></div>
-        <a href="product-2.html" class="product-btn">Choisir</a>
+        <div class="product-title">EcoFlow Delta 2 Max</div>
+        <div class="product-desc">2048&nbsp;Wh — Grande capacité, extensible, alimentation domestique ou outdoor XXL.</div>
+        <div class="product-price">1 199&nbsp;€ <del>1 799&nbsp;€</del></div>
+        <a href="#" class="product-btn">Choisir</a>
       </div>
-      <!-- 4. RIVER 3 -->
       <div class="product-card">
         <div class="product-img-wrap">
-          <img src="https://fr.ecoflow.com/cdn/shop/files/river-3-1.png?v=1704806056" alt="EcoFlow River 3">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/delta-max.png?v=1686829531" alt="EcoFlow Delta Max">
         </div>
-        <div class="product-title">EcoFlow River 3</div>
-        <div class="product-desc">512Wh – Nouvelle génération, ultra-compacte, portable.</div>
-        <div class="product-price">179&nbsp;€ <del>239&nbsp;€</del></div>
-        <a href="product-4.html" class="product-btn">Choisir</a>
+        <div class="product-title">EcoFlow Delta Max</div>
+        <div class="product-desc">2016&nbsp;Wh — Idéale pour alimentation domestique de secours, extensible jusqu’à 6048Wh.</div>
+        <div class="product-price">1 399&nbsp;€ <del>1 799&nbsp;€</del></div>
+        <a href="#" class="product-btn">Choisir</a>
       </div>
-      <!-- 5. Panneau Solaire 110W -->
       <div class="product-card">
         <div class="product-img-wrap">
-          <img src="https://fr.ecoflow.com/cdn/shop/files/panneau-solaire-110w.png?v=1696590533" alt="Panneau Solaire 110W">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/delta-pro_1.png?v=1709032969" alt="EcoFlow Delta Pro">
         </div>
-        <div class="product-title">Panneau Solaire 110W</div>
-        <div class="product-desc">Portable, IP68, pliable – recharge solaire mobile tous usages.</div>
-        <div class="product-price">109&nbsp;€ <del>121&nbsp;€</del></div>
-        <a href="product-5.html" class="product-btn">Choisir</a>
+        <div class="product-title">EcoFlow Delta Pro</div>
+        <div class="product-desc">3600&nbsp;Wh — La référence, extensible jusqu’à 25kWh, tout pour la maison autonome ou le pro !</div>
+        <div class="product-price">2 199&nbsp;€ <del>2 499&nbsp;€</del></div>
+        <a href="#" class="product-btn">Choisir</a>
       </div>
-      <!-- 6. Panneau Solaire 220W -->
-      <div class="product-card">
-        <div class="product-img-wrap">
-          <img src="https://fr.ecoflow.com/cdn/shop/files/panneau-solaire-220w-bifacial.png?v=1696590498" alt="Panneau Solaire 220W">
-        </div>
-        <div class="product-title">Panneau Solaire 220W</div>
-        <div class="product-desc">Bifacial – double face, maximisez la collecte d'énergie solaire.</div>
-        <div class="product-price">199&nbsp;€ <del>239&nbsp;€</del></div>
-        <a href="product-6.html" class="product-btn">Choisir</a>
-      </div>
-
-      <!-- Tu peux rajouter d’autres produits ici, même style ! -->
     </div>
   </div>
 
   <script>
-    // Mettre à jour la bulle panier si besoin
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     document.getElementById('cart-count').textContent = cart.length || 0;
   </script>
