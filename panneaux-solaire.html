@@ -267,7 +267,6 @@
       <i class="ri-menu-line"></i>
     </button>
     <ul id="nav-links">
-      <li><a href="index.html">Accueil</a></li>
       <li><a href="batterie-nomade.html">Batterie nomade</a></li>
       <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -283,7 +282,7 @@
   <div class="products-container">
     <div class="products-title">Nos Panneaux Solaires</div>
     <div class="products-grid">
-      <!-- Panneaux solaires produits ici -->
+      <!-- Panneau Solaire 160W -->
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-de-160-w-38953167519970_2000x.png?v=1708331506" alt="Panneau Solaire 160W">
@@ -294,6 +293,7 @@
         <a href="product-12.html" class="product-btn">Choisir</a>
       </div>
 
+      <!-- Panneau Solaire 220W -->
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-double-face-de-220-w-38953189408994_2000x.png?v=1708331616" alt="Panneau Solaire 220W">
@@ -304,6 +304,7 @@
         <a href="product-14.html" class="product-btn">Choisir</a>
       </div>
 
+      <!-- Panneau Solaire 400W -->
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-portable-de-400-w-38953197011170_2000x.png?v=1675839414" alt="Panneau Solaire 400W">
@@ -313,7 +314,6 @@
         <div class="product-price">799&nbsp;€ <del>899&nbsp;€</del></div>
         <a href="product-13.html" class="product-btn">Choisir</a>
       </div>
-
     </div>
   </div>
 
@@ -326,7 +326,7 @@
     };
 
     // Compteur panier
-    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
     document.getElementById('cart-count').textContent = cart.length || 0;
   </script>
 
