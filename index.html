@@ -9,12 +9,10 @@
     body { font-family: 'Roboto', sans-serif; background:#f0f2f5; color:#333; }
     a { text-decoration:none; color:inherit; }
 
-    /* Header */
     header { background:#1b5e20; color:#fff; padding:2rem 1rem; text-align:center; }
     header h1 { font-size:3rem; font-weight:700; }
     header p { font-size:1.1rem; margin-top:0.5rem; opacity:0.8; }
 
-    /* Nav */
     nav { background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
     nav ul { display:flex; justify-content:center; list-style:none; }
     nav li { margin:0 1.5rem; position:relative; }
@@ -22,19 +20,16 @@
     nav a:hover { background:#e8f5e9; border-radius:4px; }
     .cart-count { position:absolute; top:8px; right:-8px; background:#d32f2f; color:#fff; border-radius:50%; padding:2px 6px; font-size:0.75rem; }
 
-    /* Hero */
     .hero { background:url('https://www.ecoflow.com/cdn/shop/files/delta-2-max-banner.jpg') center/cover no-repeat; height:350px; display:flex; align-items:center; justify-content:center; margin-bottom:3rem; }
     .hero h2 { color:#fff; font-size:2.5rem; text-shadow:2px 2px 10px rgba(0,0,0,0.7); }
 
-    /* Products */
     .container { max-width:1200px; margin:0 auto; padding:0 1rem; }
     .section-title { text-align:center; font-size:2rem; color:#1b5e20; margin-bottom:2rem; }
-    .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:2rem; }
+    .products-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:2rem; }
     .product-card { background:#fff; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); overflow:hidden; display:flex; flex-direction:column; transition:transform 0.3s; }
     .product-card:hover { transform:translateY(-5px); }
     .product-card img {
-      width: 260px;
-      height: 220px;
+      width: 260px; height: 220px;
       object-fit: contain;
       margin: 25px auto 10px auto;
       display: block;
@@ -43,7 +38,7 @@
     }
     .product-info { padding:1.5rem; flex:1; display:flex; flex-direction:column; }
     .product-info h3 { font-size:1.3rem; color:#2e7d32; margin-bottom:0.5rem; }
-    .product-info p, .desc { flex:1; font-size:1rem; margin-bottom:1rem; }
+    .desc { flex:1; font-size:1rem; margin-bottom:1rem; }
     .select-btn {
       background:#111; color:#fff; padding:0.75rem;
       border:none; border-radius:4px;
@@ -54,7 +49,6 @@
       font-size: 1.06rem;
     }
     .select-btn:hover { background:#333; }
-    /* Badges and pricing */
     .product-badge, .product-badge2 {
       display:inline-block; font-size:0.95rem; background:#FF7B00; color:#fff;
       padding: 2px 10px; border-radius:4px; font-weight:500; margin-bottom:7px;
@@ -68,7 +62,6 @@
     .price { color:#ff6200; font-size:1.13rem; font-weight:700; margin-right:10px;}
     .oldprice { color:#888; text-decoration:line-through; font-size:1rem; margin-right:5px; }
 
-    /* Contact */
     footer { background:#e0e0e0; padding:2rem 1rem; margin-top:3rem; }
     footer h2 { text-align:center; margin-bottom:1rem; }
     form { max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:1rem; }
@@ -76,14 +69,8 @@
     form input, form textarea { padding:0.5rem; border:1px solid #ccc; border-radius:4px; }
     form button { align-self:center; background:#2e7d32; color:#fff; padding:0.75rem 1.5rem; border:none; border-radius:4px; cursor:pointer; }
 
-    /* Responsive */
-    @media(max-width:768px){
-      header h1{font-size:2rem;}
-      .hero{height:250px;}
-      .hero h2{font-size:1.8rem;}
-      .products-grid{grid-template-columns:1fr;}
-      .product-card img{width: 100%; height: 160px;}
-    }
+    @media(max-width:900px){ .products-grid { grid-template-columns:1fr; } .hero{height:250px;} .hero h2{font-size:1.8rem;} }
+    @media(max-width:600px){ header h1{font-size:2rem;} .products-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
@@ -91,7 +78,6 @@
     <h1>CarpÉnergie</h1>
     <p>Votre spécialiste du catalogue EcoFlow</p>
   </header>
-
   <nav>
     <ul>
       <li><a href="#">Accueil</a></li>
@@ -100,14 +86,13 @@
       <li style="position:relative;"><a href="#" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a></li>
     </ul>
   </nav>
-
   <section class="hero">
     <h2>L'énergie où que vous soyez</h2>
   </section>
-
   <div class="container" id="produits">
     <h2 class="section-title">Nos Produits</h2>
     <div class="products-grid">
+      <!-- DELTA 2 -->
       <div class="product-card">
         <span class="product-badge">Économisez 29%</span>
         <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="EcoFlow Delta 2" />
@@ -122,12 +107,13 @@
           <a href="product-1.html" class="select-btn">Choisir</a>
         </div>
       </div>
+      <!-- DELTA 3 -->
       <div class="product-card">
         <span class="product-badge">Économisez 20%</span>
         <img src="https://www.ecoflow.com/cdn/shop/files/delta-3.jpg" alt="EcoFlow Delta 3" />
         <div class="product-info">
           <h3>EcoFlow Delta 3</h3>
-          <div class="desc">1024Wh & 1800W – Puissant et extensible.</div>
+          <div class="desc">1800W & 1024Wh – Puissant et extensible pour les usages intensifs.</div>
           <div class="product-pricing">
             <span class="price">799 €</span>
             <span class="oldprice">999 €</span>
@@ -136,6 +122,7 @@
           <a href="product-2.html" class="select-btn">Choisir</a>
         </div>
       </div>
+      <!-- RIVER 2 -->
       <div class="product-card">
         <span class="product-badge">Économisez 12%</span>
         <img src="https://www.ecoflow.com/cdn/shop/files/river-2.jpg" alt="EcoFlow River 2" />
@@ -150,6 +137,7 @@
           <a href="product-3.html" class="select-btn">Choisir</a>
         </div>
       </div>
+      <!-- RIVER 3 -->
       <div class="product-card">
         <span class="product-badge">Économisez 24%</span>
         <img src="https://www.ecoflow.com/cdn/shop/files/river-3.jpg" alt="EcoFlow River 3" />
@@ -164,6 +152,7 @@
           <a href="product-4.html" class="select-btn">Choisir</a>
         </div>
       </div>
+      <!-- Panneau Solaire 110W -->
       <div class="product-card">
         <span class="product-badge">Économisez 10%</span>
         <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-110w.jpg" alt="Panneau Solaire 110W" />
@@ -178,6 +167,7 @@
           <a href="product-5.html" class="select-btn">Choisir</a>
         </div>
       </div>
+      <!-- Panneau Solaire 220W -->
       <div class="product-card">
         <span class="product-badge">Économisez 15%</span>
         <img src="https://www.ecoflow.com/cdn/shop/files/solar-panel-220w.jpg" alt="Panneau Solaire 220W" />
@@ -190,6 +180,96 @@
             <span class="product-badge2">Offre exclusive</span>
           </div>
           <a href="product-6.html" class="select-btn">Choisir</a>
+        </div>
+      </div>
+      <!-- DELTA Pro -->
+      <div class="product-card">
+        <span class="product-badge">Puissance max</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-pro.jpg" alt="EcoFlow DELTA Pro" />
+        <div class="product-info">
+          <h3>EcoFlow DELTA Pro</h3>
+          <div class="desc">3600Wh – Alimentation domestique complète, extensible jusqu'à 25kWh.</div>
+          <div class="product-pricing">
+            <span class="price">2199 €</span>
+            <span class="oldprice">2599 €</span>
+            <span class="product-badge2">Livraison offerte</span>
+          </div>
+          <a href="product-7.html" class="select-btn">Choisir</a>
+        </div>
+      </div>
+      <!-- DELTA Max -->
+      <div class="product-card">
+        <span class="product-badge">Haute capacité</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-max.jpg" alt="EcoFlow DELTA Max" />
+        <div class="product-info">
+          <h3>EcoFlow DELTA Max</h3>
+          <div class="desc">2016Wh – Puissance extensible, recharge rapide 0 à 80% en 65 min.</div>
+          <div class="product-pricing">
+            <span class="price">1299 €</span>
+            <span class="oldprice">1499 €</span>
+            <span class="product-badge2">Livraison offerte</span>
+          </div>
+          <a href="product-8.html" class="select-btn">Choisir</a>
+        </div>
+      </div>
+      <!-- DELTA 2 Max -->
+      <div class="product-card">
+        <span class="product-badge">Nouveauté</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-2-max.png" alt="EcoFlow DELTA 2 Max" />
+        <div class="product-info">
+          <h3>EcoFlow DELTA 2 Max</h3>
+          <div class="desc">2048Wh – Technologie avancée LFP, extensible, ultra-rapide.</div>
+          <div class="product-pricing">
+            <span class="price">2099 €</span>
+            <span class="oldprice">2399 €</span>
+            <span class="product-badge2">Nouveau</span>
+          </div>
+          <a href="product-9.html" class="select-btn">Choisir</a>
+        </div>
+      </div>
+      <!-- DELTA Pro 3 -->
+      <div class="product-card">
+        <span class="product-badge">Ultra puissance</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/delta-pro-3.png" alt="EcoFlow DELTA Pro 3" />
+        <div class="product-info">
+          <h3>EcoFlow DELTA Pro 3</h3>
+          <div class="desc">4000Wh – Jusqu'à 12000W en mode parallèle, le top de la gamme.</div>
+          <div class="product-pricing">
+            <span class="price">3099 €</span>
+            <span class="oldprice">3499 €</span>
+            <span class="product-badge2">Haut de gamme</span>
+          </div>
+          <a href="product-10.html" class="select-btn">Choisir</a>
+        </div>
+      </div>
+      <!-- RIVER 2 Max -->
+      <div class="product-card">
+        <span class="product-badge">Best-seller</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/river-2-max.jpg" alt="EcoFlow RIVER 2 Max" />
+        <div class="product-info">
+          <h3>EcoFlow RIVER 2 Max</h3>
+          <div class="desc">512Wh – Léger et compact, 0-100% en 60 min, idéal outdoor.</div>
+          <div class="product-pricing">
+            <span class="price">299 €</span>
+            <span class="oldprice">399 €</span>
+            <span class="product-badge2">Offre spéciale</span>
+          </div>
+          <a href="product-11.html" class="select-btn">Choisir</a>
+        </div>
+      </div>
+      <!-- RIVER 3 Plus -->
+      <div class="product-card">
+        <span class="product-badge">Compact</span>
+        <img src="https://www.ecoflow.com/cdn/shop/files/river-3-plus.jpg" alt="EcoFlow RIVER 3 Plus" />
+        <div class="product-info">
+          <h3>EcoFlow RIVER 3 Plus</h3>
+          <div class="desc">768Wh – Plus de capacité, toujours portable, recharge rapide.</div>
+          <div class="product-pricing">
+            <span class="price">318 €</span>
+            <span class="oldprice">349 €</span>
+            <span class="product-badge2">Nouveauté</span>
+          </div>
+          <a href="product-12.html" class="select-btn">Choisir</a>
         </div>
       </div>
     </div>
@@ -208,7 +288,11 @@
   </footer>
 
   <script>
-    const prices = {1:699,2:799,3:129,4:179,5:109,6:199};
+    // Mets à jour ce tableau si tu ajoutes encore d'autres produits !
+    const prices = {
+      1:699,2:799,3:129,4:179,5:109,6:199,
+      7:2199,8:1299,9:2099,10:3099,11:299,12:318
+    };
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     const countEl = document.getElementById('cart-count');
     document.querySelectorAll('.select-btn').forEach(btn=>{
@@ -221,4 +305,5 @@
   </script>
 </body>
 </html>
+
 
