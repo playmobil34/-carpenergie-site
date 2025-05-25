@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CarpÉnergie – Accueil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>CarpÉnergie – Produits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0; padding: 0;
       min-height: 100vh;
       background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
-      font-family: 'Roboto', Arial, sans-serif;
+      font-family: 'Orbitron', Arial, sans-serif;
       color: #fff;
       position: relative;
     }
@@ -19,7 +19,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      background: rgba(6,22,33,0.52);
+      background: rgba(5,22,33,0.6);
       pointer-events: none;
     }
     .navbar {
@@ -32,7 +32,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 48px;
+      height: 46px;
     }
     .navbar ul {
       display: flex;
@@ -46,10 +46,10 @@
       font-weight: 700;
       letter-spacing: 2px;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       transition: color .18s;
       position: relative;
-      padding: 6px 14px;
+      padding: 6px 13px;
     }
     .navbar a:hover {
       color: #fff;
@@ -61,82 +61,100 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding-top: 100px;
+      padding-top: 90px;
     }
     .brand-title {
       font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 2.6rem;
+      font-size: 2.35rem;
       color: #0ff;
       letter-spacing: 3px;
       text-shadow: 0 0 18px #0ffb, 0 0 4px #fff;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
       font-weight: 700;
       text-align: center;
     }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
+    .products-section-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.5rem;
+      color: #42ffff;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 16px #0ff7;
+    }
+    .products-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3.5rem;
       width: 100%;
-      max-width: 950px;
+      max-width: 900px;
       margin: 0 auto;
       z-index: 2;
     }
-    .main-card {
-      background: rgba(16,28,34,0.87);
-      border-radius: 22px;
-      box-shadow: 0 0 28px #0ff2, 0 0 2px #fff4;
-      border: 2.5px solid #0ff5;
+    .product-card {
+      background: rgba(18,32,40,0.92);
+      border-radius: 20px;
+      box-shadow: 0 0 28px #0ff4, 0 0 2px #fff4;
+      border: 2px solid #0ff6;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 2.7rem 1.7rem 2rem 1.7rem;
-      transition: transform 0.23s, box-shadow 0.23s, border-color 0.2s;
+      padding: 2.2rem 1.3rem 2rem 1.3rem;
+      min-width: 265px;
+      min-height: 315px;
+      max-width: 320px;
+      transition: transform 0.18s, box-shadow 0.19s, border-color 0.2s;
       position: relative;
       cursor: pointer;
-      min-height: 340px;
       text-align: center;
       overflow: hidden;
     }
-    .main-card:hover {
-      transform: translateY(-12px) scale(1.028);
-      box-shadow: 0 0 44px #0fffffaa, 0 0 22px #fff6;
-      border-color: #0ff;
+    .product-card:hover {
+      transform: translateY(-12px) scale(1.025);
+      box-shadow: 0 0 48px #0fffffbb, 0 0 14px #fff7;
+      border-color: #fff;
     }
-    .main-card img {
+    .product-card img {
       max-width: 120px;
-      margin-bottom: 1.5rem;
-      filter: drop-shadow(0 0 22px #0ff5);
-      transition: filter 0.2s;
+      margin-bottom: 1.2rem;
+      filter: drop-shadow(0 0 16px #0ff8);
+      transition: filter 0.19s;
       pointer-events: none;
     }
-    .main-card:hover img {
-      filter: drop-shadow(0 0 32px #0fffff) brightness(1.15);
+    .product-card:hover img {
+      filter: drop-shadow(0 0 28px #0ff) brightness(1.16);
     }
-    .main-card-title {
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.32rem;
+    .product-title {
+      font-size: 1.2rem;
       color: #fff;
+      font-family: 'Orbitron', Arial, sans-serif;
       font-weight: 700;
-      margin-bottom: 0.8rem;
-      letter-spacing: 2px;
-      text-shadow: 0 0 12px #0ff5;
+      letter-spacing: 1.3px;
+      margin-bottom: 0.65rem;
+      text-shadow: 0 0 12px #0ff6;
     }
-    .main-card-desc {
-      color: #c8ffff;
-      font-size: 1.09rem;
-      margin-bottom: 1.5rem;
+    .product-desc {
+      color: #b6feff;
+      font-size: 1rem;
+      margin-bottom: 1.7rem;
+      text-shadow: 0 0 5px #014;
     }
-    @media (max-width: 900px) {
-      .main-container { padding-top: 80px; }
-      .brand-title { font-size: 1.8rem; }
-      .cards-grid { grid-template-columns: 1fr; }
+    .product-card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    @media (max-width: 800px) {
+      .products-grid { flex-direction: column; align-items: center; gap: 2.2rem;}
+      .brand-title { font-size: 1.4rem; }
+      .main-container { padding-top: 55px;}
     }
   </style>
 </head>
 <body>
-  <!-- Barre de navigation -->
   <nav class="navbar">
     <ul>
       <li><a href="index.html">Accueil</a></li>
@@ -144,33 +162,26 @@
       <li><a href="panneaux-solaire.html">Panneaux solaires</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li style="position:relative;">
-        <a href="cart.html">Panier
-          <span class="cart-count" id="cart-count">0</span>
-        </a>
+        <a href="cart.html">Panier <span class="cart-count" id="cart-count">0</span></a>
       </li>
     </ul>
   </nav>
-
   <div class="main-container">
-    <div class="brand-title">Bienvenue chez CarpÉnergie</div>
-    <div class="cards-grid">
-      <a class="main-card" href="batterie-nomade.html">
+    <div class="brand-title">Nos Univers &amp; Technologies</div>
+    <div class="products-section-title">Choisissez votre univers&nbsp;:</div>
+    <div class="products-grid">
+      <a class="product-card" href="batterie-nomade.html">
         <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="Batteries nomades">
-        <div class="main-card-title">Batteries nomades</div>
-        <div class="main-card-desc">
-          Toute la gamme EcoFlow nomade&nbsp;: River, Delta, batteries portables pour toutes vos aventures.
-        </div>
+        <div class="product-title">Batteries nomades</div>
+        <div class="product-desc">Stations électriques portables : toute la gamme River, Delta… Puissance et mobilité partout.</div>
       </a>
-      <a class="main-card" href="panneaux-solaire.html">
+      <a class="product-card" href="panneaux-solaire.html">
         <img src="https://fr.ecoflow.com/cdn/shop/files/panneau-solaire-portable-ecoflow-220w-bifacial-47509882761467_1000x.jpg?v=1703834540" alt="Panneaux solaires">
-        <div class="main-card-title">Panneaux solaires</div>
-        <div class="main-card-desc">
-          Panneaux solaires portables, légers et puissants pour charger partout vos stations et batteries EcoFlow.
-        </div>
+        <div class="product-title">Panneaux solaires</div>
+        <div class="product-desc">Panneaux EcoFlow officiels : performance, fiabilité et autonomie pour vos batteries.</div>
       </a>
     </div>
   </div>
-
   <script>
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     document.getElementById('cart-count').textContent = cart.length || 0;
