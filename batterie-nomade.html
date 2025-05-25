@@ -106,10 +106,11 @@
       box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
       border: 1.3px solid #0ff;
     }
+    /* ==== CORRECTION DU COMPTEUR PANIER SUR DESKTOP ==== */
     .cart-count {
       position: absolute;
-      top: 9px;
-      right: 11px;
+      top: 8px;
+      right: -5px;
       background: #0ff;
       color: #033;
       border-radius: 50%;
@@ -118,10 +119,12 @@
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
-      min-width: 24px;
+      min-width: 22px;
       text-align: center;
       z-index: 1;
     }
+    /* ==== FIN CORRECTION ==== */
+
     /* ---- RESPONSIVE ---- */
     @media (max-width: 900px) {
       .nav-container { height: 59px; }
@@ -169,7 +172,7 @@
         padding: 1.08em 2.6em 1.08em 2.4em;
         font-size: 1.13rem;
       }
-      /* Correction cart-count */
+      /* Correction cart-count mobile */
       #cart-btn {
         position: relative;
         padding-right: 38px !important;
