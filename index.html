@@ -2,189 +2,245 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CarpÉnergie – Produits</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarpÉnergie - Boutique EcoFlow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0; padding: 0;
-      min-height: 100vh;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
-      font-family: 'Orbitron', Arial, sans-serif;
-      color: #fff;
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Roboto', sans-serif; background:#f0f2f5; color:#333; }
+    a { text-decoration:none; color:inherit; }
+
+    header { background:#1b5e20; color:#fff; padding:2rem 1rem; text-align:center; }
+    header h1 { font-size:3rem; font-weight:700; }
+    header p { font-size:1.1rem; margin-top:0.5rem; opacity:0.8; }
+
+    nav { background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
+    nav ul { display:flex; justify-content:center; list-style:none; }
+    nav li { margin:0 1.5rem; position:relative; }
+    nav a { display:block; padding:1rem; font-weight:500; color:#1b5e20; transition:background 0.2s; }
+    nav a:hover { background:#e8f5e9; border-radius:4px; }
+    .cart-count { position:absolute; top:8px; right:-8px; background:#d32f2f; color:#fff; border-radius:50%; padding:2px 6px; font-size:0.75rem; }
+
+    /* Hero section */
+    .hero {
+      background: linear-gradient(rgba(27,94,32,0.47),rgba(27,94,32,0.31)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      height: 340px; display: flex; flex-direction:column; align-items: center; justify-content:center; margin-bottom:1.5rem;
+      border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
       position: relative;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: rgba(5,22,33,0.6);
-      pointer-events: none;
+    .hero-logo-box {
+      background: rgba(25,38,46,0.74); box-shadow: 0 0 28px #00ffe7aa,0 2px 24px #011a1f;
+      border-radius: 16px; padding: 1.5rem 3.5rem; margin-bottom: 1.2rem;
+      display:inline-block; transition:transform 0.25s, box-shadow 0.18s;
     }
-    .navbar {
-      width: 100%;
-      position: fixed;
-      top: 0; left: 0;
-      z-index: 10;
-      background: rgba(12,30,24,0.97);
-      box-shadow: 0 0 24px #0ff2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 46px;
-    }
-    .navbar ul {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-      margin: 0; padding: 0;
-    }
-    .navbar a {
-      color: #0ff;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-decoration: none;
-      font-size: 1.08rem;
-      transition: color .18s;
-      position: relative;
-      padding: 6px 13px;
-    }
-    .navbar a:hover {
-      color: #fff;
-      text-shadow: 0 0 8px #0ff, 0 0 2px #fff;
-    }
-    .main-container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding-top: 90px;
-    }
-    .brand-title {
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 2.35rem;
-      color: #0ff;
-      letter-spacing: 3px;
-      text-shadow: 0 0 18px #0ffb, 0 0 4px #fff;
-      margin-bottom: 2.5rem;
-      font-weight: 700;
+    .hero-logo-box:hover { transform:scale(1.07) translateY(-5px); box-shadow:0 0 60px #00ffe5,0 10px 32px #00fff822;}
+    .hero-logo {
+      font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
+      font-size: 2.4rem; letter-spacing:0.24em; color: #12f7d9; text-shadow:0 0 16px #18fff7, 0 2px 8px #000a;
+      font-weight: 700; letter-spacing:0.21em; text-transform:uppercase;
+      transition: color 0.2s;
       text-align: center;
+      margin-bottom:0.3rem;
     }
-    .products-section-title {
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.5rem;
-      color: #42ffff;
+    .hero h2 { color:#fff; font-size:2.1rem; margin-top:0.5rem; text-shadow:2px 2px 14px #011a1f9c; font-weight:700; }
+    .hero-desc { color:#daf6f6; font-size:1.08rem; margin-top:0.65rem; text-shadow:0 0 7px #0008; }
+
+    /* Section Energy Icons */
+    .energy-icons {
+      margin: 0 auto 2.5rem auto;
+      max-width: 1200px;
       text-align: center;
-      margin-bottom: 1.5rem;
-      letter-spacing: 2px;
-      text-shadow: 0 0 16px #0ff7;
+      padding: 2.2rem 0 1.2rem 0;
     }
-    .products-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 3.5rem;
-      width: 100%;
-      max-width: 900px;
+    .energy-icons h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #14ffec;
+      letter-spacing:2px;
+      margin-bottom: 1.6rem;
+      text-shadow: 0 0 16px #0ffb;
+    }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+      gap: 2.3rem 2.7rem;
+      justify-items: center;
+      align-items: center;
       margin: 0 auto;
-      z-index: 2;
+      max-width: 940px;
     }
-    .product-card {
-      background: rgba(18,32,40,0.92);
-      border-radius: 20px;
-      box-shadow: 0 0 28px #0ff4, 0 0 2px #fff4;
-      border: 2px solid #0ff6;
+    .icon-card {
+      background: linear-gradient(140deg,#193947bb,#1b232b 70%);
+      border-radius: 22px;
+      box-shadow: 0 2px 18px #13ffde2a,0 0 0px #16ffd4;
+      padding: 2rem 1.1rem 1rem 1.1rem;
+      transition: box-shadow 0.27s,transform 0.2s;
+      border: 2.5px solid #13ffd6aa;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2.2rem 1.3rem 2rem 1.3rem;
-      min-width: 265px;
-      min-height: 315px;
-      max-width: 320px;
-      transition: transform 0.18s, box-shadow 0.19s, border-color 0.2s;
-      position: relative;
-      cursor: pointer;
-      text-align: center;
-      overflow: hidden;
+      min-width: 140px;
+      min-height: 130px;
     }
-    .product-card:hover {
-      transform: translateY(-12px) scale(1.025);
-      box-shadow: 0 0 48px #0fffffbb, 0 0 14px #fff7;
+    .icon-card:hover, .icon-card:focus {
+      box-shadow: 0 0 48px #0ff,0 8px 40px #00fff855,0 0 2px #0ff;
       border-color: #fff;
+      transform: scale(1.08) translateY(-7px);
+      outline: none;
     }
-    .product-card img {
-      max-width: 120px;
-      margin-bottom: 1.2rem;
-      filter: drop-shadow(0 0 16px #0ff8);
-      transition: filter 0.19s;
-      pointer-events: none;
-    }
-    .product-card:hover img {
-      filter: drop-shadow(0 0 28px #0ff) brightness(1.16);
-    }
-    .product-title {
-      font-size: 1.2rem;
-      color: #fff;
+    .icon-card svg { margin-bottom: 0.7rem; }
+    .icon-card span {
+      color: #eafffb;
       font-family: 'Orbitron', Arial, sans-serif;
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      margin-bottom: 0.65rem;
-      text-shadow: 0 0 12px #0ff6;
+      font-size: 1.04rem;
+      margin-top: 0.1rem;
+      letter-spacing:1.1px;
+      text-shadow: 0 0 4px #00ffe7cc;
     }
-    .product-desc {
-      color: #b6feff;
-      font-size: 1rem;
-      margin-bottom: 1.7rem;
-      text-shadow: 0 0 5px #014;
+
+    .container { max-width:1200px; margin:0 auto; padding:0 1rem; }
+    .section-title { text-align:center; font-size:2rem; color:#1b5e20; margin-bottom:2rem; }
+    .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:2rem; }
+    .product-card { background:#fff; border-radius:12px; box-shadow:0 4px 18px #13fff33a,0 2px 12px #015c70;
+      overflow:hidden; display:flex; flex-direction:column; transition:transform 0.32s, box-shadow 0.21s;
+      border:2px solid #c2ffe6;
+      position:relative;
     }
-    .product-card a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      width: 100%;
-      height: 100%;
+    .product-card:hover { transform:translateY(-9px) scale(1.025); box-shadow:0 8px 48px #12ffd7bb,0 6px 32px #00ffe944;}
+    .product-card img { width:100%; height:220px; object-fit:contain; background:#eefafc; padding:12px;}
+    .product-info { padding:1.5rem 1rem 1.2rem 1rem; flex:1; display:flex; flex-direction:column; }
+    .product-info h3 { font-size:1.33rem; color:#1ecb9b; margin-bottom:0.5rem; font-family:'Orbitron', Arial, sans-serif; }
+    .product-info p { flex:1; font-size:1.03rem; margin-bottom:1rem; color:#384957;}
+    .select-btn {
+      background:#101922;
+      color:#12f7d9;
+      padding:0.8rem 0; border:none; border-radius:8px;
+      font-weight:700; font-family:'Orbitron', Arial, sans-serif; font-size:1.06rem;
+      text-align:center; cursor:pointer; transition:background 0.18s, color 0.18s, box-shadow 0.19s;
+      margin-top:0.3rem;
+      box-shadow:0 2px 9px #00ffea34;
+      letter-spacing:0.04em;
     }
-    @media (max-width: 800px) {
-      .products-grid { flex-direction: column; align-items: center; gap: 2.2rem;}
-      .brand-title { font-size: 1.4rem; }
-      .main-container { padding-top: 55px;}
+    .select-btn:hover { background:#12f7d9; color:#181818; box-shadow:0 0 24px #0ff;}
+    /* Contact */
+    footer { background:#e0e0e0; padding:2rem 1rem; margin-top:3rem; }
+    footer h2 { text-align:center; margin-bottom:1rem; }
+    form { max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:1rem; }
+    form label { font-size:1rem; display:flex; flex-direction:column; }
+    form input, form textarea { padding:0.5rem; border:1px solid #ccc; border-radius:4px; }
+    form button { align-self:center; background:#2e7d32; color:#fff; padding:0.75rem 1.5rem; border:none; border-radius:4px; cursor:pointer; }
+
+    @media(max-width:1000px){ .products-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:700px){ header h1{font-size:2rem;} .hero{height:200px;} .hero h2{font-size:1.1rem;}
+      .products-grid{grid-template-columns:1fr;} .product-card img{height:130px;}
+      .energy-icons h2 { font-size:1.18rem; }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
+  <header>
+    <h1>CarpÉnergie</h1>
+    <p>Votre spécialiste du catalogue EcoFlow</p>
+  </header>
+  <nav>
     <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="batterie-nomade.html">Batteries nomades</a></li>
-      <li><a href="panneaux-solaire.html">Panneaux solaires</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#">Accueil</a></li>
+      <li><a href="produits.html">Produits</a></li>
+      <li><a href="#contact">Contact</a></li>
       <li style="position:relative;">
-        <a href="cart.html">Panier <span class="cart-count" id="cart-count">0</span></a>
+        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
       </li>
     </ul>
   </nav>
-  <div class="main-container">
-    <div class="brand-title">Nos Univers &amp; Technologies</div>
-    <div class="products-section-title">Choisissez votre univers&nbsp;:</div>
-    <div class="products-grid">
-      <a class="product-card" href="batterie-nomade.html">
-        <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="Batteries nomades">
-        <div class="product-title">Batteries nomades</div>
-        <div class="product-desc">Stations électriques portables : toute la gamme River, Delta… Puissance et mobilité partout.</div>
-      </a>
-      <a class="product-card" href="panneaux-solaire.html">
-        <img src="https://fr.ecoflow.com/cdn/shop/files/panneau-solaire-portable-ecoflow-220w-bifacial-47509882761467_1000x.jpg?v=1703834540" alt="Panneaux solaires">
-        <div class="product-title">Panneaux solaires</div>
-        <div class="product-desc">Panneaux EcoFlow officiels : performance, fiabilité et autonomie pour vos batteries.</div>
-      </a>
+  <section class="hero">
+    <div class="hero-logo-box">
+      <span class="hero-logo">ECOFLOW</span>
     </div>
-  </div>
+    <h2>CarpÉnergie</h2>
+    <div class="hero-desc">Votre spécialiste du catalogue EcoFlow<br>
+      Énergie portable pour toutes vos aventures.
+    </div>
+  </section>
+
+  <!-- SECTION LOGOS ENERGIE -->
+  <section class="energy-icons">
+    <h2>Nos Univers &amp; Technologies</h2>
+    <div class="icon-grid">
+      <!-- Panneau solaire -->
+      <div class="icon-card" title="Energie Solaire">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <rect x="10" y="18" width="44" height="28" rx="6" fill="#232c35" stroke="#12f7d9" stroke-width="2"/>
+          <rect x="18" y="22" width="10" height="20" rx="2" fill="#27f5c3"/>
+          <rect x="28" y="22" width="10" height="20" rx="2" fill="#10e9f9"/>
+          <rect x="38" y="22" width="10" height="20" rx="2" fill="#2eb8ec"/>
+        </svg>
+        <span>Panneau solaire</span>
+      </div>
+      <!-- Batterie portable -->
+      <div class="icon-card" title="Batterie Portable">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <rect x="16" y="16" width="32" height="32" rx="6" fill="#161a1d" stroke="#23ffc5" stroke-width="2"/>
+          <rect x="22" y="22" width="20" height="20" rx="4" fill="#0cffe0"/>
+          <rect x="29" y="12" width="6" height="8" rx="3" fill="#28e6bc"/>
+        </svg>
+        <span>Batterie</span>
+      </div>
+      <!-- Eclair énergie -->
+      <div class="icon-card" title="Puissance Instantanée">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <polygon points="36,6 12,40 28,40 24,58 52,26 36,26" fill="#fff90a" stroke="#11c2c7" stroke-width="2"/>
+        </svg>
+        <span>Puissance</span>
+      </div>
+      <!-- Globe énergie verte -->
+      <div class="icon-card" title="Energie Verte">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="22" fill="#0df7c3" stroke="#fff" stroke-width="2"/>
+          <ellipse cx="32" cy="32" rx="18" ry="8" fill="#14de9c" opacity="0.5"/>
+          <path d="M18,32 a14,14 0 0,0 28,0" stroke="#fff" stroke-width="2" fill="none"/>
+        </svg>
+        <span>Eco-responsable</span>
+      </div>
+      <!-- Appareil mobile -->
+      <div class="icon-card" title="Appareils Mobiles">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <rect x="18" y="10" width="28" height="44" rx="7" fill="#1b232b" stroke="#2af4e6" stroke-width="2"/>
+          <rect x="24" y="16" width="16" height="28" rx="3" fill="#23ffe6"/>
+          <circle cx="32" cy="51" r="2" fill="#11e5b3"/>
+        </svg>
+        <span>Mobilité</span>
+      </div>
+      <!-- Smart Home -->
+      <div class="icon-card" title="Smart Home">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <rect x="14" y="26" width="36" height="22" rx="6" fill="#101722" stroke="#13fffa" stroke-width="2"/>
+          <polygon points="8,28 32,8 56,28" fill="#10ffd0" opacity="0.55"/>
+          <rect x="28" y="38" width="8" height="10" rx="2" fill="#fff"/>
+        </svg>
+        <span>Smart Home</span>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <h2>Contact</h2>
+    <form name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact" />
+      <label>Nom<input type="text" name="name" required /></label>
+      <label>Email<input type="email" name="email" required /></label>
+      <label>Message<textarea name="message" rows="4" required></textarea></label>
+      <button type="submit" class="select-btn">Envoyer</button>
+    </form>
+    <p style="text-align:center; margin-top:1.5rem;">© 2025 CarpÉnergie</p>
+  </footer>
+
   <script>
+    // Panier - compteur seulement (aucun ajout au clic sur "Choisir")
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
-    document.getElementById('cart-count').textContent = cart.length || 0;
+    const countEl = document.getElementById('cart-count');
+    countEl.textContent = cart.length;
   </script>
 </body>
 </html>
