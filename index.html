@@ -193,6 +193,13 @@
       color: #fff;
       text-shadow: 0 0 5px #01ffff77;
     }
+    .univers-card[data-link]:hover {
+      background: #051b2c;
+      border-color: #00ffe7;
+      box-shadow: 0 0 40px #00ffe7, 0 2px 32px #0992;
+    }
+    /* Ajoute le curseur pointer seulement pour les liens */
+    .univers-card[data-link] { cursor:pointer;}
     /* Animations */
     @keyframes logoShine {
       0% { box-shadow: 0 0 25px #0ffb, 0 0 12px #fff3;}
@@ -237,8 +244,8 @@
   <section class="univers-container">
     <div class="univers-title">Nos Univers &amp; Technologies</div>
     <div class="univers-logos">
-      <div class="univers-card"><i class="ri-sun-fill"></i><span>Panneau solaire</span></div>
-      <div class="univers-card"><i class="ri-battery-charge-fill"></i><span>Batterie</span></div>
+      <div class="univers-card" data-link="panneaux-solaire.html"><i class="ri-sun-fill"></i><span>Panneau solaire</span></div>
+      <div class="univers-card" data-link="batterie-nomade.html"><i class="ri-battery-charge-fill"></i><span>Batterie</span></div>
       <div class="univers-card"><i class="ri-flashlight-fill"></i><span>Puissance</span></div>
       <div class="univers-card"><i class="ri-leaf-fill"></i><span>Eco-responsable</span></div>
       <div class="univers-card"><i class="ri-smartphone-fill"></i><span>Mobilité</span></div>
@@ -246,6 +253,12 @@
     </div>
   </section>
   <script>
+    // Redirection sur encadré "univers" cliquable
+    document.querySelectorAll('.univers-card[data-link]').forEach(card => {
+      card.addEventListener('click', function() {
+        window.location.href = this.getAttribute('data-link');
+      });
+    });
     // Panier
     const countEl = document.getElementById('cart-count');
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
