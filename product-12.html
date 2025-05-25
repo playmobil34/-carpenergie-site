@@ -1,42 +1,82 @@
-<!-- product-13.html : Panneau Solaire 160W EcoFlow -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Panneau Solaire 160W EcoFlow – Détails</title>
+  <title>Panneau Solaire 160W EcoFlow – CarpÉnergie</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <style>
+    html, body { height: 100%; margin: 0; padding: 0; }
     body {
       min-height: 100vh;
-      margin: 0; padding: 0;
-      background: linear-gradient(rgba(0,22,36,0.93),rgba(9,40,44,0.90)),
-        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
-      color: #fff;
-      font-family: 'Roboto', Arial, sans-serif;
-      letter-spacing: 0.5px;
+      background: linear-gradient(rgba(0,22,36,0.7),rgba(9,40,44,0.7)), url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
+      color: #f0fffb;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.6px;
+      position: relative;
+      overflow-x: hidden;
     }
     nav {
       width: 100vw;
       z-index: 30;
       position: fixed;
       top: 0; left: 0;
-      display: flex;
-      justify-content: center;
       background: rgba(20,44,37, 0.38);
       box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
       backdrop-filter: blur(7px);
       border-bottom: 2px solid #0ff;
     }
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.7rem;
+      color: #0ff;
+      letter-spacing: 4px;
+      user-select: none;
+      font-weight: bold;
+      text-shadow: 0 0 12px #0ff7, 0 0 2px #fff;
+      margin-left: 32px;
+      text-decoration: none;
+      transition: color .18s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo:hover { color: #fff; }
+    .nav-burger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2.3rem;
+      color: #0ff;
+      cursor: pointer;
+      position: absolute;
+      left: 8px;
+      top: 16px;
+      z-index: 101;
+      padding: 0 5px;
+      transition: color 0.2s;
+    }
+    .nav-burger:active, .nav-burger:focus { color: #fff; }
     nav ul {
       display: flex;
       gap: 2.2rem;
       list-style: none;
-      margin: 0.45em 0;
+      margin: 0;
       padding: 0;
       align-items: center;
+      margin-left: auto;
     }
+    nav li { position:relative; }
     nav a {
       color: #0ff;
       font-family: 'Orbitron', 'Roboto', sans-serif;
@@ -48,6 +88,7 @@
       letter-spacing: 2.1px;
       transition: background 0.16s, color 0.16s, box-shadow 0.19s;
       box-shadow: 0 0 0 transparent;
+      display: block;
     }
     nav a:hover {
       background: rgba(0,255,255,0.12);
@@ -55,43 +96,80 @@
       box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
       border: 1.3px solid #0ff;
     }
-    .cart-count {
+    .cart-count, #cart-count {
       position: absolute;
-      top: 8px;
-      right: -17px;
+      top: 50%;
+      right: -36px;
+      transform: translateY(-50%);
       background: #0ff;
       color: #033;
       border-radius: 50%;
-      padding: 2px 7px;
-      font-size: 0.9rem;
+      padding: 2px 9px;
+      font-size: 0.97rem;
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+      min-width: 28px;
+      text-align: center;
+      z-index: 2;
+      pointer-events: none;
     }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
+    @media (max-width: 900px) {
+      .nav-container { height: 59px; }
+      .nav-logo { margin-left: 12px; font-size: 1.14rem;}
+      .nav-burger { display: block; left: 8px; top: 13px; }
+      .nav-logo { position: absolute; left: 48px; top: 50%; transform: translateY(-50%); margin-left: 0; font-size: 1.13rem; }
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100vw;
+        background: rgba(16, 30, 40, 0.97);
+        box-shadow: 0 4px 22px #0ff4;
+        padding: 0;
+        margin-left: 0;
+        display: none;
+        z-index: 100;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        border-top: 1px solid #0ff7;
+      }
+      nav ul.show { display: flex; }
+      nav li { width: 100%; text-align: left; border-bottom: 1px solid #09f4; position: relative; }
+      nav a { padding: 1.08em 2.6em 1.08em 2.4em; font-size: 1.13rem; }
+      #cart-btn { position: relative; padding-right: 38px !important; }
+      #cart-count { position: absolute !important; top: 50%; right: 22px !important; transform: translateY(-50%); left: unset; }
+    }
+    @media (max-width: 650px) {
+      nav ul { gap: 0.9rem;}
+    }
+    /* ----------- PRODUIT ----------- */
+    .product-section {
       max-width: 1050px;
       margin: 120px auto 2rem auto;
-      gap: 2.2rem;
-      background: rgba(19,33,44,0.89);
+      padding: 2.4rem 2rem;
+      background: rgba(19,33,44,0.93);
       border-radius: 19px;
       box-shadow: 0 0 38px #00ffe746;
-      padding: 2.4rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2rem;
       align-items: stretch;
     }
-    .gallery {
+    .product-gallery {
       flex: 1.2; min-width: 320px;
       display: flex; align-items: center; justify-content: center;
     }
-    .gallery img {
+    .product-gallery img {
       width: 96%; max-width: 350px;
       border-radius: 16px;
       box-shadow: 0 0 32px #0ffb, 0 0 12px #fff2;
       background: #101e2a;
       padding: 1.2rem;
     }
-    .details {
+    .product-details {
       flex: 1.2; min-width: 320px;
       background: rgba(17, 32, 38, 0.98);
       padding: 2.2rem 2rem 2rem 2rem;
@@ -114,7 +192,7 @@
       letter-spacing: 1.3px;
       box-shadow: 0 0 9px #0ff8;
     }
-    .details h2 {
+    .product-details h2 {
       font-family: 'Orbitron', Arial, sans-serif;
       font-size: 2.1rem;
       margin-bottom: 0.5rem;
@@ -168,9 +246,7 @@
     }
     .desc-box ul { padding-left: 1.2rem; }
     .desc-box li { margin-bottom: 0.7em; color: #bafaff; font-size: 1.05rem;}
-    .options {
-      margin-bottom: 1.7rem;
-    }
+    .options { margin-bottom: 1.7rem; }
     .options label {
       display: block;
       margin-bottom: 0.5rem;
@@ -195,9 +271,7 @@
       transition: border-color 0.17s;
     }
     .options input:focus { border-color: #fff; }
-    .action {
-      text-align: center;
-    }
+    .action { text-align: center; }
     .buy-btn {
       background: #0ff;
       color: #0b2332;
@@ -221,16 +295,6 @@
       box-shadow: 0 0 38px #0ffb;
       border: 1.5px solid #0ff;
     }
-    footer {
-      background: #11252e;
-      text-align: center;
-      padding: 1.1rem;
-      color: #87fff8;
-      margin-top: 3.2rem;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.03rem;
-      letter-spacing: 1.2px;
-    }
     .modal-backdrop {
       position: fixed;
       top: 0; left: 0;
@@ -242,9 +306,10 @@
       z-index: 9999;
       animation: modalFadeIn 0.4s;
     }
+    .modal-backdrop.active { display: flex; }
     .modal {
       background: #192834;
-      padding: 2rem;
+      padding: 2rem 1.2rem;
       border-radius: 13px;
       max-width: 340px;
       width: 91%;
@@ -285,50 +350,47 @@
       background: #fff;
       color: #09c;
     }
-    @keyframes modalFadeIn {
-      from { opacity: 0;}
-      to { opacity: 1;}
-    }
-    @keyframes modalScale {
-      0% { transform: scale(0.7);}
-      100% { transform: scale(1);}
-    }
+    @keyframes modalFadeIn { from { opacity: 0;} to { opacity: 1;} }
+    @keyframes modalScale { 0% { transform: scale(0.7);} 100% { transform: scale(1);} }
     @media (max-width: 900px) {
-      .container { flex-direction: column; padding: 1.2rem 0.2rem; }
-      .gallery, .details { min-width: unset; }
-      .gallery { justify-content: center; }
+      .product-section { flex-direction: column; padding: 1.2rem 0.2rem; }
+      .product-gallery, .product-details { min-width: unset; }
+      .product-gallery { justify-content: center; }
     }
     @media (max-width: 520px) {
-      .gallery img { max-width: 95vw; }
-      .container { margin: 85px 0 1rem 0; }
-      .details { padding: 1.1rem 0.7rem; }
+      .product-gallery img { max-width: 95vw; }
+      .product-section { margin: 85px 0 1rem 0; }
+      .product-details { padding: 1.1rem 0.7rem; }
     }
   </style>
 </head>
 <body>
- <nav>
-  <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="batterie-nomade.html">Batterie nomade</a></li>
-      <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li style="position:relative;">
-      <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
-    </li>
-    <li style="margin-left: 1.5rem;">
-      <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
-    </li>
-  </ul>
-</nav>
-  <div class="container">
-    <div class="gallery">
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">CarpÉnergie</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
+      <ul id="nav-links">
+        <li><a href="batterie-nomade.html">Batterie nomade</a></li>
+        <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li style="position:relative;">
+          <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+        </li>
+        <li style="margin-left: 1.5rem;">
+          <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <section class="product-section">
+    <div class="product-gallery">
       <img src="https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-de-160-w-38953167519970_2000x.png?v=1708331506" alt="Panneau Solaire 160W EcoFlow"/>
     </div>
-    <div class="details">
+    <div class="product-details">
       <span class="badge">Top vente</span>
       <h2>Panneau Solaire 160W EcoFlow</h2>
       <div class="rating">★★★★★ 21 avis</div>
-      <div class="price">199 € <del>239 €</del><span class="save">Économisez 40 €</span></div>
+      <div class="price">199&nbsp;€&nbsp;<del>239&nbsp;€</del><span class="save">Économisez&nbsp;40&nbsp;€</span></div>
       <small>Taxes comprises</small>
       <div class="desc-box">
         <ul>
@@ -348,36 +410,49 @@
         <button class="buy-btn" data-id="panneau-160w">Ajouter au panier</button>
       </div>
     </div>
-  </div>
+  </section>
   <div id="modal-backdrop" class="modal-backdrop">
     <div class="modal">
-      <p>Article ajouté au panier !</p>
+      <p>Article ajouté au panier&nbsp;!</p>
       <button class="btn-continue">Continuer vos achats</button>
       <button class="btn-cart">Voir le panier</button>
     </div>
   </div>
-  <footer>© 2025 CarpÉnergie</footer>
+  <footer style="background:#11252e; text-align:center; padding:1.1rem; color:#87fff8; margin-top:3.2rem; font-family:'Orbitron', Arial, sans-serif; font-size:1.03rem; letter-spacing:1.2px;">© 2025 CarpÉnergie</footer>
   <script>
-    // Synchroniser le compteur panier
-    function updateCount() {
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      document.getElementById('cart-count').textContent = cart.length;
-    }
-    updateCount();
-
+    // MENU BURGER mobile
+    const burger = document.getElementById('nav-burger');
+    const navLinks = document.getElementById('nav-links');
+    burger.onclick = function () {
+      navLinks.classList.toggle('show');
+    };
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+    // Compteur panier
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    document.getElementById('cart-count').textContent = cart.length;
+    // Modal panier
     document.querySelectorAll('.buy-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
         const qty = parseInt(document.getElementById('qty-1').value, 10) || 1;
         for (let i = 0; i < qty; i++) cart.push({ id: btn.dataset.id });
         localStorage.setItem('cart', JSON.stringify(cart));
-        updateCount();
+        document.getElementById('cart-count').textContent = cart.length;
+        // Show modal
         const backdrop = document.getElementById('modal-backdrop');
-        backdrop.style.display = 'flex';
-        backdrop.querySelector('.btn-continue').onclick = () => backdrop.style.display = 'none';
+        backdrop.classList.add('active');
+        backdrop.querySelector('.btn-continue').onclick = () => backdrop.classList.remove('active');
         backdrop.querySelector('.btn-cart').onclick = () => window.location.href = 'cart.html';
       });
     });
+    // Fermer modal si click en dehors
+    document.getElementById('modal-backdrop').onclick = function(e){
+      if(e.target === this) this.classList.remove('active');
+    }
   </script>
 </body>
 </html>
