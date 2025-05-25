@@ -65,16 +65,17 @@
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
     }
-    .login-box {
+    /* Boîtes */
+    .login-box, .register-box {
       background: rgba(19,33,44,0.92);
       border-radius: 17px;
       box-shadow: 0 0 44px #0ff8, 0 2px 44px #09ffe9;
       padding: 2.7rem 2.1rem 2.2rem 2.1rem;
       min-width: 350px;
       display: flex; flex-direction: column; align-items: center;
-      position: relative;
+      margin-top: 3.5rem;
     }
-    .login-title {
+    .login-title, .register-title {
       font-family: 'Orbitron', Arial, sans-serif;
       font-size: 2.2rem;
       color: #0ff;
@@ -83,7 +84,7 @@
       font-weight: 900;
       text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
     }
-    .login-box label {
+    .login-box label, .register-box label {
       font-size: 1.02rem;
       color: #fff;
       font-weight: 600;
@@ -91,8 +92,9 @@
       margin-top: 1.1em;
       letter-spacing: 0.7px;
       font-family: 'Orbitron', Arial, sans-serif;
+      align-self: flex-start;
     }
-    .login-box input[type="text"], .login-box input[type="password"], .login-box input[type="email"] {
+    .login-box input[type="text"], .login-box input[type="password"], .register-box input[type="text"], .register-box input[type="password"], .register-box input[type="email"] {
       width: 100%;
       padding: 0.85rem;
       margin-bottom: 0.5rem;
@@ -105,13 +107,13 @@
       box-shadow: 0 0 8px #0ff3;
       transition: border-color 0.16s;
       outline: none;
+      margin-top: 0.3em;
     }
-    .login-box input[type="text"]:focus,
-    .login-box input[type="password"]:focus,
-    .login-box input[type="email"]:focus {
+    .login-box input[type="text"]:focus, .login-box input[type="password"]:focus,
+    .register-box input[type="text"]:focus, .register-box input[type="password"]:focus, .register-box input[type="email"]:focus {
       border-color: #fff;
     }
-    .login-box button {
+    .login-box button, .register-box button {
       width: 100%;
       padding: 1rem 0;
       margin-top: 1.2rem;
@@ -127,34 +129,37 @@
       cursor: pointer;
       transition: background 0.18s, color 0.18s, box-shadow 0.2s;
       text-shadow: 0 0 2px #fff7;
+      display: block;
     }
-    .login-box button:hover {
+    .login-box button:hover, .register-box button:hover {
       background: #fff;
       color: #088;
       box-shadow: 0 0 28px #0ffb;
     }
     .login-links {
+      margin-top: 2rem;
       display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
       width: 100%;
-      justify-content: space-between;
-      margin-top: 1.3em;
-      margin-bottom: 1.3em;
-      gap: 2.5rem;
     }
-    .login-links a {
+    .login-link, .register-link {
       color: #0ff;
       font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.04em;
-      text-decoration: none;
-      text-shadow: 0 0 7px #0ff7;
-      transition: color 0.18s, text-shadow 0.18s;
+      font-size: 1.04rem;
+      text-align: center;
+      text-decoration: underline;
+      margin: 0.4em 0 0 0;
       cursor: pointer;
-      display: inline-block;
-      padding: 0.1em 0.4em;
+      transition: color 0.17s;
+      display: block;
+      padding: 0.15em 0;
+      border-radius: 6px;
     }
-    .login-links a:hover {
+    .login-link:hover, .register-link:hover {
       color: #fff;
-      text-shadow: 0 0 16px #0ffb;
+      background: #0ff3;
+      text-decoration: none;
     }
     .login-error {
       color: #ff6a8c;
@@ -166,124 +171,111 @@
       font-family: 'Orbitron', Arial, sans-serif;
       text-shadow: 0 0 6px #fff7;
     }
-    /* POPUP RESET PASSWORD */
-    .modal-backdrop {
-      display: none;
+    /* Popup mot de passe oublié */
+    .reset-overlay {
       position: fixed;
-      z-index: 500;
-      left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(4,20,30,0.86);
-      align-items: center;
+      z-index: 1200;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(10,25,35,0.84);
+      display: none;
       justify-content: center;
+      align-items: center;
     }
-    .modal-backdrop.show { display: flex; }
-    .modal {
-      background: #1e3647;
-      color: #0ff;
-      padding: 2.5rem 1.5rem 2.1rem 1.5rem;
-      border-radius: 13px;
-      text-align: center;
-      font-family: 'Roboto', Arial, sans-serif;
-      min-width: 320px;
-      max-width: 95vw;
-      box-shadow: 0 0 24px #0ff9;
-      position: relative;
-      animation: fadeIn .21s;
+    .reset-popup {
+      background: #203541;
+      border-radius: 15px;
+      box-shadow: 0 0 44px #0ff8, 0 2px 44px #09ffe9;
+      padding: 2.4rem 2.2rem 2.2rem 2.2rem;
+      min-width: 340px;
+      min-height: 240px;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-    .close-modal {
-      position: absolute;
-      right: 19px;
-      top: 19px;
-      font-size: 1.9em;
-      color: #0ff;
-      background: #00fff7;
-      border: none;
-      cursor: pointer;
-      border-radius: 12px;
-      padding: 3px 22px 3px 22px;
-      box-shadow: 0 0 10px #0ffb;
-      transition: background 0.18s, color 0.18s;
-      z-index: 10;
-      font-family: 'Orbitron', Arial, sans-serif;
-      line-height: 1.1;
-      margin-left: 20px;
-    }
-    .close-modal:hover { background: #fff; color: #099;}
-    .modal-title {
-      font-size:1.23rem;
-      margin-bottom:1.1em;
-      font-family: 'Orbitron', Arial, sans-serif;
-      text-shadow: 0 0 11px #0ff7;
-      margin-top: 0;
-      color: #0ff;
-      padding-right: 38px;
-    }
-    .forgot-msg {
-      color: #fff;
-      font-size: 1em;
-      min-height: 1.2em;
-      margin-bottom: 0.9em;
-    }
-    .modal input[type="email"], .modal input[type="text"], .modal input[type="password"] {
-      width: 98%;
-      padding: 0.85rem;
-      border: 1.5px solid #0ff;
-      border-radius: 6px;
-      background: #172731;
-      color: #fff;
-      font-size: 1.08rem;
-      font-family: 'Roboto', Arial, sans-serif;
-      margin-bottom: 1.1rem;
-      box-shadow: 0 0 8px #0ff2;
-      outline: none;
-      transition: border-color 0.17s;
-      display: block;
-    }
-    .modal input[type="email"]:focus,
-    .modal input[type="text"]:focus,
-    .modal input[type="password"]:focus {
-      border-color: #fff;
-    }
-    .modal button:not(.close-modal) {
-      padding: 0.8rem 2.4rem;
-      font-size: 1.21rem;
-      font-family: 'Orbitron', Arial, sans-serif;
-      background: #00fff7;
-      color: #033;
-      border: none;
-      border-radius: 8px;
-      margin-top: 0.8rem;
-      box-shadow: 0 0 16px #0ff7;
-      transition: background 0.16s, color 0.16s;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      cursor: pointer;
-    }
-    .modal button:not(.close-modal):hover {
-      background: #fff;
-      color: #09b;
-      box-shadow: 0 0 29px #0ffb;
+      position: relative;
+      animation: fadeIn 0.2s;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-33px);}
-      to   { opacity: 1; transform: none;}
+      from { opacity: 0; transform: translateY(-10px);}
+      to { opacity: 1; transform: none;}
     }
-    @media (max-width: 500px) {
-      .login-box { min-width: 95vw;}
-      .modal { min-width: 97vw;}
-      .modal-title { font-size: 1rem;}
-      .close-modal { font-size: 1.3em; right: 5px; top: 7px;}
+    .reset-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.55rem;
+      color: #0ff;
+      letter-spacing: 2px;
+      margin-bottom: 2.1rem;
+      margin-top: 0;
+      text-align: center;
+      width: 100%;
+      text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
+    }
+    .reset-close {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      background: #00fff6;
+      color: #112;
+      border: none;
+      border-radius: 11px;
+      width: 41px;
+      height: 36px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 9px #0ff9;
+      transition: background 0.19s;
+      z-index: 3;
+    }
+    .reset-close:hover {
+      background: #fff;
+    }
+    .reset-input {
+      width: 100%;
+      padding: 1.1rem;
+      font-size: 1.05rem;
+      border-radius: 7px;
+      border: 1.5px solid #0ff;
+      background: #23333c;
+      color: #fff;
+      margin-bottom: 2rem;
+      margin-top: 0.3rem;
+      box-shadow: 0 0 7px #0ff3;
+      outline: none;
+    }
+    .reset-submit {
+      width: 65%;
+      padding: 1rem 0;
+      margin: 0 auto;
+      font-size: 1.25rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 800;
+      background: #0ff;
+      color: #112;
+      border: none;
+      border-radius: 9px;
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 13px #0ffb;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, box-shadow 0.2s;
+      text-shadow: 0 0 2px #fff7;
+      display: block;
+    }
+    .reset-submit:hover {
+      background: #fff;
+      color: #088;
+      box-shadow: 0 0 28px #0ffb;
+    }
+    /* Responsive */
+    @media (max-width: 550px) {
+      .login-box, .register-box, .reset-popup { min-width: 90vw; }
+      .reset-popup { padding: 1.2rem 0.5rem 1.3rem 0.5rem; }
     }
   </style>
 </head>
 <body>
-<nav>
+ <nav>
   <ul>
-    <li><a href="index.html">Accueil</a></li>
+    <li><a href="#">Accueil</a></li>
     <li><a href="produits.html">Produits</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li style="position:relative;">
@@ -294,117 +286,125 @@
     </li>
   </ul>
 </nav>
+  <!-- Connexion -->
+  <form class="login-box" id="login-form" autocomplete="off" style="display:block;">
+    <div class="login-title">Connexion</div>
+    <div class="login-error" id="login-error"></div>
+    <label for="login-user">Utilisateur</label>
+    <input type="text" id="login-user" required autocomplete="off" autofocus>
+    <label for="login-pass">Mot de passe</label>
+    <input type="password" id="login-pass" required>
+    <button type="submit">Se connecter</button>
+    <div class="login-links">
+      <span class="login-link" onclick="openResetPopup()">Mot de passe oublié ?</span>
+      <span class="login-link" onclick="openRegister()">Créer un compte</span>
+    </div>
+  </form>
 
-<form class="login-box" id="login-form" autocomplete="off">
-  <div class="login-title">Connexion</div>
-  <div class="login-error" id="login-error"></div>
-  <label for="login-user">Utilisateur</label>
-  <input type="text" id="login-user" required autocomplete="off" autofocus>
-  <label for="login-pass">Mot de passe</label>
-  <input type="password" id="login-pass" required>
-  <div class="login-links">
-    <a href="#" id="show-forgot">Mot de passe oublié ?</a>
-    <a href="#" id="show-register">Créer un compte</a>
+  <!-- Création de compte -->
+  <form class="register-box" id="register-form" autocomplete="off" style="display:none;">
+    <div class="register-title">Créer un compte</div>
+    <div class="login-error" id="register-error"></div>
+    <label for="register-user">Nom d'utilisateur</label>
+    <input type="text" id="register-user" required>
+    <label for="register-email">Votre email</label>
+    <input type="email" id="register-email" required>
+    <label for="register-pass">Mot de passe</label>
+    <input type="password" id="register-pass" required>
+    <button type="submit">Créer mon compte</button>
+    <div class="login-links" style="margin-top: 1.1rem;">
+      <span class="register-link" onclick="openLogin()">← Retour à la connexion</span>
+    </div>
+  </form>
+
+  <!-- Popup mot de passe oublié -->
+  <div class="reset-overlay" id="reset-overlay">
+    <div class="reset-popup">
+      <button class="reset-close" onclick="closeResetPopup()">×</button>
+      <div class="reset-title">Réinitialisation du mot de passe</div>
+      <input type="email" class="reset-input" id="reset-email" placeholder="Votre adresse email" />
+      <button class="reset-submit" onclick="sendResetEmail()">Envoyer</button>
+    </div>
   </div>
-  <button type="submit">Se connecter</button>
-</form>
 
-<!-- Pop-up Mot de passe oublié -->
-<div class="modal-backdrop" id="forgot-modal">
-  <div class="modal">
-    <button class="close-modal" onclick="closeModal('forgot-modal')">&times;</button>
-    <div class="modal-title">Réinitialisation du mot de passe</div>
-    <div class="forgot-msg" id="forgot-msg"></div>
-    <input type="email" id="forgot-email" placeholder="Votre adresse email" required>
-    <button type="button" onclick="submitForgot()">Envoyer</button>
-  </div>
-</div>
+  <script>
+    // Panier (pour la navbar)
+    const countEl = document.getElementById('cart-count');
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    countEl.textContent = cart.length;
 
-<!-- Pop-up Création de compte -->
-<div class="modal-backdrop" id="register-modal">
-  <div class="modal">
-    <button class="close-modal" onclick="closeModal('register-modal')">&times;</button>
-    <div class="modal-title">Créer un compte</div>
-    <div class="forgot-msg" id="register-msg"></div>
-    <input type="text" id="register-user" placeholder="Nom d'utilisateur" required>
-    <input type="email" id="register-email" placeholder="Votre email" required>
-    <input type="password" id="register-pass" placeholder="Mot de passe" required>
-    <button type="button" onclick="submitRegister()">Créer mon compte</button>
-  </div>
-</div>
+    // Simple login/register/demo logic
+    const DEMO_USER = "admin";
+    const DEMO_PASS = "demo123";
+    let users = JSON.parse(localStorage.getItem('users') || '[]');
 
-<script>
-  // DEMO user/pass
-  const DEMO_USER = "admin";
-  const DEMO_PASS = "demo123";
+    // Login
+    document.getElementById('login-form').onsubmit = function(e){
+      e.preventDefault();
+      const user = document.getElementById('login-user').value.trim();
+      const pass = document.getElementById('login-pass').value;
+      const error = document.getElementById('login-error');
+      if((user === DEMO_USER && pass === DEMO_PASS) ||
+         users.find(u => u.user === user && u.pass === pass)){
+        localStorage.setItem('user', user);
+        window.location.href = "index.html";
+      } else {
+        error.textContent = "Identifiant ou mot de passe incorrect";
+      }
+    };
 
-  document.getElementById('login-form').onsubmit = function(e){
-    e.preventDefault();
-    const user = document.getElementById('login-user').value.trim();
-    const pass = document.getElementById('login-pass').value;
-    const error = document.getElementById('login-error');
-    if(user === DEMO_USER && pass === DEMO_PASS){
-      localStorage.setItem('user', user);
-      window.location.href = "index.html";
-    } else {
-      error.textContent = "Identifiant ou mot de passe incorrect";
+    // Création de compte
+    document.getElementById('register-form').onsubmit = function(e){
+      e.preventDefault();
+      const user = document.getElementById('register-user').value.trim();
+      const email = document.getElementById('register-email').value.trim();
+      const pass = document.getElementById('register-pass').value;
+      const error = document.getElementById('register-error');
+      if (!user || !email || !pass) {
+        error.textContent = "Veuillez remplir tous les champs";
+        return;
+      }
+      if (users.find(u => u.user === user)) {
+        error.textContent = "Ce nom d'utilisateur existe déjà";
+        return;
+      }
+      users.push({user, email, pass});
+      localStorage.setItem('users', JSON.stringify(users));
+      error.textContent = "Compte créé ! Connectez-vous.";
+      setTimeout(() => {
+        openLogin();
+      }, 1300);
+    };
+
+    // Switch Login/Register
+    function openRegister() {
+      document.getElementById('login-form').style.display = "none";
+      document.getElementById('register-form').style.display = "flex";
     }
-  };
-
-  // Popups
-  function closeModal(id){
-    document.getElementById(id).classList.remove('show');
-    if(id==='forgot-modal') document.getElementById('forgot-msg').textContent='';
-    if(id==='register-modal') document.getElementById('register-msg').textContent='';
-  }
-
-  document.getElementById('show-forgot').onclick = function(e){
-    e.preventDefault();
-    document.getElementById('forgot-modal').classList.add('show');
-    document.getElementById('forgot-email').focus();
-  };
-
-  document.getElementById('show-register').onclick = function(e){
-    e.preventDefault();
-    document.getElementById('register-modal').classList.add('show');
-    document.getElementById('register-user').focus();
-  };
-
-  function submitForgot(){
-    let email = document.getElementById('forgot-email').value.trim();
-    let msg = document.getElementById('forgot-msg');
-    if(email.length < 4 || !email.includes('@')){
-      msg.textContent = "Veuillez entrer un email valide.";
-      return;
+    function openLogin() {
+      document.getElementById('register-form').style.display = "none";
+      document.getElementById('login-form').style.display = "block";
     }
-    msg.textContent = "Un lien de réinitialisation a été envoyé (simulation).";
-    setTimeout(()=>{ closeModal('forgot-modal'); }, 1700);
-  }
 
-  function submitRegister(){
-    let user = document.getElementById('register-user').value.trim();
-    let email = document.getElementById('register-email').value.trim();
-    let pass = document.getElementById('register-pass').value;
-    let msg = document.getElementById('register-msg');
-    if(user.length < 2){
-      msg.textContent = "Entrez un nom d'utilisateur (min. 2 lettres).";
-      return;
+    // Mot de passe oublié
+    function openResetPopup() {
+      document.getElementById('reset-overlay').style.display = 'flex';
     }
-    if(email.length < 4 || !email.includes('@')){
-      msg.textContent = "Veuillez entrer un email valide.";
-      return;
+    function closeResetPopup() {
+      document.getElementById('reset-overlay').style.display = 'none';
     }
-    if(pass.length < 4){
-      msg.textContent = "Mot de passe trop court (min. 4).";
-      return;
+    function sendResetEmail() {
+      event.preventDefault();
+      const email = document.getElementById('reset-email').value.trim();
+      if (!email) {
+        alert("Merci de saisir votre adresse email.");
+        return;
+      }
+      closeResetPopup();
+      setTimeout(()=>{
+        alert("Un lien de réinitialisation a été envoyé à " + email);
+      }, 200);
     }
-    msg.textContent = "Votre compte a bien été créé (simulation) !";
-    setTimeout(()=>{ closeModal('register-modal'); }, 1800);
-  }
-
-  // Panier
-  let cart = JSON.parse(localStorage.getItem('cart')||'[]');
-  document.getElementById('cart-count').textContent = cart.length || 0;
-</script>
+  </script>
 </body>
 </html>
