@@ -221,7 +221,6 @@
     .desc-box ul { padding-left: 1.2rem; }
     .desc-box li { margin-bottom: 0.7em; color: #bafaff; font-size: 1.05rem;}
 
-    /* Button and modal styles */
     .options {
       margin-bottom: 1.7rem;
     }
@@ -293,6 +292,7 @@
   <nav>
     <div class="nav-container">
       <a href="index.html" class="nav-logo">CarpÉnergie</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
       <ul id="nav-links">
         <li><a href="batterie-nomade.html">Batterie nomade</a></li>
         <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
@@ -338,6 +338,19 @@
   <footer>© 2025 CarpÉnergie</footer>
 
   <script>
+    // Burger menu JS
+    const burger = document.getElementById('nav-burger');
+    const navLinks = document.getElementById('nav-links');
+    burger.onclick = function () {
+      navLinks.classList.toggle('show');
+    };
+    // Ferme le menu après click
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+
     // Panier
     function updateCount() {
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
