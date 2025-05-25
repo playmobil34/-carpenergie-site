@@ -333,15 +333,9 @@
     };
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     const countEl = document.getElementById('cart-count');
-    document.querySelectorAll('.select-btn').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const id = btn.getAttribute('href').match(/product-(\d+)\.html/);
-        if(id){ cart.push(id[1]); localStorage.setItem('cart', JSON.stringify(cart)); countEl.textContent = cart.length; }
-      });
-    });
+    // Correction : plus d'ajout au panier sur "Choisir"
     countEl.textContent = cart.length;
   </script>
 </body>
 </html>
-
 
