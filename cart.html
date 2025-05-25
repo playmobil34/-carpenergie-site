@@ -7,6 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <style>
+    :root {
+      --navbar-h: 54px;
+      --navbar-bg: rgba(20,44,37, 0.38);
+      --navbar-border: #0ff;
+    }
+    html, body { height: 100%; }
     body {
       margin: 0; padding: 0;
       min-height: 100vh;
@@ -14,28 +20,51 @@
         url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
       color: #fff;
       font-family: 'Roboto', Arial, sans-serif;
+      letter-spacing: 0.5px;
+      overflow-x: hidden;
     }
-    nav {
+
+    /* NAVBAR */
+    .navbar {
       width: 100vw;
-      z-index: 30;
+      height: var(--navbar-h);
       position: fixed;
       top: 0; left: 0;
-      display: flex;
-      justify-content: center;
-      background: rgba(20,44,37, 0.38);
+      z-index: 30;
+      background: var(--navbar-bg);
+      border-bottom: 2px solid var(--navbar-border);
       box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
       backdrop-filter: blur(7px);
-      border-bottom: 2px solid #0ff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.2rem 0 0.7rem;
     }
-    nav ul {
+    .navbar-logo {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: #0ff;
+      text-decoration: none;
+      letter-spacing: 2.5px;
+      display: flex;
+      align-items: center;
+      transition: opacity .17s;
+      margin-right: 1.1rem;
+      margin-left: 0.07rem;
+    }
+    .navbar-menu {
       display: flex;
       gap: 2.2rem;
       list-style: none;
-      margin: 0.45em 0;
+      margin: 0;
       padding: 0;
       align-items: center;
     }
-    nav a {
+    .navbar-menu li {
+      position: relative;
+    }
+    .navbar-menu a {
       color: #0ff;
       font-family: 'Orbitron', 'Roboto', sans-serif;
       font-size: 1.09rem;
@@ -46,8 +75,9 @@
       letter-spacing: 2.1px;
       transition: background 0.16s, color 0.16s, box-shadow 0.19s;
       box-shadow: 0 0 0 transparent;
+      display: inline-block;
     }
-    nav a:hover {
+    .navbar-menu a:hover, .navbar-menu a:focus {
       background: rgba(0,255,255,0.12);
       color: #fff;
       box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
@@ -65,7 +95,115 @@
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+      min-width: 24px;
+      text-align: center;
     }
+    #login-btn {
+      background:#0ff; color:#102; border-radius:9px; font-weight:900;
+      box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;
+      margin-left: 1.5rem;
+    }
+
+    /* BURGER */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 41px;
+      height: 41px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      margin-left: 5px;
+      z-index: 41;
+      transition: left .19s;
+    }
+    .burger span {
+      height: 3.5px;
+      width: 25px;
+      background: #0ff;
+      border-radius: 5px;
+      margin: 3px 0;
+      display: block;
+      transition: 0.4s;
+    }
+    @media (max-width: 1020px) {
+      .navbar-menu {
+        gap: 1.2rem;
+      }
+    }
+    @media (max-width: 830px) {
+      .navbar-menu {
+        gap: 0.5rem;
+      }
+    }
+    @media (max-width: 720px) {
+      .navbar {
+        padding: 0 0.2rem 0 0.01rem;
+      }
+      .navbar-logo { font-size: 1.14rem;}
+    }
+    @media (max-width: 640px) {
+      .burger {
+        display: flex;
+        position: relative;
+        left: 9px;
+      }
+      .navbar-logo {
+        font-size: 1.15rem;
+        margin-right: 0.6rem;
+        margin-left: 0.09rem;
+      }
+      .navbar-menu {
+        position: fixed;
+        left: -101vw;
+        top: var(--navbar-h);
+        width: 81vw;
+        min-width: 196px;
+        max-width: 330px;
+        background: #162c34f4;
+        box-shadow: 8px 0 50px #0ff7;
+        height: 100vh;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-top: 1.9rem;
+        padding-left: 0;
+        gap: 0.7rem;
+        transition: left 0.28s cubic-bezier(.63,.1,.47,.99);
+        z-index: 999;
+        border-top: 1.5px solid #0ff9;
+      }
+      .navbar-menu.show {
+        left: 0;
+      }
+      .navbar-menu li {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 4px;
+      }
+      .navbar-menu a {
+        width: 100%;
+        padding: 1.25em 1.45em;
+        font-size: 1.04rem;
+        border-radius: 0;
+        text-align: left;
+        display: block;
+      }
+      #login-btn {
+        margin-left: 0;
+        margin-bottom: 1.3rem;
+      }
+      .cart-count {
+        position: absolute;
+        left: 92px;
+        top: 14px;
+        right: auto;
+      }
+    }
+
+    /* PANIER */
     .cart-container {
       max-width: 950px;
       margin: 110px auto 32px auto;
@@ -183,21 +321,25 @@
     }
   </style>
 </head>
-  <body>
- <nav>
-  <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="batterie-nomade.html">Batterie nomade</a></li>
+<body>
+  <!-- NAVBAR responsive + logo + burger -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">CarpÉnergie</a>
+    <button class="burger" id="burger-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-menu" id="navbar-menu">
+      <li><a href="batterie-nomade.html">Batterie nomade</a></li>
       <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li style="position:relative;">
-      <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
-    </li>
-    <li style="margin-left: 1.5rem;">
-      <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
-    </li>
-  </ul>
-</nav>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="position:relative;">
+        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+      </li>
+      <li>
+        <a href="login.html" id="login-btn">Connexion</a>
+      </li>
+    </ul>
+  </nav>
   <div class="cart-container">
     <div class="cart-title">Votre Panier</div>
     <div id="cart-empty" class="cart-empty" style="display:none;">Votre panier est vide.</div>
@@ -229,27 +371,43 @@
     </div>
   </div>
   <script>
-    // Simuler la base produit (nom, prix, image)
+    // Responsive navbar burger menu
+    const burger = document.getElementById('burger-btn');
+    const menu = document.getElementById('navbar-menu');
+    burger.onclick = function(){
+      menu.classList.toggle('show');
+      burger.classList.toggle('active');
+      document.body.style.overflow = menu.classList.contains('show') ? 'hidden' : '';
+    };
+    // Ferme le menu au clic sur un lien
+    document.querySelectorAll('.navbar-menu a').forEach(link => {
+      link.onclick = () => {
+        if(window.innerWidth <= 640) {
+          menu.classList.remove('show');
+          burger.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+
+    // PRODUITS PANIER
     const PRODUCTS = {
       'delta-2': {name:'EcoFlow Delta 2', price:699, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784"},
       'delta-3': {name:'EcoFlow Delta 3', price:999, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-de-la-gamme-ecoflow-delta-3-reconditionnee-1155248231_2000x.png?v=1744283242"},
       'river-2': {name:'EcoFlow River 2', price:129, img:"https://fr.ecoflow.com/cdn/shop/files/river-2_1.png?v=1709033005"},
-       'river-3': {name:'EcoFlow River 3', price:129, img:"https://fr.ecoflow.com/cdn/shop/files/batterie-solaire-portable-ecoflow-river-3-58407554187611_2000x.png?v=1730870047"},
-      
-      'delta-2-max': {name:'EcoFlow Delta 2 Max', price:1199, img:"https://fr.ecoflow.com/cdn/shop/files/delta-2-max_1.png?v=1709033203"},
+      'river-3': {name:'EcoFlow River 3', price:129, img:"https://fr.ecoflow.com/cdn/shop/files/batterie-solaire-portable-ecoflow-river-3-58407554187611_2000x.png?v=1730870047"},
+      'delta-2-max': {name:'EcoFlow Delta 2 Max', price:1199, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-max-51102831411547_2000x.png?v=1739849008"},
       'river-2-max': {name:'EcoFlow River 2 max', price:150, img:"https://fr.ecoflow.com/cdn/shop/products/station-electrique-portable-river-2-max-38948587765986_2000x.png?v=1721637180"},
-       'river-2-pro': {name:'EcoFlow River 2 Pro', price:0, img:"https://fr.ecoflow.com/cdn/shop/products/station-electrique-portable-river-2-pro-38948591829218_2000x.png?v=1739848700"},
-      'delta-3-plus': {name:'EcoFlow Delta 3 Plus', price:0, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-de-la-gamme-ecoflow-delta-3-reconditionnee-1155248232_2000x.png?v=1744283244"},
-       'delta-3-pro': {name:'EcoFlow Delta 3 Pro', price:0, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-pro-3-56959613829467_2000x.png?v=1726241887"},
-       'delta-2-max': {name:'EcoFlow Delta 2 Max', price:0, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-max-51102831411547_2000x.png?v=1739849008"},
-      'panneau-160w': {name:'Panneau Solaire 160W EcoFlow', price:0, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-de-160-w-38953167519970_2000x.png?v=1708331506"},
-      'panneau-400w': {name:'Panneau Solaire 400W EcoFlow', price:0, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-portable-de-400-w-38953197011170_2000x.png?v=1675839414"},
-      'panneau-220w-bifacial': {name:'Panneau Solaire 220W Bifacial EcoFlow', price:0, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-double-face-de-220-w-38953189408994_2000x.png?v=1708331616"},
-  
+      'river-2-pro': {name:'EcoFlow River 2 Pro', price:499, img:"https://fr.ecoflow.com/cdn/shop/products/station-electrique-portable-river-2-pro-38948591829218_2000x.png?v=1739848700"},
+      'delta-3-plus': {name:'EcoFlow Delta 3 Plus', price:1499, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-de-la-gamme-ecoflow-delta-3-reconditionnee-1155248232_2000x.png?v=1744283244"},
+      'delta-3-pro': {name:'EcoFlow Delta 3 Pro', price:2199, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-pro-3-56959613829467_2000x.png?v=1726241887"},
+      'panneau-160w': {name:'Panneau Solaire 160W EcoFlow', price:199, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-de-160-w-38953167519970_2000x.png?v=1708331506"},
+      'panneau-400w': {name:'Panneau Solaire 400W EcoFlow', price:399, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-portable-de-400-w-38953197011170_2000x.png?v=1675839414"},
+      'panneau-220w-bifacial': {name:'Panneau Solaire 220W Bifacial EcoFlow', price:599, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-double-face-de-220-w-38953189408994_2000x.png?v=1708331616"},
       // Ajoute ici tous tes produits...
     };
 
-    // 1. Charger le panier
+    // Charger le panier
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     // Compter les quantités par produit
     let map = {};
@@ -285,7 +443,7 @@
       document.getElementById('cart-count').textContent = cart.length;
     }
 
-    // 2. Gérer la suppression & quantité
+    // Suppression & quantité
     document.addEventListener('click', function(e){
       if(e.target.closest('.cart-remove')){
         let id = e.target.closest('.cart-remove').dataset.id;
