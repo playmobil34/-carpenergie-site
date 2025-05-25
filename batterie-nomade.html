@@ -26,7 +26,6 @@
       background: rgba(6,22,33,0.52);
       pointer-events: none;
     }
-    /* ---- NAVBAR responsive ---- */
     nav {
       width: 100vw;
       z-index: 30;
@@ -36,51 +35,54 @@
       box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
       backdrop-filter: blur(7px);
       border-bottom: 2px solid #0ff;
+      /* Pour contenir le flex sur mobile */
     }
     .nav-container {
       max-width: 1300px;
       margin: 0 auto;
-      width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 1.2rem;
-      min-height: 54px;
+      justify-content: flex-start;
+      position: relative;
+      height: 68px;
     }
     .nav-logo {
-      display: flex; align-items: center; z-index: 1002;
-      text-decoration:none;
-      font-family:Orbitron,Arial,sans-serif;
-      font-weight:900;
-      font-size:1.3rem;
-      color:#0ff;
-      text-shadow:0 0 7px #0ff;
-      letter-spacing:2.5px;
-      animation: logoGlow 1.8s infinite alternate;
-    }
-    @keyframes logoGlow {
-      0% { text-shadow: 0 0 7px #0ff, 0 0 9px #fff3, 0 1px 10px #01ffb0; }
-      100% { text-shadow: 0 0 18px #0ffb, 0 0 18px #fff3, 0 1px 19px #01ffb0;}
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.7rem;
+      color: #0ff;
+      letter-spacing: 4px;
+      user-select: none;
+      font-weight: bold;
+      margin-left: 32px;
+      text-shadow: 0 0 12px #0ff7, 0 0 2px #fff;
+      cursor: default;
     }
     .nav-burger {
       display: none;
       background: none;
       border: none;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       color: #0ff;
       cursor: pointer;
-      z-index: 1002;
+      position: absolute;
+      left: 8px;  /* Légèrement décalé */
+      top: 16px;
+      z-index: 101;
+      padding: 0 5px;
+      transition: color 0.2s;
     }
-    #nav-links {
+    .nav-burger:active, .nav-burger:focus { color: #fff; }
+
+    nav ul {
       display: flex;
       gap: 2.2rem;
       list-style: none;
       margin: 0;
       padding: 0;
       align-items: center;
-      z-index: 1001;
-      transition: none;
+      margin-left: auto;
     }
+    nav li { position:relative; }
     nav a {
       color: #0ff;
       font-family: 'Orbitron', 'Roboto', sans-serif;
@@ -113,38 +115,51 @@
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
     }
-    @media (max-width: 850px) {
-      #nav-links { gap: 1.1rem; }
-    }
-    @media (max-width: 700px) {
-      .nav-burger { display: block; }
-      #nav-links {
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .nav-container { height: 59px; }
+      .nav-logo { margin-left: 44px; font-size: 1.17rem; }
+      .nav-burger {
+        display: block;
+        left: 8px; /* Légèrement du bord */
+        top: 13px;
+      }
+      nav ul {
         flex-direction: column;
-        align-items: flex-start;
-        position: fixed;
-        top: 0; right: 0;
-        width: 70vw;
-        max-width: 320px;
-        height: 100vh;
-        background: rgba(12,30,24,0.97);
-        box-shadow: -8px 0 24px #0ff2;
-        padding: 90px 0 0 24px;
-        transform: translateX(100%);
-        transition: transform 0.23s cubic-bezier(.39,.58,.57,1.09);
-        font-size: 1.1rem;
-        z-index: 1001;
+        gap: 0;
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100vw;
+        background: rgba(16, 30, 40, 0.97);
+        box-shadow: 0 4px 22px #0ff4;
+        padding: 0;
+        margin-left: 0;
+        display: none;
+        z-index: 100;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        border-top: 1px solid #0ff7;
       }
-      #nav-links.open {
-        transform: translateX(0);
+      nav ul.show {
+        display: flex;
       }
-      .nav-container { min-height: 54px; }
+      nav li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #09f4;
+      }
+      nav a {
+        padding: 1.08em 2.6em;
+        font-size: 1.13rem;
+      }
     }
-    @media (max-width: 440px) {
-      .nav-logo { font-size: 0.97rem !important; }
-      #nav-links { max-width: 97vw; padding-left: 7vw;}
+    @media (max-width: 500px) {
+      .nav-logo { margin-left: 38px; font-size: 1rem; }
+      .nav-burger { font-size: 2.0rem; }
     }
+    /* ---- FIN NAV ---- */
 
-    /* ---- PRODUITS ---- */
     .products-container {
       max-width: 1300px;
       margin: 100px auto 0 auto;
@@ -262,34 +277,40 @@
     @media (max-width: 900px) {
       .products-grid { grid-template-columns: 1fr; }
       .products-container { padding: 1rem; }
+      .products-title { font-size: 1.3rem; }
+      .product-img-wrap { width: 140px; height: 140px; }
+      .product-title { font-size: 1.01rem; }
+      .product-price { font-size: 1.03rem; }
+      .product-desc { font-size: 0.98rem; }
+      .product-btn { padding: 0.6rem 1.3rem; font-size: 0.98rem; }
+    }
+    @media (max-width: 500px) {
+      .products-title { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
-  <!-- NAVBAR responsive -->
   <nav>
     <div class="nav-container">
-      <span class="nav-logo" style="cursor:default;">CarpÉnergie</span>
-      <button class="nav-burger" id="nav-burger" aria-label="Menu">&#9776;</button>
+      <a href="index.html" class="nav-logo">CarpÉnergie</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
       <ul id="nav-links">
-        <li><a href="index.html">Accueil</a></li>
+        <!-- ACCUEIL ENLEVÉ comme demandé -->
         <li><a href="batterie-nomade.html">Batterie nomade</a></li>
         <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li style="position:relative;">
           <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
         </li>
-        <li>
+        <li style="margin-left: 1.5rem;">
           <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
         </li>
       </ul>
     </div>
   </nav>
-
   <div class="products-container">
     <div class="products-title">Stations Nomades EcoFlow</div>
     <div class="products-grid">
-
       <!-- RIVER Series -->
       <div class="product-card">
         <div class="product-img-wrap">
@@ -368,23 +389,23 @@
     </div>
   </div>
   <script>
+    // Burger menu JS
+    const burger = document.getElementById('nav-burger');
+    const navLinks = document.getElementById('nav-links');
+    burger.onclick = function () {
+      navLinks.classList.toggle('show');
+    };
+    // Ferme le menu après click (optionnel)
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+
     // Compteur panier
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     document.getElementById('cart-count').textContent = cart.length || 0;
-    // Navbar burger
-    const burger = document.getElementById('nav-burger');
-    const navLinks = document.getElementById('nav-links');
-    burger.onclick = function(){
-      navLinks.classList.toggle('open');
-      if(navLinks.classList.contains('open')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    };
-    document.querySelectorAll('#nav-links a').forEach(link => {
-      link.onclick = ()=>{ if(window.innerWidth < 701){ navLinks.classList.remove('open'); document.body.style.overflow=''; } }
-    });
   </script>
 </body>
 </html>
+
