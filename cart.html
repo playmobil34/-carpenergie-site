@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panier – CarpÉnergie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,22,36,0.9),rgba(9,40,44,0.75)),
+        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
+      color: #fff;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    nav {
+      width: 100vw;
+      z-index: 30;
+      position: fixed;
+      top: 0; left: 0;
+      display: flex;
+      justify-content: center;
+      background: rgba(20,44,37, 0.38);
+      box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
+      backdrop-filter: blur(7px);
+      border-bottom: 2px solid #0ff;
+    }
+    nav ul {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0.45em 0;
+      padding: 0;
+      align-items: center;
+    }
+    nav a {
+      color: #0ff;
+      font-family: 'Orbitron', 'Roboto', sans-serif;
+      font-size: 1.09rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.8em 1.4em;
+      border-radius: 12px;
+      letter-spacing: 2.1px;
+      transition: background 0.16s, color 0.16s, box-shadow 0.19s;
+      box-shadow: 0 0 0 transparent;
+    }
+    nav a:hover {
+      background: rgba(0,255,255,0.12);
+      color: #fff;
+      box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
+      border: 1.3px solid #0ff;
+    }
+    .cart-count {
+      position: absolute;
+      top: 8px;
+      right: -17px;
+      background: #0ff;
+      color: #033;
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 0.9rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+    }
+    .cart-container {
+      max-width: 950px;
+      margin: 110px auto 32px auto;
+      padding: 2.3rem 1rem 3.5rem 1rem;
+      background: rgba(19,33,44,0.88);
+      border-radius: 16px;
+      box-shadow: 0 0 38px #00ffe746;
+      min-height: 500px;
+    }
+    .cart-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.1rem;
+      color: #0ff;
+      letter-spacing: 2px;
+      text-align: center;
+      text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .cart-empty {
+      color: #fff;
+      font-size: 1.17rem;
+      text-align: center;
+      margin-top: 70px;
+      opacity: 0.8;
+    }
+    .cart-items {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2.5rem;
+    }
+    .cart-items th, .cart-items td {
+      padding: 16px 12px;
+      text-align: center;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.09rem;
+    }
+    .cart-items th {
+      color: #0ff;
+      border-bottom: 2.5px solid #0ff;
+      font-size: 1.18rem;
+      letter-spacing: 1.2px;
+      background: rgba(10,35,35,0.21);
+    }
+    .cart-items td {
+      border-bottom: 1px solid #0ff2;
+    }
+    .cart-img {
+      width: 90px; height: 90px; object-fit: contain;
+      border-radius: 11px;
+      background: #111a;
+      box-shadow: 0 0 13px #0ff2;
+      margin: 0 auto;
+    }
+    .cart-remove {
+      color: #ff7373;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: color 0.18s;
+    }
+    .cart-remove:hover { color: #ff2424; }
+    .cart-qte {
+      width: 46px;
+      padding: 6px;
+      font-size: 1.09rem;
+      border-radius: 5px;
+      border: 1.5px solid #0ff8;
+      background: #0e2222;
+      color: #0ff;
+      text-align: center;
+    }
+    .cart-total-row td {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0ff;
+      background: #111d;
+      border-bottom: none;
+    }
+    .cart-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.1rem;
+      margin-top: 2rem;
+    }
+    .cart-btn {
+      padding: 1rem 2.6rem;
+      font-size: 1.13rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 700;
+      background: #111822;
+      color: #0ff;
+      border: 1.5px solid #0ffb;
+      border-radius: 9px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 13px #0ff4;
+      cursor: pointer;
+      transition: background 0.19s, color 0.18s, box-shadow 0.21s, border-color 0.17s;
+      text-shadow: 0 0 3px #0ff6;
+      outline: none;
+      margin-top: 0;
+    }
+    .cart-btn:hover {
+      background: #0ff;
+      color: #111822;
+      border-color: #fff;
+      box-shadow: 0 0 28px #0ffb;
+    }
+    @media (max-width: 700px) {
+      .cart-container { padding: 0.6rem; }
+      .cart-items th, .cart-items td { padding: 7px 5px; font-size: 0.98rem; }
+      .cart-img { width: 54px; height: 54px; }
+      .cart-title { font-size: 1.3rem;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="produits.html">Batteries Nomades</a></li>
+      <li><a href="panneaux-solaire.html">Panneaux solaires</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="position:relative;">
+        <a href="cart.html" id="cart-btn">Panier 🛒
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="cart-container">
+    <div class="cart-title">Votre Panier</div>
+    <div id="cart-empty" class="cart-empty" style="display:none;">Votre panier est vide.</div>
+    <table id="cart-table" class="cart-items" style="display:none;">
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Nom</th>
+          <th>Quantité</th>
+          <th>Prix</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body">
+        <!-- JS ajoute les lignes ici -->
+      </tbody>
+      <tfoot>
+        <tr class="cart-total-row">
+          <td colspan="2"></td>
+          <td>Total</td>
+          <td id="cart-total">0&nbsp;€</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="cart-actions">
+      <a href="produits.html" class="cart-btn">Continuer vos achats</a>
+      <button class="cart-btn" onclick="alert('Finalisation de la commande à implémenter.')">Commander</button>
+    </div>
+  </div>
+  <script>
+    // Simuler la base produit (nom, prix, image)
+    const PRODUCTS = {
+      'delta-2': {name:'EcoFlow Delta 2', price:699, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784"},
+      'delta-3': {name:'EcoFlow Delta 3', price:999, img:"https://www.ecoflow.com/cdn/shop/files/delta-3.jpg"},
+      'river-2': {name:'EcoFlow River 2', price:129, img:"https://fr.ecoflow.com/cdn/shop/files/river-2_1.png?v=1709033005"},
+      'delta-2-max': {name:'EcoFlow Delta 2 Max', price:1199, img:"https://fr.ecoflow.com/cdn/shop/files/delta-2-max_1.png?v=1709033203"},
+      // Ajoute ici tous tes produits...
+    };
+
+    // 1. Charger le panier
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    // Compter les quantités par produit
+    let map = {};
+    for(const p of cart) map[p.id] = (map[p.id]||0)+1;
+
+    function renderCart() {
+      const tbody = document.getElementById('cart-body');
+      tbody.innerHTML = '';
+      let total = 0;
+      let n = 0;
+      for(const id in map){
+        if(PRODUCTS[id]){
+          n++;
+          let item = PRODUCTS[id];
+          let qty = map[id];
+          let line = document.createElement('tr');
+          line.innerHTML = `
+            <td><img src="${item.img}" class="cart-img" alt="${item.name}"></td>
+            <td>${item.name}</td>
+            <td>
+              <input class="cart-qte" type="number" min="1" value="${qty}" data-id="${id}">
+            </td>
+            <td>${(item.price*qty).toLocaleString()}&nbsp;€</td>
+            <td><button class="cart-remove" data-id="${id}" title="Supprimer"><i class="ri-delete-bin-6-line"></i></button></td>
+          `;
+          tbody.appendChild(line);
+          total += item.price * qty;
+        }
+      }
+      document.getElementById('cart-total').innerHTML = total.toLocaleString()+"&nbsp;€";
+      document.getElementById('cart-table').style.display = n>0 ? '' : 'none';
+      document.getElementById('cart-empty').style.display = n===0 ? '' : 'none';
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    // 2. Gérer la suppression & quantité
+    document.addEventListener('click', function(e){
+      if(e.target.closest('.cart-remove')){
+        let id = e.target.closest('.cart-remove').dataset.id;
+        cart = cart.filter(p=>p.id!==id);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        map = {}; for(const p of cart) map[p.id]=(map[p.id]||0)+1;
+        renderCart();
+      }
+    });
+    document.addEventListener('input', function(e){
+      if(e.target.classList.contains('cart-qte')){
+        let id = e.target.dataset.id;
+        let value = Math.max(1, parseInt(e.target.value,10)||1);
+        cart = cart.filter(p=>p.id!==id);
+        for(let i=0; i<value; i++) cart.push({id});
+        localStorage.setItem('cart', JSON.stringify(cart));
+        map = {}; for(const p of cart) map[p.id]=(map[p.id]||0)+1;
+        renderCart();
+      }
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>
