@@ -4,86 +4,90 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Panier – CarpÉnergie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <style>
-    html, body { height: 100%; }
+    html, body { height: 100%; margin: 0; padding: 0;}
     body {
-      margin: 0; padding: 0;
       min-height: 100vh;
-      background: linear-gradient(rgba(0,22,36,0.9),rgba(9,40,44,0.75)),
+      background: linear-gradient(rgba(0,22,36,0.7),rgba(9,40,44,0.7)),
         url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
-      color: #fff;
-      font-family: 'Roboto', Arial, sans-serif;
-      letter-spacing: 0.5px;
+      color: #f0fffb;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.6px;
+      position: relative;
       overflow-x: hidden;
     }
-    /* NAVBAR RESPONSIVE */
-    .navbar {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: rgba(6,22,33,0.52);
+      pointer-events: none;
+    }
+    nav {
       width: 100vw;
-      height: 54px;
+      z-index: 30;
       position: fixed;
       top: 0; left: 0;
-      z-index: 30;
       background: rgba(20,44,37, 0.38);
-      border-bottom: 2px solid #0ff;
       box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
       backdrop-filter: blur(7px);
+      border-bottom: 2px solid #0ff;
+    }
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      padding: 0 1.1rem 0 0.4rem;
+      position: relative;
+      height: 68px;
     }
-    .navbar-logo {
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-weight: 900;
-      font-size: 1.45rem;
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.7rem;
       color: #0ff;
+      letter-spacing: 4px;
+      user-select: none;
+      font-weight: bold;
+      text-shadow: 0 0 12px #0ff7, 0 0 2px #fff;
+      margin-left: 32px;
       text-decoration: none;
-      letter-spacing: 2.5px;
+      transition: color .18s;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      transition: opacity .17s;
-      margin-right: 1.2rem;
-      margin-left: 0.0rem;
     }
-    .burger {
+    .nav-logo:hover { color: #fff; }
+    .nav-burger {
       display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 41px;
-      height: 41px;
-      cursor: pointer;
       background: none;
       border: none;
-      margin-right: 10px;
-      margin-left: -6px;
-      z-index: 41;
+      font-size: 2.3rem;
+      color: #0ff;
+      cursor: pointer;
+      position: absolute;
+      left: 8px;
+      top: 16px;
+      z-index: 101;
+      padding: 0 5px;
+      transition: color 0.2s;
     }
-    .burger span {
-      height: 3.5px;
-      width: 25px;
-      background: #0ff;
-      border-radius: 5px;
-      margin: 3px 0;
-      display: block;
-      transition: 0.4s;
-    }
-    .navbar-menu {
+    .nav-burger:active, .nav-burger:focus { color: #fff; }
+
+    nav ul {
       display: flex;
       gap: 2.2rem;
       list-style: none;
       margin: 0;
       padding: 0;
       align-items: center;
-      flex: 1;
-      justify-content: flex-end;
+      margin-left: auto;
     }
-    .navbar-menu li {
-      position: relative;
-    }
-    .navbar-menu a {
+    nav li { position:relative; }
+    nav a {
       color: #0ff;
       font-family: 'Orbitron', 'Roboto', sans-serif;
       font-size: 1.09rem;
@@ -94,9 +98,9 @@
       letter-spacing: 2.1px;
       transition: background 0.16s, color 0.16s, box-shadow 0.19s;
       box-shadow: 0 0 0 transparent;
-      display: inline-block;
+      display: block;
     }
-    .navbar-menu a:hover, .navbar-menu a:focus {
+    nav a:hover {
       background: rgba(0,255,255,0.12);
       color: #fff;
       box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
@@ -104,8 +108,8 @@
     }
     .cart-count {
       position: absolute;
-      top: 8px;
-      right: -17px;
+      top: 9px;
+      right: 11px;
       background: #0ff;
       color: #033;
       border-radius: 50%;
@@ -116,83 +120,67 @@
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
       min-width: 24px;
       text-align: center;
+      z-index: 1;
     }
-    #login-btn {
-      background:#0ff; color:#102; border-radius:9px; font-weight:900;
-      box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;
-      margin-left: 1.5rem;
-    }
-    /* MENU BURGER MOBILE */
-    @media (max-width: 800px) {
-      .navbar { padding-right: 0.2rem; }
-      .navbar-menu {
-        gap: 1.2rem;
-      }
-    }
-    @media (max-width: 640px) {
-      .navbar {
-        justify-content: flex-start;
-        padding: 0 0.15rem 0 0.15rem;
-      }
-      .navbar-logo {
-        font-size: 1.10rem;
-        margin-left: 0.02rem;
-        margin-right: 0.4rem;
-      }
-      .burger {
-        display: flex;
-        margin-left: -6px;
-        margin-right: 8px;
-      }
-      .navbar-menu {
-        position: fixed;
-        left: -105vw;
-        top: 54px;
-        width: 81vw;
-        min-width: 170px;
-        max-width: 340px;
-        background: #162c34f4;
-        box-shadow: 8px 0 50px #0ff7;
-        height: 100vh;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding-top: 2.1rem;
-        padding-left: 0.7rem;
-        gap: 0.7rem;
-        transition: left 0.28s cubic-bezier(.63,.1,.47,.99);
-        z-index: 999;
-        border-top: 1.5px solid #0ff9;
-      }
-      .navbar-menu.show {
-        left: 0;
-      }
-      .navbar-menu li {
-        width: 100%;
-        margin: 0;
-        margin-bottom: 4px;
-      }
-      .navbar-menu a {
-        width: 100%;
-        padding: 1.25em 1.45em;
-        font-size: 1.04rem;
-        border-radius: 0;
-        text-align: left;
+    @media (max-width: 900px) {
+      .nav-container { height: 59px; }
+      .nav-logo { margin-left: 12px; font-size: 1.14rem;}
+      .nav-burger {
         display: block;
+        left: 8px;
+        top: 13px;
       }
-      #login-btn {
-        margin-left: 0;
-        margin-bottom: 1.3rem;
-      }
-      .cart-count {
+      .nav-logo {
         position: absolute;
-        left: 100px;
-        top: 14px;
-        right: auto;
+        left: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 0;
+        font-size: 1.13rem;
       }
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100vw;
+        background: rgba(16, 30, 40, 0.97);
+        box-shadow: 0 4px 22px #0ff4;
+        padding: 0;
+        margin-left: 0;
+        display: none;
+        z-index: 100;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        border-top: 1px solid #0ff7;
+      }
+      nav ul.show { display: flex; }
+      nav li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #09f4;
+        position: relative;
+      }
+      nav a {
+        padding: 1.08em 2.6em 1.08em 2.4em;
+        font-size: 1.13rem;
+      }
+      #cart-btn { position: relative; padding-right: 38px !important; }
+      #cart-count {
+        position: absolute !important;
+        top: 50%;
+        right: 22px !important;
+        transform: translateY(-50%);
+        left: unset;
+      }
+    }
+    @media (max-width: 500px) {
+      .nav-logo { left: 42px; font-size: 1rem;}
+      .nav-burger { font-size: 2.0rem; }
     }
 
-    /* PANIER */
+    /* ---- FIN NAV ---- */
     .cart-container {
       max-width: 950px;
       margin: 110px auto 32px auto;
@@ -307,26 +295,28 @@
       .cart-items th, .cart-items td { padding: 7px 5px; font-size: 0.98rem; }
       .cart-img { width: 54px; height: 54px; }
       .cart-title { font-size: 1.3rem;}
+      .cart-actions { flex-direction: column; align-items: stretch; }
+      .cart-btn { width: 100%; margin-bottom: 1rem; }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <a href="index.html" class="navbar-logo">CarpÉnergie</a>
-    <button class="burger" id="burger-btn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="navbar-menu" id="navbar-menu">
-      <li><a href="batterie-nomade.html">Batterie nomade</a></li>
-      <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li style="position:relative;">
-        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
-      </li>
-      <li>
-        <a href="login.html" id="login-btn">Connexion</a>
-      </li>
-    </ul>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">CarpÉnergie</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
+      <ul id="nav-links">
+        <li><a href="batterie-nomade.html">Batterie nomade</a></li>
+        <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li style="position:relative;">
+          <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+        </li>
+        <li style="margin-left: 1.5rem;">
+          <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+        </li>
+      </ul>
+    </div>
   </nav>
   <div class="cart-container">
     <div class="cart-title">Votre Panier</div>
@@ -341,7 +331,9 @@
           <th>Supprimer</th>
         </tr>
       </thead>
-      <tbody id="cart-body"></tbody>
+      <tbody id="cart-body">
+        <!-- JS ajoute les lignes ici -->
+      </tbody>
       <tfoot>
         <tr class="cart-total-row">
           <td colspan="2"></td>
@@ -352,48 +344,43 @@
       </tfoot>
     </table>
     <div class="cart-actions">
-      <a href="produits.html" class="cart-btn">Continuer vos achats</a>
+      <a href="batterie-nomade.html" class="cart-btn">Continuer vos achats</a>
       <button class="cart-btn" onclick="alert('Finalisation de la commande à implémenter.')">Commander</button>
     </div>
   </div>
   <script>
-    // Burger menu responsive
-    const burger = document.getElementById('burger-btn');
-    const menu = document.getElementById('navbar-menu');
-    burger.onclick = function(){
-      menu.classList.toggle('show');
-      burger.classList.toggle('active');
-      document.body.style.overflow = menu.classList.contains('show') ? 'hidden' : '';
+    // Burger menu JS
+    const burger = document.getElementById('nav-burger');
+    const navLinks = document.getElementById('nav-links');
+    burger.onclick = function () {
+      navLinks.classList.toggle('show');
     };
-    // Fermer menu au clic sur un lien
-    document.querySelectorAll('.navbar-menu a').forEach(link => {
-      link.onclick = () => {
-        if(window.innerWidth <= 640) {
-          menu.classList.remove('show');
-          burger.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      }
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
     });
 
-    // PRODUITS PANIER
+    // Simuler la base produit (nom, prix, image)
     const PRODUCTS = {
       'delta-2': {name:'EcoFlow Delta 2', price:699, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784"},
       'delta-3': {name:'EcoFlow Delta 3', price:999, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-de-la-gamme-ecoflow-delta-3-reconditionnee-1155248231_2000x.png?v=1744283242"},
       'river-2': {name:'EcoFlow River 2', price:129, img:"https://fr.ecoflow.com/cdn/shop/files/river-2_1.png?v=1709033005"},
       'river-3': {name:'EcoFlow River 3', price:129, img:"https://fr.ecoflow.com/cdn/shop/files/batterie-solaire-portable-ecoflow-river-3-58407554187611_2000x.png?v=1730870047"},
-      'delta-2-max': {name:'EcoFlow Delta 2 Max', price:1199, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-max-51102831411547_2000x.png?v=1739849008"},
-      'river-2-max': {name:'EcoFlow River 2 max', price:150, img:"https://fr.ecoflow.com/cdn/shop/products/station-electrique-portable-river-2-max-38948587765986_2000x.png?v=1721637180"},
+      'delta-2-max': {name:'EcoFlow Delta 2 Max', price:1199, img:"https://fr.ecoflow.com/cdn/shop/files/delta-2-max_1.png?v=1709033203"},
+      'river-2-max': {name:'EcoFlow River 2 Max', price:329, img:"https://fr.ecoflow.com/cdn/shop/products/station-electrique-portable-river-2-max-38948587765986_2000x.png?v=1721637180"},
       'river-2-pro': {name:'EcoFlow River 2 Pro', price:499, img:"https://fr.ecoflow.com/cdn/shop/products/station-electrique-portable-river-2-pro-38948591829218_2000x.png?v=1739848700"},
       'delta-3-plus': {name:'EcoFlow Delta 3 Plus', price:1499, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-de-la-gamme-ecoflow-delta-3-reconditionnee-1155248232_2000x.png?v=1744283244"},
       'delta-3-pro': {name:'EcoFlow Delta 3 Pro', price:2199, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-pro-3-56959613829467_2000x.png?v=1726241887"},
-      'panneau-160w': {name:'Panneau Solaire 160W EcoFlow', price:199, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-de-160-w-38953167519970_2000x.png?v=1708331506"},
-      'panneau-400w': {name:'Panneau Solaire 400W EcoFlow', price:399, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-portable-de-400-w-38953197011170_2000x.png?v=1675839414"},
+      'panneau-160w': {name:'Panneau Solaire 160W EcoFlow', price:399, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-de-160-w-38953167519970_2000x.png?v=1708331506"},
+      'panneau-400w': {name:'Panneau Solaire 400W EcoFlow', price:999, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-portable-de-400-w-38953197011170_2000x.png?v=1675839414"},
       'panneau-220w-bifacial': {name:'Panneau Solaire 220W Bifacial EcoFlow', price:599, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-double-face-de-220-w-38953189408994_2000x.png?v=1708331616"},
+      // Ajoute ici tous tes produits...
     };
 
     // Charger le panier
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    // Compter les quantités par produit
     let map = {};
     for(const p of cart) map[p.id] = (map[p.id]||0)+1;
 
@@ -427,7 +414,7 @@
       document.getElementById('cart-count').textContent = cart.length;
     }
 
-    // Suppression & quantité
+    // Gérer la suppression & quantité
     document.addEventListener('click', function(e){
       if(e.target.closest('.cart-remove')){
         let id = e.target.closest('.cart-remove').dataset.id;
