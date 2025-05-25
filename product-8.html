@@ -326,21 +326,21 @@
     <div class="details">
       <span class="badge">Nouveau</span>
       <h2>EcoFlow River 2 Pro</h2>
-      <div class="rating">★★★★★ 18 avis</div>
-      <div class="price">499 € <del>599 €</del><span class="save">Économisez 100 €</span></div>
+      <div class="rating">★★★★★ 9 avis</div>
+      <div class="price">499&nbsp;€ <del>599&nbsp;€</del><span class="save">Économisez 100&nbsp;€</span></div>
       <small>Taxes comprises</small>
       <div class="desc-box">
         <ul>
-          <li>768 Wh — Ultra-polyvalente, puissance pour tous vos appareils nomades.</li>
-          <li>Recharge ultra-rapide : 0 → 100 % en 70 min.</li>
-          <li>Légère, portable, idéale outdoor et mobilité professionnelle.</li>
+          <li>768&nbsp;Wh — Ultra-polyvalente, parfaite pour le nomadisme digital ou le camping.</li>
+          <li>Recharge ultra rapide : 0→100&nbsp;% en 70 min.</li>
+          <li>Multiples sorties AC/DC/USB pour tous vos appareils.</li>
         </ul>
       </div>
       <div class="options">
         <label>Capacité</label>
-        <p>768 Wh</p>
-        <label for="qty-1">Quantité</label>
-        <input type="number" id="qty-1" value="1" min="1">
+        <p>768&nbsp;Wh</p>
+        <label for="qty-8">Quantité</label>
+        <input type="number" id="qty-8" value="1" min="1">
       </div>
       <div class="action">
         <button class="buy-btn" data-id="river-2-pro">Ajouter au panier</button>
@@ -349,12 +349,12 @@
   </div>
   <div id="modal-backdrop" class="modal-backdrop">
     <div class="modal">
-      <p>Article ajouté au panier !</p>
+      <p>Article ajouté au panier&nbsp;!</p>
       <button class="btn-continue">Continuer vos achats</button>
       <button class="btn-cart">Voir le panier</button>
     </div>
   </div>
-  <footer>© 2025 CarpÉnergie</footer>
+  <footer>© 2025 CarpÉnergie</footer>
   <script>
     // Synchroniser le compteur panier
     function updateCount() {
@@ -366,7 +366,7 @@
     document.querySelectorAll('.buy-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        const qty = parseInt(document.getElementById('qty-1').value, 10) || 1;
+        const qty = parseInt(document.getElementById('qty-8').value, 10) || 1;
         for (let i = 0; i < qty; i++) cart.push({ id: btn.dataset.id });
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCount();
