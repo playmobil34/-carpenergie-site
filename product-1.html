@@ -2,36 +2,36 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EcoFlow Delta 2 – Détails</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <style>
-    body {
-      min-height: 100vh;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      background: linear-gradient(rgba(0,22,36,0.93), rgba(9,40,44,0.90)),
-        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
-      color: #fff;
-      font-family: 'Roboto', Arial, sans-serif;
-      letter-spacing: 0.5px;
     }
-
-    /* Nav Bar */
+    body {
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,22,36,0.7),rgba(9,40,44,0.7)),
+        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
+      color: #f0fffb;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.6px;
+      position: relative;
+      overflow-x: hidden;
+    }
     nav {
       width: 100vw;
       z-index: 30;
       position: fixed;
       top: 0; left: 0;
-      display: flex;
-      justify-content: center;
       background: rgba(20,44,37, 0.38);
       box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
       backdrop-filter: blur(7px);
       border-bottom: 2px solid #0ff;
     }
-
     .nav-container {
       max-width: 1300px;
       margin: 0 auto;
@@ -41,7 +41,6 @@
       position: relative;
       height: 68px;
     }
-
     .nav-logo {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.7rem;
@@ -57,9 +56,22 @@
       display: flex;
       align-items: center;
     }
-
     .nav-logo:hover { color: #fff; }
-
+    .nav-burger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2.3rem;
+      color: #0ff;
+      cursor: pointer;
+      position: absolute;
+      left: 8px;
+      top: 16px;
+      z-index: 101;
+      padding: 0 5px;
+      transition: color 0.2s;
+    }
+    .nav-burger:active, .nav-burger:focus { color: #fff; }
     nav ul {
       display: flex;
       gap: 2.2rem;
@@ -69,7 +81,7 @@
       align-items: center;
       margin-left: auto;
     }
-
+    nav li { position:relative; }
     nav a {
       color: #0ff;
       font-family: 'Orbitron', 'Roboto', sans-serif;
@@ -83,30 +95,31 @@
       box-shadow: 0 0 0 transparent;
       display: block;
     }
-
     nav a:hover {
       background: rgba(0,255,255,0.12);
       color: #fff;
       box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
       border: 1.3px solid #0ff;
     }
-
-    /* Panier Count */
-    .cart-count {
+    .cart-count, #cart-count {
       position: absolute;
-      top: 8px;
-      right: -17px;
+      top: 50%;
+      right: -36px; /* bien décalé pour PC */
+      transform: translateY(-50%);
       background: #0ff;
       color: #033;
       border-radius: 50%;
-      padding: 2px 7px;
-      font-size: 0.9rem;
+      padding: 2px 9px;
+      font-size: 0.97rem;
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+      min-width: 28px;
+      text-align: center;
+      z-index: 2;
+      pointer-events: none;
     }
 
-    /* Produit Details */
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -119,27 +132,19 @@
       padding: 2.4rem 2rem;
       align-items: stretch;
     }
-
     .gallery {
-      flex: 1.2;
-      min-width: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      flex: 1.2; min-width: 320px;
+      display: flex; align-items: center; justify-content: center;
     }
-
     .gallery img {
-      width: 96%;
-      max-width: 350px;
+      width: 96%; max-width: 350px;
       border-radius: 16px;
       box-shadow: 0 0 32px #0ffb, 0 0 12px #fff2;
       background: #101e2a;
       padding: 1.2rem;
     }
-
     .details {
-      flex: 1.2;
-      min-width: 320px;
+      flex: 1.2; min-width: 320px;
       background: rgba(17, 32, 38, 0.98);
       padding: 2.2rem 2rem 2rem 2rem;
       border-radius: 16px;
@@ -148,7 +153,19 @@
       flex-direction: column;
       justify-content: center;
     }
-
+    .badge {
+      color: #0ff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      background: #172e38;
+      padding: 4px 17px;
+      border-radius: 9px;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      display: inline-block;
+      letter-spacing: 1.3px;
+      box-shadow: 0 0 9px #0ff8;
+    }
     .details h2 {
       font-family: 'Orbitron', Arial, sans-serif;
       font-size: 2.1rem;
@@ -158,7 +175,14 @@
       font-weight: 900;
       text-shadow: 0 0 11px #0ffb, 0 0 4px #fff;
     }
-
+    .rating {
+      color: #ffe780;
+      font-size: 1.16rem;
+      margin-bottom: 1.3rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 7px #fff4;
+    }
     .price {
       font-size: 1.65rem;
       font-family: 'Orbitron', Arial, sans-serif;
@@ -167,7 +191,6 @@
       color: #0ff;
       text-shadow: 0 0 8px #0ff7;
     }
-
     .price del {
       color: #53e8ffb7;
       margin-left: 10px;
@@ -175,7 +198,60 @@
       font-weight: 400;
       opacity: 0.7;
     }
+    .save {
+      background: #00181a;
+      color: #0ff;
+      padding: 0.26rem 0.7rem;
+      border-radius: 6px;
+      margin-left: 0.7rem;
+      font-size: 0.95rem;
+      box-shadow: 0 0 9px #0ff4;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
+    }
+    small { color: #92f8ff; opacity: 0.93; }
+    .desc-box {
+      background: #1a2b33cc;
+      border: 1px solid #0ff6;
+      padding: 1.3rem 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.7rem;
+      box-shadow: 0 0 10px #0ff2;
+    }
+    .desc-box ul { padding-left: 1.2rem; }
+    .desc-box li { margin-bottom: 0.7em; color: #bafaff; font-size: 1.05rem;}
 
+    /* Button and modal styles */
+    .options {
+      margin-bottom: 1.7rem;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
+      color: #0ff;
+      font-size: 1.03rem;
+    }
+    .options p, .options input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1.5px solid #0ff4;
+      border-radius: 7px;
+      margin-bottom: 1rem;
+      background: #172731;
+      color: #fff;
+      font-size: 1.04rem;
+      font-family: 'Roboto', Arial, sans-serif;
+      box-shadow: 0 0 6px #0ff3;
+      outline: none;
+      transition: border-color 0.17s;
+    }
+    .options input:focus { border-color: #fff; }
+    .action {
+      text-align: center;
+    }
     .buy-btn {
       background: #0ff;
       color: #0b2332;
@@ -193,7 +269,6 @@
       text-shadow: 0 0 3px #0ff6;
       outline: none;
     }
-
     .buy-btn:hover {
       background: #0b2332;
       color: #0ff;
@@ -212,44 +287,26 @@
       letter-spacing: 1.2px;
     }
 
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-        padding: 1.2rem 0.2rem;
-      }
-      .gallery, .details {
-        min-width: unset;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .gallery img {
-        max-width: 95vw;
-      }
-      .container {
-        margin: 85px 0 1rem 0;
-      }
-      .details {
-        padding: 1.1rem 0.7rem;
-      }
-    }
   </style>
 </head>
 <body>
   <nav>
-  <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="batterie-nomade.html">Batterie nomade</a></li>
-    <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li style="position:relative;">
-      <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
-    </li>
-    <li style="margin-left: 1.5rem;">
-      <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
-    </li>
-  </ul>
-</nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">CarpÉnergie</a>
+      <ul id="nav-links">
+        <li><a href="batterie-nomade.html">Batterie nomade</a></li>
+        <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li style="position:relative;">
+          <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+        </li>
+        <li>
+          <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Product Content here -->
   <div class="container">
     <div class="gallery">
       <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="EcoFlow Delta 2"/>
@@ -278,16 +335,10 @@
       </div>
     </div>
   </div>
-  <div id="modal-backdrop" class="modal-backdrop">
-    <div class="modal">
-      <p>Article ajouté au panier&nbsp;!</p>
-      <button class="btn-continue">Continuer vos achats</button>
-      <button class="btn-cart">Voir le panier</button>
-    </div>
-  </div>
   <footer>© 2025 CarpÉnergie</footer>
+
   <script>
-    // Synchroniser le compteur panier
+    // Panier
     function updateCount() {
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
       document.getElementById('cart-count').textContent = cart.length;
@@ -301,13 +352,8 @@
         for (let i = 0; i < qty; i++) cart.push({ id: btn.dataset.id });
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCount();
-        const backdrop = document.getElementById('modal-backdrop');
-        backdrop.style.display = 'flex';
-        backdrop.querySelector('.btn-continue').onclick = () => backdrop.style.display = 'none';
-        backdrop.querySelector('.btn-cart').onclick = () => window.location.href = 'cart.html';
       });
     });
   </script>
 </body>
 </html>
-
