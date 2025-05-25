@@ -72,22 +72,47 @@
       animation: fadeInUp 1.1s;
     }
     .logo-ecoflow {
-      background: rgba(0,0,0,0.5);
-      border-radius: 14px;
-      color: #0ff;
-      font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
-      font-size: 2.7rem;
-      font-weight: 700;
-      padding: 1.0rem 3.3rem;
-      box-shadow: 0 0 32px #0ff7, 0 0 11px #fff2;
-      margin-bottom: 38px;
-      letter-spacing: 8px;
-      text-align: center;
-      user-select: none;
-      text-shadow: 0 0 18px #0ff, 0 0 8px #fff;
-      transition: transform 0.22s, box-shadow 0.22s;
-      cursor: pointer;
-    }
+  background: rgba(0,0,0,0.5);
+  border-radius: 14px;
+  color: #0ff;
+  font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
+  font-size: 2.7rem;
+  font-weight: 700;
+  padding: 1.0rem 3.3rem;
+  box-shadow: 0 0 32px #0ff7, 0 0 11px #fff2;
+  margin-bottom: 38px;
+  letter-spacing: 8px;
+  text-align: center;
+  user-select: none;
+  text-shadow: 0 0 18px #0ff, 0 0 8px #fff;
+  transition: transform 0.22s, box-shadow 0.22s;
+  cursor: default;
+  animation: neon-pulse 2.2s infinite alternate cubic-bezier(.61,0,.43,1);
+}
+
+@keyframes neon-pulse {
+  0% {
+    box-shadow: 0 0 32px #0ff7, 0 0 11px #fff2;
+    text-shadow: 0 0 18px #0ff, 0 0 8px #fff;
+    color: #0ff;
+  }
+  40% {
+    box-shadow: 0 0 48px #0ffcc, 0 0 14px #fff8;
+    text-shadow: 0 0 26px #0ff, 0 0 12px #fff;
+    color: #7fffff;
+  }
+  70% {
+    box-shadow: 0 0 54px #0fffc, 0 0 18px #fff9;
+    text-shadow: 0 0 40px #0ff, 0 0 20px #fff;
+    color: #fff;
+  }
+  100% {
+    box-shadow: 0 0 36px #0ff9, 0 0 10px #fff2;
+    text-shadow: 0 0 18px #0ff, 0 0 8px #fff;
+    color: #0ff;
+  }
+}
+
     .logo-ecoflow:hover {
       transform: scale(1.065) rotate(-2deg);
       box-shadow: 0 0 62px #00fff7, 0 0 14px #fff9;
