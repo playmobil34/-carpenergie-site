@@ -19,6 +19,7 @@
       border-radius:18px;
       background:rgba(255,255,255,0.55);
       padding:12px 28px;
+      /* Logo EcoFlow sur fond blanc translucide pour visibilité */
     }
     .hero-logo:hover {
       transform:scale(1.07) rotate(-2deg);
@@ -54,9 +55,8 @@
     </ul>
   </nav>
   <section class="hero-accueil">
-    <!-- Clique sur le logo = lien vers la page produits -->
     <a href="produits.html" style="display:inline-block;">
-      <img src="https://seeklogo.com/images/E/ecoflow-logo-46A6075FE8-seeklogo.com.png" alt="EcoFlow Logo" class="hero-logo">
+      <img src="https://cdn.shopify.com/s/files/1/0565/8021/3146/files/ecoflow_logo.png" alt="EcoFlow Logo" class="hero-logo">
     </a>
     <h1>CarpÉnergie</h1>
     <p>Votre spécialiste du catalogue EcoFlow<br>Énergie portable pour toutes vos aventures</p>
@@ -65,10 +65,12 @@
     © 2025 CarpÉnergie &bull; Site de démonstration
   </footer>
   <script>
-    // Mise à jour du compteur panier (compatibilité navigation)
+    // Mise à jour du compteur panier
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     const countEl = document.getElementById('cart-count');
     if(countEl) countEl.textContent = cart.length;
   </script>
 </body>
 </html>
+
+
