@@ -133,42 +133,51 @@
       font-weight: 700;
     }
     .univers-logos {
-      display: grid;
-      grid-template-columns: repeat(3, 170px);
-      grid-gap: 3.2rem 3.8rem;
-      justify-content: center;
-      margin-bottom: 2.2rem;
-    }
-    .univers-card {
-      background: rgba(10,40,25,0.73);
-      border-radius: 15px;
-      padding: 2.1rem 0 1.2rem 0;
-      box-shadow: 0 0 20px #0ff5, 0 0 6px #fff3;
-      text-align: center;
-      font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
-      color: #0ff;
-      font-size: 1.07rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      transition: transform 0.21s, box-shadow 0.21s, color 0.18s;
-      position: relative;
-      cursor: pointer;
-      margin: 0 auto;
-    }
-    .univers-card i {
-      font-size: 2.5rem;
-      margin-bottom: 1.1rem;
-      display: block;
-      text-shadow: 0 0 14px #0ff7;
-      color: #0ff;
-    }
-    .univers-card span {
-      display: block;
-      color: #fff;
-      text-shadow: 0 0 8px #00ffe7;
-      margin-top: 4px;
-      font-size: 1.04rem;
-    }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2.7rem 3.3rem;
+  justify-content: center;
+  margin-bottom: 2.2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.univers-card {
+  width: 170px;
+  height: 120px;
+  background: rgba(10,40,25,0.73);
+  border-radius: 15px;
+  padding: 1.4rem 0.3rem 1.1rem 0.3rem;
+  box-shadow: 0 0 20px #0ff5, 0 0 6px #fff3;
+  text-align: center;
+  font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
+  color: #0ff;
+  font-size: 1.07rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: transform 0.21s, box-shadow 0.21s, color 0.18s;
+  position: relative;
+  cursor: pointer;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.univers-card i {
+  font-size: 2.2rem;
+  margin-bottom: 0.7rem;
+  text-shadow: 0 0 14px #0ff7;
+  color: #0ff;
+}
+.univers-card span {
+  display: block;
+  color: #fff;
+  text-shadow: 0 0 8px #00ffe7;
+  margin-top: 2px;
+  font-size: 1.03rem;
+}
+
     .univers-card:hover {
       transform: scale(1.07) translateY(-8px);
       box-shadow: 0 0 38px #00fff7, 0 0 11px #fff;
