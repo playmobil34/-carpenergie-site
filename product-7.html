@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoFlow [NOM_PRODUIT_7] – CarpÉnergie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height:100vh;
+      background: linear-gradient(rgba(0,22,36,0.92),rgba(9,40,44,0.94)),
+        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
+      color: #fff; font-family: 'Roboto', Arial, sans-serif;
+      margin:0; padding:0;
+    }
+    nav {
+      width: 100vw;
+      z-index: 30;
+      position: fixed;
+      top: 0; left: 0;
+      display: flex;
+      justify-content: center;
+      background: rgba(20,44,37, 0.38);
+      box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
+      backdrop-filter: blur(7px);
+      border-bottom: 2px solid #0ff;
+    }
+    nav ul {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0.45em 0;
+      padding: 0;
+      align-items: center;
+    }
+    nav a {
+      color: #0ff;
+      font-family: 'Orbitron', 'Roboto', sans-serif;
+      font-size: 1.09rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.8em 1.4em;
+      border-radius: 12px;
+      letter-spacing: 2.1px;
+      transition: background 0.16s, color 0.16s, box-shadow 0.19s;
+      box-shadow: 0 0 0 transparent;
+    }
+    nav a:hover {
+      background: rgba(0,255,255,0.12);
+      color: #fff;
+      box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
+      border: 1.3px solid #0ff;
+    }
+    .cart-count {
+      position: absolute;
+      top: 8px;
+      right: -17px;
+      background: #0ff;
+      color: #033;
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 0.9rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+    }
+    .product-detail-container {
+      max-width: 680px;
+      margin: 110px auto 44px auto;
+      background: rgba(20,32,48,0.94);
+      border-radius: 16px;
+      box-shadow: 0 0 38px #00ffe746;
+      padding: 2.5rem 2.2rem;
+      text-align: center;
+    }
+    .product-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.1rem;
+      color: #0ff;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      text-shadow: 0 0 14px #0ffb, 0 0 4px #fff;
+    }
+    .product-detail-img {
+      width: 240px; max-width: 90%;
+      margin-bottom: 1.3rem;
+      border-radius: 16px;
+      background: #111a;
+      box-shadow: 0 0 13px #0ff2;
+    }
+    .product-desc {
+      font-size: 1.14rem;
+      margin-bottom: 1.7rem;
+      color: #bafaff;
+    }
+    .product-price {
+      font-size: 1.38rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      text-shadow: 0 0 4px #0ff7;
+    }
+    .product-btn {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 700;
+      background: #111822;
+      color: #0ff;
+      border: 1.5px solid #0ffb;
+      border-radius: 9px;
+      padding: 0.85rem 2.4rem;
+      letter-spacing: 1px;
+      font-size: 1.14rem;
+      box-shadow: 0 0 13px #0ff4;
+      cursor: pointer;
+      text-shadow: 0 0 3px #0ff6;
+      margin-top: 1.2rem;
+      transition: background 0.19s, color 0.18s, box-shadow 0.21s, border-color 0.17s;
+    }
+    .product-btn:hover {
+      background: #0ff;
+      color: #111822;
+      border-color: #fff;
+      box-shadow: 0 0 28px #0ffb;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="produits.html">Produits</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="position:relative;">
+        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+      </li>
+      <li style="margin-left: 1.5rem;">
+        <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="product-detail-container">
+    <div class="product-title">[NOM_PRODUIT_7]</div>
+    <img class="product-detail-img" src="[URL_IMAGE]" alt="[NOM_PRODUIT_7]">
+    <div class="product-desc">[Description du produit 7...]</div>
+    <div class="product-price">[PRIX] €</div>
+    <button class="product-btn" data-id="[ID]">Ajouter au panier</button>
+  </div>
+  <script>
+    // Affichage compteur panier
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    document.getElementById('cart-count').textContent = cart.length;
+
+    // Ajouter au panier (identique autres pages)
+    document.querySelector('.product-btn').onclick = function(){
+      let id = this.dataset.id;
+      let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+      cart.push({id});
+      localStorage.setItem('cart', JSON.stringify(cart));
+      document.getElementById('cart-count').textContent = cart.length;
+      this.textContent = "Ajouté !";
+      setTimeout(()=>{ this.textContent = "Ajouter au panier"; }, 1400);
+    };
+  </script>
+</body>
+</html>
