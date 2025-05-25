@@ -11,19 +11,33 @@
       min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center;
       text-align:center; padding-top:40px;
     }
-    .hero-logo { max-width:180px; margin-bottom:18px; }
+    .hero-logo {
+      max-width:180px; margin-bottom:18px;
+      transition:transform .2s, box-shadow .2s;
+      cursor:pointer;
+      box-shadow:0 2px 10px #0003;
+      border-radius:18px;
+      background:rgba(255,255,255,0.55);
+      padding:12px 28px;
+    }
+    .hero-logo:hover {
+      transform:scale(1.07) rotate(-2deg);
+      box-shadow:0 6px 18px #0005;
+      background:rgba(255,255,255,0.83);
+    }
     .hero-accueil h1 { color:#fff; font-size:3rem; text-shadow:2px 2px 10px #0007; margin-bottom:1rem;}
     .hero-accueil p { color:#fff; font-size:1.4rem; text-shadow:1px 1px 5px #0008; margin-bottom:2rem;}
-    .go-produits-btn {
-      background:#111; color:#fff; font-weight:600; padding:1rem 2.5rem; border:none; border-radius:6px;
-      font-size:1.2rem; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background .2s;
-    }
-    .go-produits-btn:hover { background:#222; }
     nav { background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
     nav ul { display:flex; justify-content:center; list-style:none; margin:0; padding:0; }
-    nav li { margin:0 1.5rem; }
+    nav li { margin:0 1.5rem; position:relative; }
     nav a { display:block; padding:1rem; font-weight:500; color:#1b5e20; }
+    .cart-count { position:absolute; top:8px; right:-8px; background:#d32f2f; color:#fff; border-radius:50%; padding:2px 6px; font-size:0.75rem; }
+    .nav-panier { display:flex; align-items:center; gap:3px; }
     footer { background:#e0e0e0; text-align:center; padding:2rem 1rem; margin-top:2rem; }
+    @media(max-width:600px){
+      .hero-logo { max-width:110px; padding:5px 10px;}
+      .hero-accueil h1{font-size:1.6rem;}
+    }
   </style>
 </head>
 <body>
@@ -32,16 +46,29 @@
       <li><a href="index.html">Accueil</a></li>
       <li><a href="produits.html">Produits</a></li>
       <li><a href="produits.html#contact">Contact</a></li>
+      <li style="position:relative;">
+        <a href="cart.html" class="nav-panier">
+          Panier 🛒<span class="cart-count" id="cart-count">0</span>
+        </a>
+      </li>
     </ul>
   </nav>
   <section class="hero-accueil">
-    <img src="https://seeklogo.com/images/E/ecoflow-logo-46A6075FE8-seeklogo.com.png" alt="EcoFlow Logo" class="hero-logo">
+    <!-- Clique sur le logo = lien vers la page produits -->
+    <a href="produits.html" style="display:inline-block;">
+      <img src="https://seeklogo.com/images/E/ecoflow-logo-46A6075FE8-seeklogo.com.png" alt="EcoFlow Logo" class="hero-logo">
+    </a>
     <h1>CarpÉnergie</h1>
     <p>Votre spécialiste du catalogue EcoFlow<br>Énergie portable pour toutes vos aventures</p>
-    <a href="produits.html"><button class="go-produits-btn">Voir les produits</button></a>
   </section>
   <footer>
     © 2025 CarpÉnergie &bull; Site de démonstration
   </footer>
+  <script>
+    // Mise à jour du compteur panier (compatibilité navigation)
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    const countEl = document.getElementById('cart-count');
+    if(countEl) countEl.textContent = cart.length;
+  </script>
 </body>
 </html>
