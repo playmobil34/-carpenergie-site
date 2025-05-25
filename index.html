@@ -8,11 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+    html, body { height: 100%; margin: 0; padding: 0; }
     body {
       min-height: 100vh;
       background: linear-gradient(rgba(0,22,36,0.7),rgba(9,40,44,0.7)),
@@ -28,21 +24,62 @@
       z-index: 30;
       position: fixed;
       top: 0; left: 0;
-      display: flex;
-      justify-content: center;
       background: rgba(20,44,37, 0.38);
       box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
       backdrop-filter: blur(7px);
       border-bottom: 2px solid #0ff;
     }
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.7rem;
+      color: #0ff;
+      letter-spacing: 4px;
+      user-select: none;
+      font-weight: bold;
+      text-shadow: 0 0 12px #0ff7, 0 0 2px #fff;
+      margin-left: 32px;
+      text-decoration: none;
+      transition: color .18s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo:hover { color: #fff; }
+    .nav-burger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2.3rem;
+      color: #0ff;
+      cursor: pointer;
+      position: absolute;
+      left: 8px;
+      top: 16px;
+      z-index: 101;
+      padding: 0 5px;
+      transition: color 0.2s;
+    }
+    .nav-burger:active, .nav-burger:focus { color: #fff; }
+
     nav ul {
       display: flex;
       gap: 2.2rem;
       list-style: none;
-      margin: 0.45em 0;
+      margin: 0;
       padding: 0;
       align-items: center;
+      margin-left: auto;
     }
+    nav li { position:relative; }
     nav a {
       color: #0ff;
       font-family: 'Orbitron', 'Roboto', sans-serif;
@@ -54,6 +91,7 @@
       letter-spacing: 2.1px;
       transition: background 0.16s, color 0.16s, box-shadow 0.19s;
       box-shadow: 0 0 0 transparent;
+      display: block;
     }
     nav a:hover {
       background: rgba(0,255,255,0.12);
@@ -63,8 +101,8 @@
     }
     .cart-count {
       position: absolute;
-      top: 8px;
-      right: -17px;
+      top: 9px;
+      right: 11px;
       background: #0ff;
       color: #033;
       border-radius: 50%;
@@ -73,8 +111,77 @@
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+      min-width: 24px;
+      text-align: center;
+      z-index: 1;
     }
-    /* HERO/HEADER */
+    /* ---- RESPONSIVE NAV ---- */
+    @media (max-width: 900px) {
+      .nav-container { height: 59px; }
+      .nav-logo { margin-left: 12px; font-size: 1.14rem;}
+      .nav-burger {
+        display: block;
+        left: 8px;
+        top: 13px;
+      }
+      .nav-logo {
+        position: absolute;
+        left: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 0;
+        font-size: 1.13rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100vw;
+        background: rgba(16, 30, 40, 0.97);
+        box-shadow: 0 4px 22px #0ff4;
+        padding: 0;
+        margin-left: 0;
+        display: none;
+        z-index: 100;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        border-top: 1px solid #0ff7;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      nav li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #09f4;
+        position: relative;
+      }
+      nav a {
+        padding: 1.08em 2.6em 1.08em 2.4em;
+        font-size: 1.13rem;
+      }
+      /* Correction cart-count */
+      #cart-btn {
+        position: relative;
+        padding-right: 38px !important;
+      }
+      #cart-count {
+        position: absolute !important;
+        top: 50%;
+        right: 22px !important;
+        transform: translateY(-50%);
+        left: unset;
+      }
+    }
+    @media (max-width: 500px) {
+      .nav-logo { left: 42px; font-size: 1rem;}
+      .nav-burger { font-size: 2.0rem; }
+    }
+    /* ---- FIN NAV ---- */
+
+    /* RESTE DU STYLE inchangé */
     .hero {
       display: flex;
       flex-direction: column;
@@ -117,9 +224,6 @@
       user-select: none;
       pointer-events: none;
     }
-    .logo-ecoflow:hover {
-      /* Le hover ne fait rien maintenant */
-    }
     .hero h2 {
       font-family: 'Orbitron', sans-serif;
       font-size: 2.3rem;
@@ -137,7 +241,6 @@
       color: #f0fffa;
       text-shadow: 0 2px 7px #001;
     }
-    /* SECTION UNIVERSE */
     .univers-container {
       display: flex;
       flex-direction: column;
@@ -198,9 +301,7 @@
       border-color: #00ffe7;
       box-shadow: 0 0 40px #00ffe7, 0 2px 32px #0992;
     }
-    /* Ajoute le curseur pointer seulement pour les liens */
     .univers-card[data-link] { cursor:pointer;}
-    /* Animations */
     @keyframes logoShine {
       0% { box-shadow: 0 0 25px #0ffb, 0 0 12px #fff3;}
       60% { box-shadow: 0 0 80px #0ff, 0 0 16px #0ffb, 0 1px 38px #00ffb3;}
@@ -210,7 +311,6 @@
       0% { text-shadow: 0 0 10px #0ff, 0 0 22px #3ffb, 0 1px 19px #01ffb0;}
       100% { text-shadow: 0 0 31px #fff, 0 0 46px #0ff, 0 1px 34px #fff;}
     }
-    /* Responsive */
     @media (max-width: 1000px) {
       .hero { height: 250px;}
       .univers-logos { grid-template-columns: repeat(2, 160px);}
@@ -228,20 +328,22 @@
 </head>
 <body>
   <nav>
-  <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="batterie-nomade.html">Batterie nomade</a></li>
-      <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li style="position:relative;">
-      <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
-    </li>
-    <li style="margin-left: 1.5rem;">
-      <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
-    </li>
-  </ul>
-</nav>
-
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">CarpÉnergie</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
+      <ul id="nav-links">
+        <li><a href="batterie-nomade.html">Batterie nomade</a></li>
+        <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li style="position:relative;">
+          <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+        </li>
+        <li style="margin-left: 1.5rem;">
+          <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <div class="hero">
     <div class="brands-title">Nos marques</div>
@@ -261,6 +363,19 @@
     </div>
   </section>
   <script>
+    // Burger menu JS
+    const burger = document.getElementById('nav-burger');
+    const navLinks = document.getElementById('nav-links');
+    burger.onclick = function () {
+      navLinks.classList.toggle('show');
+    };
+    // Ferme le menu après click (optionnel)
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+
     // Redirection sur encadré "univers" cliquable
     document.querySelectorAll('.univers-card[data-link]').forEach(card => {
       card.addEventListener('click', function() {
