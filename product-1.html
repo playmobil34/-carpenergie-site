@@ -120,6 +120,7 @@
       pointer-events: none;
     }
 
+    /* Container Product */
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -132,10 +133,12 @@
       padding: 2.4rem 2rem;
       align-items: stretch;
     }
+
     .gallery {
       flex: 1.2; min-width: 320px;
       display: flex; align-items: center; justify-content: center;
     }
+
     .gallery img {
       width: 96%; max-width: 350px;
       border-radius: 16px;
@@ -143,6 +146,7 @@
       background: #101e2a;
       padding: 1.2rem;
     }
+
     .details {
       flex: 1.2; min-width: 320px;
       background: rgba(17, 32, 38, 0.98);
@@ -153,6 +157,7 @@
       flex-direction: column;
       justify-content: center;
     }
+
     .badge {
       color: #0ff;
       font-family: 'Orbitron', sans-serif;
@@ -166,6 +171,7 @@
       letter-spacing: 1.3px;
       box-shadow: 0 0 9px #0ff8;
     }
+
     .details h2 {
       font-family: 'Orbitron', Arial, sans-serif;
       font-size: 2.1rem;
@@ -175,6 +181,7 @@
       font-weight: 900;
       text-shadow: 0 0 11px #0ffb, 0 0 4px #fff;
     }
+
     .rating {
       color: #ffe780;
       font-size: 1.16rem;
@@ -183,6 +190,7 @@
       letter-spacing: 1px;
       text-shadow: 0 1px 7px #fff4;
     }
+
     .price {
       font-size: 1.65rem;
       font-family: 'Orbitron', Arial, sans-serif;
@@ -191,6 +199,7 @@
       color: #0ff;
       text-shadow: 0 0 8px #0ff7;
     }
+
     .price del {
       color: #53e8ffb7;
       margin-left: 10px;
@@ -198,6 +207,7 @@
       font-weight: 400;
       opacity: 0.7;
     }
+
     .save {
       background: #00181a;
       color: #0ff;
@@ -209,7 +219,9 @@
       font-family: 'Orbitron', Arial, sans-serif;
       letter-spacing: 1px;
     }
+
     small { color: #92f8ff; opacity: 0.93; }
+
     .desc-box {
       background: #1a2b33cc;
       border: 1px solid #0ff6;
@@ -218,12 +230,14 @@
       margin-bottom: 1.7rem;
       box-shadow: 0 0 10px #0ff2;
     }
+
     .desc-box ul { padding-left: 1.2rem; }
     .desc-box li { margin-bottom: 0.7em; color: #bafaff; font-size: 1.05rem;}
 
     .options {
       margin-bottom: 1.7rem;
     }
+
     .options label {
       display: block;
       margin-bottom: 0.5rem;
@@ -233,6 +247,7 @@
       color: #0ff;
       font-size: 1.03rem;
     }
+
     .options p, .options input {
       width: 100%;
       padding: 0.6rem;
@@ -247,10 +262,12 @@
       outline: none;
       transition: border-color 0.17s;
     }
+
     .options input:focus { border-color: #fff; }
     .action {
       text-align: center;
     }
+
     .buy-btn {
       background: #0ff;
       color: #0b2332;
@@ -268,6 +285,7 @@
       text-shadow: 0 0 3px #0ff6;
       outline: none;
     }
+
     .buy-btn:hover {
       background: #0b2332;
       color: #0ff;
@@ -285,7 +303,6 @@
       font-size: 1.03rem;
       letter-spacing: 1.2px;
     }
-
   </style>
 </head>
 <body>
@@ -306,7 +323,8 @@
       </ul>
     </div>
   </nav>
-  <!-- Product Content here -->
+  
+  <!-- Product Content -->
   <div class="container">
     <div class="gallery">
       <img src="https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784" alt="EcoFlow Delta 2"/>
@@ -335,6 +353,7 @@
       </div>
     </div>
   </div>
+
   <footer>© 2025 CarpÉnergie</footer>
 
   <script>
