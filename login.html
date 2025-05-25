@@ -209,26 +209,6 @@
       width: 100%;
       text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
     }
-    .reset-close {
-      position: absolute;
-      top: 18px;
-      right: 24px;
-      background: #00fff6;
-      color: #112;
-      border: none;
-      border-radius: 11px;
-      width: 41px;
-      height: 36px;
-      font-size: 1.6rem;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 9px #0ff9;
-      transition: background 0.19s;
-      z-index: 3;
-    }
-    .reset-close:hover {
-      background: #fff;
-    }
     .reset-input {
       width: 100%;
       padding: 1.1rem;
@@ -265,7 +245,32 @@
       color: #088;
       box-shadow: 0 0 28px #0ffb;
     }
-    /* Responsive */
+    .reset-links {
+      margin-top: 2rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .reset-link {
+      color: #0ff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.04rem;
+      text-align: center;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.17s;
+      display: block;
+      padding: 0.25em 0;
+      border-radius: 6px;
+      margin: 0.4em 0 0 0;
+      width: 100%;
+    }
+    .reset-link:hover {
+      color: #fff;
+      background: #0ff3;
+      text-decoration: none;
+    }
     @media (max-width: 550px) {
       .login-box, .register-box, .reset-popup { min-width: 90vw; }
       .reset-popup { padding: 1.2rem 0.5rem 1.3rem 0.5rem; }
@@ -320,10 +325,12 @@
   <!-- Popup mot de passe oublié -->
   <div class="reset-overlay" id="reset-overlay">
     <div class="reset-popup">
-      <button class="reset-close" onclick="closeResetPopup()">×</button>
       <div class="reset-title">Réinitialisation du mot de passe</div>
       <input type="email" class="reset-input" id="reset-email" placeholder="Votre adresse email" />
       <button class="reset-submit" onclick="sendResetEmail()">Envoyer</button>
+      <div class="reset-links">
+        <span class="reset-link" onclick="closeResetPopup()">← Retour à la connexion</span>
+      </div>
     </div>
   </div>
 
@@ -384,6 +391,7 @@
     function openLogin() {
       document.getElementById('register-form').style.display = "none";
       document.getElementById('login-form').style.display = "block";
+      closeResetPopup();
     }
 
     // Mot de passe oublié
