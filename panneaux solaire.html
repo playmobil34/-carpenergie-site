@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panneaux solaires – CarpÉnergie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #fff;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: rgba(6,22,33,0.52);
+      pointer-events: none;
+    }
+    .navbar {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      background: rgba(12,30,24,0.97);
+      box-shadow: 0 0 24px #0ff2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+    }
+    .navbar ul {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+    .navbar a {
+      color: #0ff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color .18s;
+      position: relative;
+      padding: 6px 14px;
+    }
+    .navbar a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px #0ff, 0 0 2px #fff;
+    }
+    .cart-count {
+      position: absolute;
+      top: -7px; right: -10px;
+      background: #0ff;
+      color: #112;
+      border-radius: 11px;
+      padding: 0 7px;
+      font-size: 0.79em;
+      font-family: 'Roboto', sans-serif;
+      box-shadow: 0 0 4px #0ff9;
+      border: 1px solid #fff3;
+      font-weight: 700;
+    }
+    .products-container {
+      max-width: 1300px;
+      margin: 100px auto 0 auto;
+      padding: 2rem 1rem 3rem 1rem;
+      z-index: 2;
+      position: relative;
+    }
+    .products-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.2rem;
+      color: #0ff;
+      letter-spacing: 2px;
+      text-align: center;
+      text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
+      margin-bottom: 2.3rem;
+      font-weight: 700;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 2.5rem;
+    }
+    .product-card {
+      background: rgba(16,28,34,0.82);
+      border-radius: 18px;
+      box-shadow: 0 0 24px #0ff3, 0 0 2px #fff1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.21s;
+      border: 1.5px solid #0ff4;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.018);
+      box-shadow: 0 0 44px #0fffffaa, 0 0 18px #fff6;
+      border-color: #0ff;
+    }
+    .product-img-wrap {
+      width: 220px; height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2.1rem 0 1.2rem 0;
+      background: rgba(9,26,33,0.52);
+      border-radius: 13px;
+      box-shadow: 0 0 18px #0ff4;
+    }
+    .product-card img {
+      max-width: 90%; max-height: 88%;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 18px #0009);
+      transition: filter 0.19s;
+    }
+    .product-card:hover img {
+      filter: drop-shadow(0 0 24px #0ffb) brightness(1.12);
+    }
+    .product-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.33rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      text-shadow: 0 0 9px #0ff4;
+    }
+    .product-desc {
+      color: #bafaff;
+      font-size: 1.04rem;
+      text-align: center;
+      margin-bottom: 1.3rem;
+      min-height: 45px;
+    }
+    .product-price {
+      color: #fff;
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .product-price del {
+      color: #53e8ffb7;
+      margin-left: 9px;
+      font-size: 0.97rem;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    .product-btn {
+      margin: 0 0 2.1rem 0;
+      padding: 0.85rem 2.8rem;
+      font-size: 1.12rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 700;
+      background: #111822;
+      color: #0ff;
+      border: 1.5px solid #0ffb;
+      border-radius: 7px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 13px #0ff4;
+      cursor: pointer;
+      transition: background 0.19s, color 0.18s, box-shadow 0.21s, border-color 0.17s;
+      text-shadow: 0 0 3px #0ff6;
+      outline: none;
+      display: block;
+    }
+    .product-btn:hover {
+      background: #0ff;
+      color: #111822;
+      border-color: #fff;
+      box-shadow: 0 0 28px #0ffb;
+    }
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .products-container { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Barre de navigation -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="produits.html">Produits</a></li>
+      <li><a href="panneaux.html">Panneaux solaires</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="position:relative;">
+        <a href="cart.html">Panier
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="products-container">
+    <div class="products-title">Nos Panneaux Solaires</div>
+    <div class="products-grid">
+      <!-- Panneau Solaire 110W -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/panneau-solaire-110w.png?v=1696590533" alt="Panneau Solaire 110W">
+        </div>
+        <div class="product-title">Panneau Solaire 110W</div>
+        <div class="product-desc">Portable, IP68, pliable – recharge solaire mobile pour tous vos usages.</div>
+        <div class="product-price">109&nbsp;€ <del>121&nbsp;€</del></div>
+        <a href="product-5.html" class="product-btn">Choisir</a>
+      </div>
+      <!-- Panneau Solaire 160W -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/panneau-solaire-160w.png?v=1696590533" alt="Panneau Solaire 160W">
+        </div>
+        <div class="product-title">Panneau Solaire 160W</div>
+        <div class="product-desc">Pliable, idéal pour l’extérieur, rendement élevé, poids plume.</div>
+        <div class="product-price">199&nbsp;€ <del>239&nbsp;€</del></div>
+        <a href="#" class="product-btn">Choisir</a>
+      </div>
+      <!-- Panneau Solaire 220W -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/panneau-solaire-220w-bifacial.png?v=1696590498" alt="Panneau Solaire 220W">
+        </div>
+        <div class="product-title">Panneau Solaire 220W Bifacial</div>
+        <div class="product-desc">Bifacial – double face, maximise la collecte d'énergie solaire.</div>
+        <div class="product-price">299&nbsp;€ <del>339&nbsp;€</del></div>
+        <a href="product-6.html" class="product-btn">Choisir</a>
+      </div>
+      <!-- Panneau Solaire 400W -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://fr.ecoflow.com/cdn/shop/files/panneau-solaire-400w.png?v=1696590533" alt="Panneau Solaire 400W">
+        </div>
+        <div class="product-title">Panneau Solaire 400W</div>
+        <div class="product-desc">Puissant, pliable, imperméable – pour installations exigeantes.</div>
+        <div class="product-price">799&nbsp;€ <del>899&nbsp;€</del></div>
+        <a href="#" class="product-btn">Choisir</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    document.getElementById('cart-count').textContent = cart.length || 0;
+  </script>
+</body>
+</html>
