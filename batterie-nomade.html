@@ -35,7 +35,6 @@
       box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
       backdrop-filter: blur(7px);
       border-bottom: 2px solid #0ff;
-      /* Pour contenir le flex sur mobile */
     }
     .nav-container {
       max-width: 1300px;
@@ -53,10 +52,15 @@
       letter-spacing: 4px;
       user-select: none;
       font-weight: bold;
-      margin-left: 32px;
       text-shadow: 0 0 12px #0ff7, 0 0 2px #fff;
-      cursor: default;
+      margin-left: 32px;
+      text-decoration: none;
+      transition: color .18s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
     }
+    .nav-logo:hover { color: #fff; }
     .nav-burger {
       display: none;
       background: none;
@@ -104,8 +108,8 @@
     }
     .cart-count {
       position: absolute;
-      top: 8px;
-      right: -17px;
+      top: 9px;
+      right: 11px;
       background: #0ff;
       color: #033;
       border-radius: 50%;
@@ -114,15 +118,26 @@
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+      min-width: 24px;
+      text-align: center;
+      z-index: 1;
     }
     /* ---- RESPONSIVE ---- */
     @media (max-width: 900px) {
       .nav-container { height: 59px; }
-      .nav-logo { margin-left: 44px; font-size: 1.17rem; }
+      .nav-logo { margin-left: 12px; font-size: 1.14rem;}
       .nav-burger {
         display: block;
         left: 8px; /* Légèrement du bord */
         top: 13px;
+      }
+      .nav-logo {
+        position: absolute;
+        left: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 0;
+        font-size: 1.13rem;
       }
       nav ul {
         flex-direction: column;
@@ -148,14 +163,27 @@
         width: 100%;
         text-align: left;
         border-bottom: 1px solid #09f4;
+        position: relative;
       }
       nav a {
-        padding: 1.08em 2.6em;
+        padding: 1.08em 2.6em 1.08em 2.4em;
         font-size: 1.13rem;
+      }
+      /* Correction cart-count */
+      #cart-btn {
+        position: relative;
+        padding-right: 38px !important;
+      }
+      #cart-count {
+        position: absolute !important;
+        top: 50%;
+        right: 22px !important;
+        transform: translateY(-50%);
+        left: unset;
       }
     }
     @media (max-width: 500px) {
-      .nav-logo { margin-left: 38px; font-size: 1rem; }
+      .nav-logo { left: 42px; font-size: 1rem;}
       .nav-burger { font-size: 2.0rem; }
     }
     /* ---- FIN NAV ---- */
@@ -295,7 +323,6 @@
       <a href="index.html" class="nav-logo">CarpÉnergie</a>
       <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
       <ul id="nav-links">
-        <!-- ACCUEIL ENLEVÉ comme demandé -->
         <li><a href="batterie-nomade.html">Batterie nomade</a></li>
         <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -311,7 +338,8 @@
   <div class="products-container">
     <div class="products-title">Stations Nomades EcoFlow</div>
     <div class="products-grid">
-      <!-- RIVER Series -->
+      <!-- Tous tes produits ici -->
+      <!-- ... même contenu produit que précédemment ... -->
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://fr.ecoflow.com/cdn/shop/products/station-electrique-portable-river-2-max-38948587765986_2000x.png?v=1721637180" alt="EcoFlow River 2 Max">
@@ -386,6 +414,7 @@
         <div class="product-price">2 199&nbsp;€ <del>2 399&nbsp;€</del></div>
         <a href="product-10.html" class="product-btn">Choisir</a>
       </div>
+      <!-- Ajoute ici d'autres produits si besoin -->
     </div>
   </div>
   <script>
@@ -408,4 +437,3 @@
   </script>
 </body>
 </html>
-
