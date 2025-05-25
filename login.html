@@ -72,35 +72,16 @@
       padding: 2.7rem 2.1rem 2.2rem 2.1rem;
       min-width: 350px;
       display: flex; flex-direction: column; align-items: center;
-      margin-top: 70px;
-    }
-    .tab-switch {
-      display: flex; width: 100%; justify-content: center; gap: 18px; margin-bottom: 1.5rem;
-    }
-    .tab-btn {
-      font-family: 'Orbitron', Arial, sans-serif;
-      background: none; border: none;
-      color: #0ff; font-size: 1.17rem; font-weight: bold; letter-spacing: 2px;
-      cursor: pointer;
-      padding: 5px 20px; border-radius: 10px;
-      box-shadow: 0 0 0 #0ff0;
-      transition: color 0.16s, background 0.14s, box-shadow 0.15s;
-    }
-    .tab-btn.active, .tab-btn:focus {
-      background: #0ff1;
-      color: #fff;
-      box-shadow: 0 0 13px #0ffb;
-      outline: none;
+      position: relative;
     }
     .login-title {
       font-family: 'Orbitron', Arial, sans-serif;
       font-size: 2.2rem;
       color: #0ff;
       letter-spacing: 2px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       font-weight: 900;
       text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
-      text-align: center;
     }
     .login-box label {
       font-size: 1.02rem;
@@ -125,7 +106,7 @@
       transition: border-color 0.16s;
       outline: none;
     }
-    .login-box input:focus {
+    .login-box input[type="text"]:focus, .login-box input[type="password"]:focus, .login-box input[type="email"]:focus {
       border-color: #fff;
     }
     .login-box button {
@@ -150,7 +131,27 @@
       color: #088;
       box-shadow: 0 0 28px #0ffb;
     }
-    .login-error, .register-error, .forgot-msg {
+    .login-links {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 1.1em;
+      margin-bottom: -0.4em;
+    }
+    .login-links a {
+      color: #0ff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.04em;
+      text-decoration: none;
+      text-shadow: 0 0 7px #0ff7;
+      transition: color 0.18s, text-shadow 0.18s;
+      cursor: pointer;
+    }
+    .login-links a:hover {
+      color: #fff;
+      text-shadow: 0 0 16px #0ffb;
+    }
+    .login-error {
       color: #ff6a8c;
       font-size: 1.01rem;
       text-align: center;
@@ -160,206 +161,232 @@
       font-family: 'Orbitron', Arial, sans-serif;
       text-shadow: 0 0 6px #fff7;
     }
-    .forgot-link {
-      display: block;
-      margin: 0.8em 0 0.2em 0;
-      color: #7ffcff;
-      font-size: 0.99em;
-      font-family: 'Orbitron', Arial, sans-serif;
-      text-align: right;
-      text-decoration: underline;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-    .forgot-link:hover {
-      color: #fff;
-      text-shadow: 0 0 8px #0ff7;
-    }
-    /* Modal */
+    /* POPUP RESET PASSWORD */
     .modal-backdrop {
-      display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+      display: none;
+      position: fixed;
+      z-index: 500;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(4,20,30,0.86);
+      align-items: center;
+      justify-content: center;
     }
+    .modal-backdrop.show { display: flex; }
     .modal {
       background: #1e3647;
       color: #0ff;
-      padding: 2.1rem 1.5rem;
+      padding: 3.3rem 1.5rem 2.1rem 1.5rem;
       border-radius: 13px;
       text-align: center;
       font-family: 'Roboto', Arial, sans-serif;
-      min-width: 300px;
+      min-width: 320px;
       max-width: 95vw;
       box-shadow: 0 0 24px #0ff9;
       position: relative;
       animation: fadeIn .21s;
     }
-    @keyframes fadeIn {
-      from { transform: scale(0.85); opacity: 0;}
-      to   { transform: scale(1); opacity: 1;}
+    .close-modal {
+      position: absolute;
+      right: 18px;
+      top: 17px;
+      font-size: 2em;
+      color: #0ff;
+      background: #00fff7;
+      border: none;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 2px 22px 2px 22px;
+      box-shadow: 0 0 10px #0ffb;
+      transition: background 0.18s, color 0.18s;
+      z-index: 10;
+      font-family: 'Orbitron', Arial, sans-serif;
+    }
+    .close-modal:hover { background: #fff; color: #099;}
+    .modal-title {
+      font-size:1.23rem;
+      margin-bottom:1.1em;
+      font-family: 'Orbitron', Arial, sans-serif;
+      text-shadow: 0 0 11px #0ff7;
+      margin-top: 0; /* Assure le texte bien aligné */
+      color: #0ff;
+    }
+    .forgot-msg {
+      color: #fff;
+      font-size: 1em;
+      min-height: 1.2em;
+      margin-bottom: 0.9em;
     }
     .modal input[type="email"] {
-      margin-top: 1.1em;
-      width: 94%;
-      padding: 0.75em;
+      width: 98%;
+      padding: 0.85rem;
+      border: 1.5px solid #0ff;
+      border-radius: 6px;
+      background: #172731;
+      color: #fff;
+      font-size: 1.08rem;
+      font-family: 'Roboto', Arial, sans-serif;
+      margin-bottom: 1.1rem;
+      box-shadow: 0 0 8px #0ff2;
+      outline: none;
+      transition: border-color 0.17s;
     }
-    .modal button {
-      margin-top: 1.5em;
-      padding: 0.7em 2em;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: none;
+    .modal input[type="email"]:focus { border-color: #fff; }
+    .modal button:not(.close-modal) {
+      padding: 0.8rem 2.4rem;
+      font-size: 1.21rem;
       font-family: 'Orbitron', Arial, sans-serif;
-      background: #0ff;
-      color: #111;
+      background: #00fff7;
+      color: #033;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1.1rem;
+      box-shadow: 0 0 16px #0ff7;
+      transition: background 0.16s, color 0.16s;
       font-weight: 700;
+      margin-bottom: 0.5rem;
       cursor: pointer;
-      box-shadow: 0 0 13px #0ffb;
-      transition: background 0.18s, color 0.18s, box-shadow 0.2s;
     }
-    .modal button:hover { background: #fff; color: #099;}
-    .close-modal {
-      position: absolute; right: 12px; top: 10px; font-size: 1.8em; color: #0ff; background: none; border: none; cursor: pointer;
+    .modal button:not(.close-modal):hover {
+      background: #fff;
+      color: #09b;
+      box-shadow: 0 0 29px #0ffb;
     }
-    /* Responsive */
-    @media (max-width: 540px) {
-      .login-box { min-width: 94vw; padding: 2.1rem 0.2rem;}
-      .login-title { font-size: 1.3rem;}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-33px);}
+      to   { opacity: 1; transform: none;}
+    }
+    @media (max-width: 500px) {
+      .login-box { min-width: 95vw;}
+      .modal { min-width: 97vw;}
     }
   </style>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="#">Accueil</a></li>
-      <li><a href="produits.html">Produits</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li style="position:relative;">
-        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
-      </li>
-      <li style="margin-left: 1.5rem;">
-        <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
-      </li>
-    </ul>
-  </nav>
-  <form class="login-box" id="login-form" autocomplete="off">
-    <div class="tab-switch">
-      <button type="button" class="tab-btn active" id="tab-login">Connexion</button>
-      <button type="button" class="tab-btn" id="tab-register">Créer un compte</button>
-    </div>
-    <div class="login-title" id="form-title">Connexion</div>
-    <div class="login-error" id="login-error"></div>
-    <div id="login-fields">
-      <label for="login-user">Utilisateur</label>
-      <input type="text" id="login-user" autocomplete="off" autofocus>
-      <label for="login-pass">Mot de passe</label>
-      <input type="password" id="login-pass">
-      <span class="forgot-link" id="show-forgot">Mot de passe oublié&nbsp;?</span>
-      <button type="submit">Se connecter</button>
-    </div>
-    <div id="register-fields" style="display:none;">
-      <label for="register-user">Nom d'utilisateur</label>
-      <input type="text" id="register-user" autocomplete="off">
-      <label for="register-email">Email</label>
-      <input type="email" id="register-email" autocomplete="off">
-      <label for="register-pass">Mot de passe</label>
-      <input type="password" id="register-pass">
-      <button type="button" id="register-btn">Créer un compte</button>
-      <div class="register-error" id="register-error"></div>
-    </div>
-  </form>
+<nav>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="produits.html">Produits</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li style="position:relative;">
+      <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+    </li>
+    <li style="margin-left: 1.5rem;">
+      <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+    </li>
+  </ul>
+</nav>
 
-  <!-- Modal "Mot de passe oublié" -->
-  <div class="modal-backdrop" id="forgot-modal">
-    <div class="modal">
-      <button class="close-modal" onclick="document.getElementById('forgot-modal').style.display='none'">&times;</button>
-      <div style="font-size:1.23rem; margin-bottom:1.1em;">Réinitialisation du mot de passe</div>
-      <div class="forgot-msg" id="forgot-msg"></div>
-      <input type="email" id="forgot-email" placeholder="Votre adresse email" required>
-      <button onclick="submitForgot()">Envoyer</button>
-    </div>
+<form class="login-box" id="login-form" autocomplete="off">
+  <div class="login-title">Connexion</div>
+  <div class="login-error" id="login-error"></div>
+  <label for="login-user">Utilisateur</label>
+  <input type="text" id="login-user" required autocomplete="off" autofocus>
+  <label for="login-pass">Mot de passe</label>
+  <input type="password" id="login-pass" required>
+  <div class="login-links">
+    <a href="#" id="show-forgot">Mot de passe oublié ?</a>
+    <a href="#" id="show-register">Créer un compte</a>
   </div>
-  <script>
-    // Tab switch Connexion/Inscription
-    const tabLogin = document.getElementById('tab-login');
-    const tabRegister = document.getElementById('tab-register');
-    const loginFields = document.getElementById('login-fields');
-    const registerFields = document.getElementById('register-fields');
-    const formTitle = document.getElementById('form-title');
-    tabLogin.onclick = () => {
-      tabLogin.classList.add('active');
-      tabRegister.classList.remove('active');
-      loginFields.style.display = '';
-      registerFields.style.display = 'none';
-      formTitle.textContent = 'Connexion';
-    };
-    tabRegister.onclick = () => {
-      tabRegister.classList.add('active');
-      tabLogin.classList.remove('active');
-      loginFields.style.display = 'none';
-      registerFields.style.display = '';
-      formTitle.textContent = 'Créer un compte';
-    };
+  <button type="submit">Se connecter</button>
+</form>
 
-    // "Mot de passe oublié"
-    document.getElementById('show-forgot').onclick = function() {
-      document.getElementById('forgot-modal').style.display = 'flex';
-      document.getElementById('forgot-msg').textContent = '';
-      document.getElementById('forgot-email').value = '';
-    };
-    function submitForgot() {
-      var email = document.getElementById('forgot-email').value.trim();
-      var msg = document.getElementById('forgot-msg');
-      if(!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)){
-        msg.textContent = "Merci d'entrer une adresse email valide.";
-        return;
-      }
-      msg.style.color = "#1bffc1";
-      msg.textContent = "Si cet email est enregistré, vous recevrez un lien de réinitialisation (démo).";
-      setTimeout(function(){
-        document.getElementById('forgot-modal').style.display = 'none';
-      }, 2100);
-    }
+<!-- Pop-up Mot de passe oublié -->
+<div class="modal-backdrop" id="forgot-modal">
+  <div class="modal">
+    <button class="close-modal" onclick="closeModal('forgot-modal')">&times;</button>
+    <div class="modal-title">Réinitialisation du mot de passe</div>
+    <div class="forgot-msg" id="forgot-msg"></div>
+    <input type="email" id="forgot-email" placeholder="Votre adresse email" required>
+    <button type="button" onclick="submitForgot()">Envoyer</button>
+  </div>
+</div>
 
-    // Démo création de compte
-    document.getElementById('register-btn').onclick = function() {
-      let user = document.getElementById('register-user').value.trim();
-      let mail = document.getElementById('register-email').value.trim();
-      let pass = document.getElementById('register-pass').value;
-      let err = document.getElementById('register-error');
-      if(user.length < 3) { err.textContent = "Nom d'utilisateur trop court."; return;}
-      if(!/^[^@]+@[^@]+\.[^@]+$/.test(mail)) { err.textContent = "Email invalide."; return;}
-      if(pass.length < 5) { err.textContent = "Mot de passe trop court (5 caractères min)."; return;}
-      // (Démo) Enregistre en localStorage
+<!-- Pop-up Création de compte -->
+<div class="modal-backdrop" id="register-modal">
+  <div class="modal">
+    <button class="close-modal" onclick="closeModal('register-modal')">&times;</button>
+    <div class="modal-title">Créer un compte</div>
+    <div class="forgot-msg" id="register-msg"></div>
+    <input type="text" id="register-user" placeholder="Nom d'utilisateur" required style="margin-bottom: 0.8em;">
+    <input type="email" id="register-email" placeholder="Votre email" required style="margin-bottom: 0.8em;">
+    <input type="password" id="register-pass" placeholder="Mot de passe" required>
+    <button type="button" onclick="submitRegister()">Créer mon compte</button>
+  </div>
+</div>
+
+<script>
+  // DEMO user/pass
+  const DEMO_USER = "admin";
+  const DEMO_PASS = "demo123";
+
+  document.getElementById('login-form').onsubmit = function(e){
+    e.preventDefault();
+    const user = document.getElementById('login-user').value.trim();
+    const pass = document.getElementById('login-pass').value;
+    const error = document.getElementById('login-error');
+    if(user === DEMO_USER && pass === DEMO_PASS){
       localStorage.setItem('user', user);
-      localStorage.setItem('email', mail);
-      err.style.color = "#1bffc1";
-      err.textContent = "Compte créé ! Vous pouvez maintenant vous connecter.";
-      setTimeout(()=>{
-        tabLogin.onclick();
-        err.textContent = "";
-      }, 2000);
-    };
+      window.location.href = "index.html";
+    } else {
+      error.textContent = "Identifiant ou mot de passe incorrect";
+    }
+  };
 
-    // Connexion (demo : admin/demo123 OU le compte créé)
-    document.getElementById('login-form').onsubmit = function(e){
-      e.preventDefault();
-      const demoUser = "admin", demoPass = "demo123";
-      const user = document.getElementById('login-user').value.trim();
-      const pass = document.getElementById('login-pass').value;
-      const error = document.getElementById('login-error');
-      const storedUser = localStorage.getItem('user');
-      const storedPass = localStorage.getItem('pass'); // non sécurisé (démo)
-      if((user === demoUser && pass === demoPass) || user === storedUser){
-        localStorage.setItem('user', user);
-        window.location.href = "index.html";
-      } else {
-        error.textContent = "Identifiant ou mot de passe incorrect";
-      }
-    };
+  // Popups
+  function closeModal(id){
+    document.getElementById(id).classList.remove('show');
+    if(id==='forgot-modal') document.getElementById('forgot-msg').textContent='';
+    if(id==='register-modal') document.getElementById('register-msg').textContent='';
+  }
 
-    // Affiche le nombre d'articles dans le panier
-    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
-    document.getElementById('cart-count').textContent = cart.length || 0;
-  </script>
+  document.getElementById('show-forgot').onclick = function(e){
+    e.preventDefault();
+    document.getElementById('forgot-modal').classList.add('show');
+    document.getElementById('forgot-email').focus();
+  };
+
+  document.getElementById('show-register').onclick = function(e){
+    e.preventDefault();
+    document.getElementById('register-modal').classList.add('show');
+    document.getElementById('register-user').focus();
+  };
+
+  function submitForgot(){
+    let email = document.getElementById('forgot-email').value.trim();
+    let msg = document.getElementById('forgot-msg');
+    if(email.length < 4 || !email.includes('@')){
+      msg.textContent = "Veuillez entrer un email valide.";
+      return;
+    }
+    msg.textContent = "Un lien de réinitialisation a été envoyé (simulation).";
+    setTimeout(()=>{ closeModal('forgot-modal'); }, 1700);
+  }
+
+  function submitRegister(){
+    let user = document.getElementById('register-user').value.trim();
+    let email = document.getElementById('register-email').value.trim();
+    let pass = document.getElementById('register-pass').value;
+    let msg = document.getElementById('register-msg');
+    if(user.length < 2){
+      msg.textContent = "Entrez un nom d'utilisateur (min. 2 lettres).";
+      return;
+    }
+    if(email.length < 4 || !email.includes('@')){
+      msg.textContent = "Veuillez entrer un email valide.";
+      return;
+    }
+    if(pass.length < 4){
+      msg.textContent = "Mot de passe trop court (min. 4).";
+      return;
+    }
+    msg.textContent = "Votre compte a bien été créé (simulation) !";
+    setTimeout(()=>{ closeModal('register-modal'); }, 1800);
+  }
+
+  // Panier
+  let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+  document.getElementById('cart-count').textContent = cart.length || 0;
+</script>
 </body>
 </html>
