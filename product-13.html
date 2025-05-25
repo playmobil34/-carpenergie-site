@@ -1,0 +1,382 @@
+<!-- product-14.html : Panneau Solaire 400W EcoFlow -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panneau Solaire 400W EcoFlow – Détails</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0; padding: 0;
+      background: linear-gradient(rgba(0,22,36,0.93),rgba(9,40,44,0.90)),
+        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
+      color: #fff;
+      font-family: 'Roboto', Arial, sans-serif;
+      letter-spacing: 0.5px;
+    }
+    nav {
+      width: 100vw;
+      z-index: 30;
+      position: fixed;
+      top: 0; left: 0;
+      display: flex;
+      justify-content: center;
+      background: rgba(20,44,37, 0.38);
+      box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
+      backdrop-filter: blur(7px);
+      border-bottom: 2px solid #0ff;
+    }
+    nav ul {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0.45em 0;
+      padding: 0;
+      align-items: center;
+    }
+    nav a {
+      color: #0ff;
+      font-family: 'Orbitron', 'Roboto', sans-serif;
+      font-size: 1.09rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.8em 1.4em;
+      border-radius: 12px;
+      letter-spacing: 2.1px;
+      transition: background 0.16s, color 0.16s, box-shadow 0.19s;
+      box-shadow: 0 0 0 transparent;
+    }
+    nav a:hover {
+      background: rgba(0,255,255,0.12);
+      color: #fff;
+      box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
+      border: 1.3px solid #0ff;
+    }
+    .cart-count {
+      position: absolute;
+      top: 8px;
+      right: -17px;
+      background: #0ff;
+      color: #033;
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 0.9rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1050px;
+      margin: 120px auto 2rem auto;
+      gap: 2.2rem;
+      background: rgba(19,33,44,0.89);
+      border-radius: 19px;
+      box-shadow: 0 0 38px #00ffe746;
+      padding: 2.4rem 2rem;
+      align-items: stretch;
+    }
+    .gallery {
+      flex: 1.2; min-width: 320px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gallery img {
+      width: 96%; max-width: 350px;
+      border-radius: 16px;
+      box-shadow: 0 0 32px #0ffb, 0 0 12px #fff2;
+      background: #101e2a;
+      padding: 1.2rem;
+    }
+    .details {
+      flex: 1.2; min-width: 320px;
+      background: rgba(17, 32, 38, 0.98);
+      padding: 2.2rem 2rem 2rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 28px #0ff5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .badge {
+      color: #0ff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      background: #172e38;
+      padding: 4px 17px;
+      border-radius: 9px;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      display: inline-block;
+      letter-spacing: 1.3px;
+      box-shadow: 0 0 9px #0ff8;
+    }
+    .details h2 {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.1rem;
+      margin-bottom: 0.5rem;
+      color: #0ff;
+      letter-spacing: 2px;
+      font-weight: 900;
+      text-shadow: 0 0 11px #0ffb, 0 0 4px #fff;
+    }
+    .rating {
+      color: #ffe780;
+      font-size: 1.16rem;
+      margin-bottom: 1.3rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 7px #fff4;
+    }
+    .price {
+      font-size: 1.65rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 900;
+      margin: 0.5rem 0 0.5rem 0;
+      color: #0ff;
+      text-shadow: 0 0 8px #0ff7;
+    }
+    .price del {
+      color: #53e8ffb7;
+      margin-left: 10px;
+      font-size: 1.13rem;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    .save {
+      background: #00181a;
+      color: #0ff;
+      padding: 0.26rem 0.7rem;
+      border-radius: 6px;
+      margin-left: 0.7rem;
+      font-size: 0.95rem;
+      box-shadow: 0 0 9px #0ff4;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
+    }
+    small { color: #92f8ff; opacity: 0.93; }
+    .desc-box {
+      background: #1a2b33cc;
+      border: 1px solid #0ff6;
+      padding: 1.3rem 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.7rem;
+      box-shadow: 0 0 10px #0ff2;
+    }
+    .desc-box ul { padding-left: 1.2rem; }
+    .desc-box li { margin-bottom: 0.7em; color: #bafaff; font-size: 1.05rem;}
+    .options {
+      margin-bottom: 1.7rem;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
+      color: #0ff;
+      font-size: 1.03rem;
+    }
+    .options p, .options input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1.5px solid #0ff4;
+      border-radius: 7px;
+      margin-bottom: 1rem;
+      background: #172731;
+      color: #fff;
+      font-size: 1.04rem;
+      font-family: 'Roboto', Arial, sans-serif;
+      box-shadow: 0 0 6px #0ff3;
+      outline: none;
+      transition: border-color 0.17s;
+    }
+    .options input:focus { border-color: #fff; }
+    .action {
+      text-align: center;
+    }
+    .buy-btn {
+      background: #0ff;
+      color: #0b2332;
+      padding: 0.96rem 2.7rem;
+      border: none;
+      border-radius: 11px;
+      font-size: 1.13rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow: 0 0 19px #0ffb;
+      margin-top: 8px;
+      transition: background 0.18s, color 0.18s, box-shadow 0.21s, border-color 0.17s;
+      text-shadow: 0 0 3px #0ff6;
+      outline: none;
+    }
+    .buy-btn:hover {
+      background: #0b2332;
+      color: #0ff;
+      box-shadow: 0 0 38px #0ffb;
+      border: 1.5px solid #0ff;
+    }
+    footer {
+      background: #11252e;
+      text-align: center;
+      padding: 1.1rem;
+      color: #87fff8;
+      margin-top: 3.2rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.03rem;
+      letter-spacing: 1.2px;
+    }
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.68);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: modalFadeIn 0.4s;
+    }
+    .modal {
+      background: #192834;
+      padding: 2rem;
+      border-radius: 13px;
+      max-width: 340px;
+      width: 91%;
+      text-align: center;
+      box-shadow: 0 6px 20px #00ffe8a7;
+      border: 2px solid #0ff;
+      color: #0ff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1.1px;
+      animation: modalScale 0.37s;
+    }
+    .modal p {
+      margin-bottom: 1rem;
+      font-size: 1.11rem;
+      color: #fff;
+      font-family: 'Roboto', Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    .modal button {
+      margin: 0.3rem;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.07rem;
+      background: #0ff;
+      color: #123;
+      box-shadow: 0 0 7px #0ffb;
+      transition: background 0.13s, color 0.13s;
+    }
+    .modal button.btn-continue:hover {
+      background: #193;
+      color: #fff;
+    }
+    .modal button.btn-cart:hover {
+      background: #fff;
+      color: #09c;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    @keyframes modalScale {
+      0% { transform: scale(0.7);}
+      100% { transform: scale(1);}
+    }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; padding: 1.2rem 0.2rem; }
+      .gallery, .details { min-width: unset; }
+      .gallery { justify-content: center; }
+    }
+    @media (max-width: 520px) {
+      .gallery img { max-width: 95vw; }
+      .container { margin: 85px 0 1rem 0; }
+      .details { padding: 1.1rem 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="produits.html">Produits</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="position:relative;">
+        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+      </li>
+      <li style="margin-left: 1.5rem;">
+        <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="gallery">
+      <img src="https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-portable-de-400-w-38953197011170_2000x.png?v=1675839414" alt="Panneau Solaire 400W EcoFlow"/>
+    </div>
+    <div class="details">
+      <span class="badge">Puissance Pro</span>
+      <h2>Panneau Solaire 400W EcoFlow</h2>
+      <div class="rating">★★★★★ 17 avis</div>
+      <div class="price">799 € <del>899 €</del><span class="save">Économisez 100 €</span></div>
+      <small>Taxes comprises</small>
+      <div class="desc-box">
+        <ul>
+          <li>Panneau solaire pliable ultra-puissant : 400 W.</li>
+          <li>Ultra-transportable (12,5 kg), installation rapide, compact une fois plié.</li>
+          <li>Haute efficacité : conversion solaire jusqu’à 23%.</li>
+          <li>Étanche IP68, idéal pour l’outdoor et installations exigeantes.</li>
+        </ul>
+      </div>
+      <div class="options">
+        <label>Puissance</label>
+        <p>400 W</p>
+        <label for="qty-1">Quantité</label>
+        <input type="number" id="qty-1" value="1" min="1">
+      </div>
+      <div class="action">
+        <button class="buy-btn" data-id="panneau-400w">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>
+  <div id="modal-backdrop" class="modal-backdrop">
+    <div class="modal">
+      <p>Article ajouté au panier !</p>
+      <button class="btn-continue">Continuer vos achats</button>
+      <button class="btn-cart">Voir le panier</button>
+    </div>
+  </div>
+  <footer>© 2025 CarpÉnergie</footer>
+  <script>
+    // Synchroniser le compteur panier
+    function updateCount() {
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+    updateCount();
+
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const qty = parseInt(document.getElementById('qty-1').value, 10) || 1;
+        for (let i = 0; i < qty; i++) cart.push({ id: btn.dataset.id });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCount();
+        const backdrop = document.getElementById('modal-backdrop');
+        backdrop.style.display = 'flex';
+        backdrop.querySelector('.btn-continue').onclick = () => backdrop.style.display = 'none';
+        backdrop.querySelector('.btn-cart').onclick = () => window.location.href = 'cart.html';
+      });
+    });
+  </script>
+</body>
+</html>
