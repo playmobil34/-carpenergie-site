@@ -146,7 +146,7 @@
     <div class="product-btn" data-id="River-2-Pro">Ajouter au panier</button>
   </div>
   <script>
-    document.querySelectorAll('.buy-btn').forEach(btn => {
+    document.querySelectorAll('.product-btn').forEach(btn => {
       const cartCountEl = document.querySelector('.cart-count');
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
       function updateCount() { cartCountEl.textContent = cart.length; }
