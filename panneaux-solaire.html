@@ -254,10 +254,11 @@
       </div>
     </div>
   </div>
-
-  <script>
+<script>
+    // Compteur panier
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     document.getElementById('cart-count').textContent = cart.length || 0;
   </script>
+  
 </body>
 </html>
