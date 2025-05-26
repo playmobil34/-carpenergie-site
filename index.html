@@ -105,7 +105,7 @@
     .cart-count, #cart-count {
       position: absolute;
       top: 50%;
-      right: -36px; /* bien décalé pour PC */
+      right: -36px;
       transform: translateY(-50%);
       background: #0ff;
       color: #033;
@@ -163,9 +163,7 @@
       user-select: none;
       pointer-events: none;
     }
-    .logo-ecoflow:hover {
-      /* Le hover ne fait rien maintenant */
-    }
+    .logo-ecoflow:hover {}
     .hero h2 {
       font-family: 'Orbitron', sans-serif;
       font-size: 2.3rem;
@@ -303,7 +301,6 @@
         padding: 1.08em 2.6em 1.08em 2.4em;
         font-size: 1.13rem;
       }
-      /* Correction cart-count mobile */
       #cart-btn {
         position: relative;
         padding-right: 38px !important;
@@ -339,8 +336,13 @@
         <li style="position:relative;">
           <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
         </li>
-        <li style="margin-left: 1.5rem;">
+        <!-- Connexion : affiché seulement si NON connecté -->
+        <li style="margin-left: 1.5rem;" id="login-li">
           <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+        </li>
+        <!-- Espace client : affiché seulement si connecté -->
+        <li style="margin-left: 1.5rem; display: none;" id="client-link-li">
+          <a href="espace-client.html" id="client-link" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Espace client</a>
         </li>
       </ul>
     </div>
@@ -369,7 +371,6 @@
     burger.onclick = function () {
       navLinks.classList.toggle('show');
     };
-    // Ferme le menu après click
     document.querySelectorAll('#nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('show');
@@ -380,6 +381,26 @@
     const countEl = document.getElementById('cart-count');
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     countEl.textContent = cart.length;
+
+    // Affichage conditionnel : Connexion vs Espace client
+    function updateAuthLinks() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === '1';
+      const loginLi = document.getElementById('login-li');
+      const clientLinkLi = document.getElementById('client-link-li');
+      if (isLoggedIn) {
+        loginLi.style.display = 'none';
+        clientLinkLi.style.display = '';
+      } else {
+        loginLi.style.display = '';
+        clientLinkLi.style.display = 'none';
+      }
+    }
+    updateAuthLinks();
+
+    // (optionnel) Clique sur les cards univers pour redirection
+    document.querySelectorAll('.univers-card[data-link]').forEach(card => {
+      card.onclick = () => location.href = card.dataset.link;
+    });
   </script>
 </body>
 </html>
