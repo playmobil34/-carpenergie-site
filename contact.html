@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – CarpÉnergie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0;}
+    body {
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,22,36,0.7),rgba(9,40,44,0.7)),
+        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
+      color: #f0fffb;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.6px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: rgba(6,22,33,0.52);
+      pointer-events: none;
+    }
+    nav {
+      width: 100vw;
+      z-index: 30;
+      position: fixed;
+      top: 0; left: 0;
+      background: rgba(20,44,37, 0.38);
+      box-shadow: 0 4px 40px #00ffe7a6, 0 1px 0px #0ff;
+      backdrop-filter: blur(7px);
+      border-bottom: 2px solid #0ff;
+    }
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.7rem;
+      color: #0ff;
+      letter-spacing: 4px;
+      user-select: none;
+      font-weight: bold;
+      text-shadow: 0 0 12px #0ff7, 0 0 2px #fff;
+      margin-left: 32px;
+      text-decoration: none;
+      transition: color .18s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo:hover { color: #fff; }
+    .nav-burger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2.3rem;
+      color: #0ff;
+      cursor: pointer;
+      position: absolute;
+      left: 8px;
+      top: 16px;
+      z-index: 101;
+      padding: 0 5px;
+      transition: color 0.2s;
+    }
+    .nav-burger:active, .nav-burger:focus { color: #fff; }
+    nav ul {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      margin-left: auto;
+    }
+    nav li { position:relative; }
+    nav a {
+      color: #0ff;
+      font-family: 'Orbitron', 'Roboto', sans-serif;
+      font-size: 1.09rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.8em 1.4em;
+      border-radius: 12px;
+      letter-spacing: 2.1px;
+      transition: background 0.16s, color 0.16s, box-shadow 0.19s;
+      box-shadow: 0 0 0 transparent;
+      display: block;
+      position: relative;
+    }
+    nav a:hover {
+      background: rgba(0,255,255,0.12);
+      color: #fff;
+      box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
+      border: 1.3px solid #0ff;
+    }
+    /* Compteur panier - Version desktop */
+    .cart-count {
+      position: absolute;
+      top: 50%;
+      left: 110%;
+      transform: translateY(-50%);
+      background: #0ff;
+      color: #033;
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 0.9rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
+      min-width: 22px;
+      text-align: center;
+      z-index: 1;
+      pointer-events: none;
+      border: 2px solid #022e;
+    }
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .nav-container { height: 59px; }
+      .nav-logo { margin-left: 12px; font-size: 1.14rem;}
+      .nav-burger {
+        display: block;
+        left: 8px;
+        top: 13px;
+      }
+      .nav-logo {
+        position: absolute;
+        left: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 0;
+        font-size: 1.13rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100vw;
+        background: rgba(16, 30, 40, 0.97);
+        box-shadow: 0 4px 22px #0ff4;
+        padding: 0;
+        margin-left: 0;
+        display: none;
+        z-index: 100;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        border-top: 1px solid #0ff7;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      nav li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #09f4;
+        position: relative;
+      }
+      nav a {
+        padding: 1.08em 2.6em 1.08em 2.4em;
+        font-size: 1.13rem;
+      }
+      /* Correction cart-count mobile */
+      #cart-btn {
+        position: relative;
+        padding-right: 38px !important;
+      }
+      #cart-count {
+        position: absolute !important;
+        top: 50%;
+        right: 22px !important;
+        left: unset !important;
+        transform: translateY(-50%);
+      }
+      .cart-count {
+        left: unset;
+        right: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    @media (max-width: 500px) {
+      .nav-logo { left: 42px; font-size: 1rem;}
+      .nav-burger { font-size: 2.0rem; }
+    }
+    /* ---- FIN NAV ---- */
+    .contact-container {
+      max-width: 600px;
+      margin: 110px auto 32px auto;
+      padding: 2.3rem 1rem 3.5rem 1rem;
+      background: rgba(19,33,44,0.88);
+      border-radius: 16px;
+      box-shadow: 0 0 38px #00ffe746;
+    }
+    .contact-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.1rem;
+      color: #0ff;
+      letter-spacing: 2px;
+      text-align: center;
+      text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .contact-form label {
+      font-family: 'Orbitron', Arial, sans-serif;
+      color: #0ff;
+      font-size: 1.07rem;
+      margin-bottom: 7px;
+      display: block;
+      letter-spacing: 1px;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: #10222c;
+      border: 1.5px solid #0ff7;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.08rem;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.3rem;
+      font-family: 'Roboto', Arial, sans-serif;
+      box-shadow: 0 0 8px #0ff3;
+      transition: border-color 0.17s;
+      outline: none;
+      resize: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #fff;
+    }
+    .contact-form textarea {
+      min-height: 110px;
+      max-height: 350px;
+    }
+    .contact-btn {
+      width: 100%;
+      padding: 1rem 0;
+      font-size: 1.13rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 700;
+      background: #0ff;
+      color: #10222c;
+      border: none;
+      border-radius: 9px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 13px #0ff4;
+      cursor: pointer;
+      transition: background 0.19s, color 0.18s, box-shadow 0.21s;
+      text-shadow: 0 0 3px #0ff6;
+      margin-top: 0.5rem;
+      outline: none;
+    }
+    .contact-btn:hover {
+      background: #111822;
+      color: #0ff;
+      box-shadow: 0 0 28px #0ffb;
+    }
+    .contact-info {
+      color: #bafaff;
+      font-size: 1.08rem;
+      text-align: center;
+      margin-bottom: 1.3rem;
+      margin-top: 1.5rem;
+      opacity: 0.8;
+    }
+    @media (max-width: 700px) {
+      .contact-container { padding: 0.6rem; }
+      .contact-title { font-size: 1.3rem;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">CarpÉnergie</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
+      <ul id="nav-links">
+        <li><a href="batterie-nomade.html">Batterie nomade</a></li>
+        <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li style="position:relative;">
+          <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+        </li>
+        <li style="margin-left: 1.5rem;">
+          <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="contact-container">
+    <div class="contact-title">Contactez-nous</div>
+    <form class="contact-form" autocomplete="off" onsubmit="event.preventDefault(); alert('Votre message a été envoyé !'); this.reset();">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="Votre email">
+
+      <label for="sujet">Sujet</label>
+      <input type="text" id="sujet" name="sujet" required placeholder="Sujet">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required placeholder="Votre message"></textarea>
+
+      <button type="submit" class="contact-btn">Envoyer</button>
+    </form>
+    <div class="contact-info">
+      <div><i class="ri-mail-line"></i> contact@carpenergie.fr</div>
+      <div><i class="ri-map-pin-line"></i> Paris & France entière</div>
+      <div><i class="ri-smartphone-line"></i> 01 23 45 67 89</div>
+    </div>
+  </div>
+  <script>
+    // Burger menu JS
+    const burger = document.getElementById('nav-burger');
+    const navLinks = document.getElementById('nav-links');
+    burger.onclick = function () {
+      navLinks.classList.toggle('show');
+    };
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+    // Compteur panier (synchronisation)
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    document.getElementById('cart-count').textContent = cart.length || 0;
+  </script>
+</body>
+</html>
