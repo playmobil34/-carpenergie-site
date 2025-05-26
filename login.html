@@ -189,12 +189,11 @@
       .nav-burger { font-size: 2.0rem; }
     }
 
-    /* ---- FIN NAV ---- */
     .login-container {
       max-width: 400px;
       margin: 120px auto 0 auto;
       background: #122b36;
-      padding: 2.2rem 1.4rem;
+      padding: 2.2rem 1.4rem 1.8rem 1.4rem;
       border-radius: 14px;
       box-shadow: 0 0 22px #0ff3;
       text-align: center;
@@ -205,14 +204,14 @@
       font-family: 'Orbitron', Arial, sans-serif;
       color: #0ff;
       font-size: 2rem;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.1rem;
       text-shadow: 0 0 8px #0ff8;
       letter-spacing: 1.4px;
     }
-    input[type="text"], input[type="password"] {
+    input[type="text"], input[type="password"], input[type="email"] {
       display: block;
       width: 90%;
-      margin: 1.1rem auto;
+      margin: 1.1rem auto 0.7rem auto;
       padding: 0.7rem;
       font-size: 1.12rem;
       border-radius: 7px;
@@ -222,7 +221,7 @@
       font-family: 'Roboto', Arial, sans-serif;
       box-shadow: 0 0 7px #0ff2;
     }
-    button[type="submit"], .logout-btn {
+    button[type="submit"], .logout-btn, .btn-link {
       background: #0ff;
       color: #123;
       font-family: 'Orbitron', Arial, sans-serif;
@@ -235,10 +234,22 @@
       cursor: pointer;
       transition: .2s;
       margin-top: 1.1rem;
+      margin-bottom: 0.3rem;
+      display: inline-block;
+      text-decoration: none;
     }
-    button[type="submit"]:hover, .logout-btn:hover {
+    button[type="submit"]:hover, .logout-btn:hover, .btn-link:hover {
       background: #012f37;
       color: #0ff;
+    }
+    .btn-link {
+      background: transparent;
+      color: #0ff;
+      box-shadow: none;
+      border: none;
+      font-size: 1.01rem;
+      padding: 0.4rem 1rem;
+      margin: 0.7rem 0 0.2rem 0;
     }
     .error {
       color: #ff7373;
@@ -262,6 +273,17 @@
       font-size: 1.08rem;
     }
     .logout-btn:hover { background: #0ff; color: #123; }
+    .toggle-link {
+      color: #0ff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.02rem;
+      text-decoration: underline;
+      margin: 0.7rem 0 0.4rem 0;
+      transition: color .18s;
+    }
+    .toggle-link:hover { color: #2ffcf9; }
   </style>
 </head>
 <body>
@@ -283,73 +305,102 @@
     </div>
   </nav>
 
+  <!-- Connexion -->
   <div class="login-container" id="login-box">
     <h2>Connexion</h2>
     <form id="login-form" autocomplete="off">
-      <input type="text" id="username" placeholder="Nom d'utilisateur" required>
-      <input type="password" id="password" placeholder="Mot de passe" required>
+      <input type="text" id="login-username" placeholder="Nom d'utilisateur" required>
+      <input type="password" id="login-password" placeholder="Mot de passe" required>
       <button type="submit">Se connecter</button>
     </form>
+    <button class="btn-link" id="show-register">Créer un compte</button>
+    <button class="btn-link" id="show-forgot">Mot de passe oublié ?</button>
     <div class="error" id="login-error"></div>
     <div class="success" id="login-success"></div>
   </div>
+  <!-- Création de compte -->
+  <div class="login-container" id="register-box" style="display:none;">
+    <h2>Créer un compte</h2>
+    <form id="register-form" autocomplete="off">
+      <input type="text" id="register-username" placeholder="Nom d'utilisateur" required>
+      <input type="email" id="register-email" placeholder="E-mail" required>
+      <input type="password" id="register-password" placeholder="Mot de passe" required>
+      <button type="submit">Créer mon compte</button>
+    </form>
+    <button class="toggle-link" id="back-login-1">Retour connexion</button>
+    <div class="error" id="register-error"></div>
+    <div class="success" id="register-success"></div>
+  </div>
+  <!-- Mot de passe oublié -->
+  <div class="login-container" id="forgot-box" style="display:none;">
+    <h2>Mot de passe oublié</h2>
+    <form id="forgot-form" autocomplete="off">
+      <input type="text" id="forgot-username" placeholder="Nom d'utilisateur ou email" required>
+      <button type="submit">Réinitialiser</button>
+    </form>
+    <button class="toggle-link" id="back-login-2">Retour connexion</button>
+    <div class="error" id="forgot-error"></div>
+    <div class="success" id="forgot-success"></div>
+  </div>
+  <!-- Logout déjà connecté -->
   <div class="login-container" id="logout-box" style="display:none;">
     <h2>Vous êtes déjà connecté</h2>
     <button class="logout-btn" id="logout-btn">Se déconnecter</button>
   </div>
   <script>
-    // Burger menu JS
+    // --- Navbar burger
     const burger = document.getElementById('nav-burger');
     const navLinks = document.getElementById('nav-links');
-    burger.onclick = function () {
-      navLinks.classList.toggle('show');
-    };
+    burger.onclick = function () { navLinks.classList.toggle('show'); };
     document.querySelectorAll('#nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
-      });
+      link.addEventListener('click', () => { navLinks.classList.remove('show'); });
     });
-
     // Compteur panier
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     document.getElementById('cart-count').textContent = cart.length || 0;
 
-    // Gestion connexion persistante
-    const loginBox = document.getElementById('login-box');
-    const logoutBox = document.getElementById('logout-box');
-
-    function showLogin() {
-      loginBox.style.display = '';
-      logoutBox.style.display = 'none';
-    }
-    function showLogout() {
-      loginBox.style.display = 'none';
-      logoutBox.style.display = '';
-    }
-    function isLoggedIn() {
-      return !!localStorage.getItem('user_logged_in');
+    // Gestion affichage
+    function show(id){
+      document.getElementById('login-box').style.display = (id==='login')?'':'none';
+      document.getElementById('register-box').style.display = (id==='register')?'':'none';
+      document.getElementById('forgot-box').style.display = (id==='forgot')?'':'none';
+      document.getElementById('logout-box').style.display = (id==='logout')?'':'none';
     }
 
-    // Afficher formulaire ou bouton déconnexion selon l'état
-    if(isLoggedIn()) showLogout();
-    else showLogin();
+    function getAccounts(){
+      return JSON.parse(localStorage.getItem('users')||'[]');
+    }
+    function saveAccounts(users){
+      localStorage.setItem('users', JSON.stringify(users));
+    }
 
-    // Traitement du formulaire de connexion
+    function isLoggedIn(){ return !!localStorage.getItem('user_logged_in'); }
+
+    // Connexion / déconnexion
+    if(isLoggedIn()) show('logout'); else show('login');
+
+    // Création de compte
+    document.getElementById('show-register').onclick = ()=>show('register');
+    document.getElementById('back-login-1').onclick = ()=>show('login');
+    document.getElementById('back-login-2').onclick = ()=>show('login');
+    document.getElementById('show-forgot').onclick = ()=>show('forgot');
+
+    // -- LOGIN
     document.getElementById('login-form').onsubmit = function(e){
       e.preventDefault();
-      let user = document.getElementById('username').value.trim();
-      let pass = document.getElementById('password').value.trim();
-      // Remplace ce test par ton vrai système !
-      if(user && pass === 'carpenergie'){
+      let user = document.getElementById('login-username').value.trim();
+      let pass = document.getElementById('login-password').value.trim();
+      let users = getAccounts();
+      let account = users.find(u=>u.username===user && u.password===pass);
+      if(account){
         localStorage.setItem('user_logged_in','1');
         document.getElementById('login-success').textContent = "Connexion réussie !";
         document.getElementById('login-success').style.display = '';
         setTimeout(() => {
-          // Redirection : vers page précédente, ou accueil sinon
           const params = new URLSearchParams(window.location.search);
           const redirect = params.get('redirect');
           window.location.href = redirect || "index.html";
-        }, 800);
+        }, 700);
       }else{
         document.getElementById('login-error').textContent = "Identifiants incorrects";
         document.getElementById('login-error').style.display = '';
@@ -357,12 +408,55 @@
       }
     };
 
-    // Déconnexion
-    document.getElementById('logout-btn').onclick = function(){
-      localStorage.removeItem('user_logged_in');
-      showLogin();
+    // -- REGISTER
+    document.getElementById('register-form').onsubmit = function(e){
+      e.preventDefault();
+      let username = document.getElementById('register-username').value.trim();
+      let email = document.getElementById('register-email').value.trim();
+      let password = document.getElementById('register-password').value.trim();
+      let users = getAccounts();
+      if(users.find(u=>u.username===username)){
+        document.getElementById('register-error').textContent = "Nom d'utilisateur déjà utilisé.";
+        document.getElementById('register-error').style.display = '';
+        document.getElementById('register-success').style.display = 'none';
+        return;
+      }
+      if(password.length < 4){
+        document.getElementById('register-error').textContent = "Mot de passe trop court (min 4 caractères)";
+        document.getElementById('register-error').style.display = '';
+        document.getElementById('register-success').style.display = 'none';
+        return;
+      }
+      users.push({username,email,password});
+      saveAccounts(users);
+      document.getElementById('register-success').textContent = "Compte créé ! Vous pouvez vous connecter.";
+      document.getElementById('register-success').style.display = '';
+      document.getElementById('register-error').style.display = 'none';
+      setTimeout(()=>{ show('login'); }, 900);
     };
 
+    // -- FORGOT
+    document.getElementById('forgot-form').onsubmit = function(e){
+      e.preventDefault();
+      let username = document.getElementById('forgot-username').value.trim();
+      let users = getAccounts();
+      let found = users.find(u=>u.username===username || u.email===username);
+      if(found){
+        document.getElementById('forgot-success').textContent = "Un lien de réinitialisation serait envoyé par e-mail (démo).";
+        document.getElementById('forgot-success').style.display = '';
+        document.getElementById('forgot-error').style.display = 'none';
+      }else{
+        document.getElementById('forgot-error').textContent = "Utilisateur introuvable.";
+        document.getElementById('forgot-error').style.display = '';
+        document.getElementById('forgot-success').style.display = 'none';
+      }
+    };
+
+    // -- LOGOUT
+    document.getElementById('logout-btn').onclick = function(){
+      localStorage.removeItem('user_logged_in');
+      show('login');
+    };
   </script>
 </body>
 </html>
