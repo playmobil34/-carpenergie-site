@@ -2,18 +2,29 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Connexion – CarpÉnergie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <style>
+    html, body { height: 100%; margin: 0; padding: 0;}
     body {
-      min-height:100vh;
-      background: linear-gradient(rgba(0,22,36,0.93),rgba(9,40,44,0.92)),
-        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover fixed no-repeat;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Roboto', Arial, sans-serif;
-      color: #fff;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,22,36,0.7),rgba(9,40,44,0.7)),
+        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
+      color: #f0fffb;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.6px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: rgba(6,22,33,0.52);
+      pointer-events: none;
     }
     nav {
       width: 100vw;
@@ -87,6 +98,7 @@
       transition: background 0.16s, color 0.16s, box-shadow 0.19s;
       box-shadow: 0 0 0 transparent;
       display: block;
+      position: relative;
     }
     nav a:hover {
       background: rgba(0,255,255,0.12);
@@ -94,23 +106,24 @@
       box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
       border: 1.3px solid #0ff;
     }
-    .cart-count, #cart-count {
+    .cart-count {
       position: absolute;
       top: 50%;
-      right: -36px; /* bien décalé pour PC */
+      left: 110%;
       transform: translateY(-50%);
       background: #0ff;
       color: #033;
       border-radius: 50%;
-      padding: 2px 9px;
-      font-size: 0.97rem;
+      padding: 2px 7px;
+      font-size: 0.9rem;
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       box-shadow: 0 0 7px #00fff7, 0 0 3px #fff;
-      min-width: 28px;
+      min-width: 22px;
       text-align: center;
-      z-index: 2;
+      z-index: 1;
       pointer-events: none;
+      border: 2px solid #022e;
     }
     @media (max-width: 900px) {
       .nav-container { height: 59px; }
@@ -145,9 +158,7 @@
         border-bottom-right-radius: 18px;
         border-top: 1px solid #0ff7;
       }
-      nav ul.show {
-        display: flex;
-      }
+      nav ul.show { display: flex; }
       nav li {
         width: 100%;
         text-align: left;
@@ -158,293 +169,136 @@
         padding: 1.08em 2.6em 1.08em 2.4em;
         font-size: 1.13rem;
       }
-      #cart-btn {
-        position: relative;
-        padding-right: 38px !important;
-      }
+      #cart-btn { position: relative; padding-right: 38px !important; }
       #cart-count {
         position: absolute !important;
         top: 50%;
         right: 22px !important;
+        left: unset !important;
         transform: translateY(-50%);
+      }
+      .cart-count {
         left: unset;
+        right: 22px;
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
-    @media (max-width: 550px) {
-      .login-box, .register-box, .reset-popup { min-width: 90vw; }
-      .reset-popup { padding: 1.2rem 0.5rem 1.3rem 0.5rem; }
+    @media (max-width: 500px) {
+      .nav-logo { left: 42px; font-size: 1rem;}
+      .nav-burger { font-size: 2.0rem; }
     }
 
-    /* Le reste de ton CSS (formulaires, popups, etc.) est inchangé, inclus en dessous */
-    .login-box, .register-box {
-      background: rgba(19,33,44,0.92);
-      border-radius: 17px;
-      box-shadow: 0 0 44px #0ff8, 0 2px 44px #09ffe9;
-      padding: 2.7rem 2.1rem 2.2rem 2.1rem;
-      min-width: 350px;
-      display: flex; flex-direction: column; align-items: center;
-      margin-top: 3.5rem;
-    }
-    .login-title, .register-title {
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 2.2rem;
-      color: #0ff;
-      letter-spacing: 2px;
-      margin-bottom: 1.5rem;
-      font-weight: 900;
-      text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
-    }
-    .login-box label, .register-box label {
-      font-size: 1.02rem;
-      color: #fff;
-      font-weight: 600;
-      margin-bottom: 0.3em;
-      margin-top: 1.1em;
-      letter-spacing: 0.7px;
-      font-family: 'Orbitron', Arial, sans-serif;
-      align-self: flex-start;
-    }
-    .login-box input[type="text"], .login-box input[type="password"], .register-box input[type="text"], .register-box input[type="password"], .register-box input[type="email"] {
-      width: 100%;
-      padding: 0.85rem;
-      margin-bottom: 0.5rem;
-      border: 1.5px solid #0ff;
-      border-radius: 6px;
-      background: #172731;
-      color: #fff;
-      font-size: 1.07rem;
-      font-family: 'Roboto', Arial, sans-serif;
-      box-shadow: 0 0 8px #0ff3;
-      transition: border-color 0.16s;
-      outline: none;
-      margin-top: 0.3em;
-    }
-    .login-box input[type="text"]:focus, .login-box input[type="password"]:focus,
-    .register-box input[type="text"]:focus, .register-box input[type="password"]:focus, .register-box input[type="email"]:focus {
-      border-color: #fff;
-    }
-    .login-box button, .register-box button {
-      width: 100%;
-      padding: 1rem 0;
-      margin-top: 1.2rem;
-      font-size: 1.17rem;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-weight: 800;
-      background: #0ff;
-      color: #112;
-      border: none;
-      border-radius: 9px;
-      letter-spacing: 1.5px;
-      box-shadow: 0 0 13px #0ffb;
-      cursor: pointer;
-      transition: background 0.18s, color 0.18s, box-shadow 0.2s;
-      text-shadow: 0 0 2px #fff7;
-      display: block;
-    }
-    .login-box button:hover, .register-box button:hover {
-      background: #fff;
-      color: #088;
-      box-shadow: 0 0 28px #0ffb;
-    }
-    .login-links {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      width: 100%;
-    }
-    .login-link, .register-link {
-      color: #0ff;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.04rem;
+    /* ---- FIN NAV ---- */
+    .login-container {
+      max-width: 400px;
+      margin: 120px auto 0 auto;
+      background: #122b36;
+      padding: 2.2rem 1.4rem;
+      border-radius: 14px;
+      box-shadow: 0 0 22px #0ff3;
       text-align: center;
-      text-decoration: underline;
-      margin: 0.4em 0 0 0;
-      cursor: pointer;
-      transition: color 0.17s;
-      display: block;
-      padding: 0.15em 0;
-      border-radius: 6px;
-    }
-    .login-link:hover, .register-link:hover {
-      color: #fff;
-      background: #0ff3;
-      text-decoration: none;
-    }
-    .login-error {
-      color: #ff6a8c;
-      font-size: 1.01rem;
-      text-align: center;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      min-height: 1.3em;
-      font-family: 'Orbitron', Arial, sans-serif;
-      text-shadow: 0 0 6px #fff7;
-    }
-    .reset-overlay {
-      position: fixed;
-      z-index: 1200;
-      left: 0; top: 0; width: 100vw; height: 100vh;
-      background: rgba(10,25,35,0.84);
-      display: none;
-      justify-content: center;
-      align-items: center;
-    }
-    .reset-popup {
-      background: #203541;
-      border-radius: 15px;
-      box-shadow: 0 0 44px #0ff8, 0 2px 44px #09ffe9;
-      padding: 2.4rem 2.2rem 2.2rem 2.2rem;
-      min-width: 340px;
-      min-height: 240px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       position: relative;
-      animation: fadeIn 0.2s;
+      z-index: 2;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px);}
-      to { opacity: 1; transform: none;}
-    }
-    .reset-title {
+    .login-container h2 {
       font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.55rem;
       color: #0ff;
-      letter-spacing: 2px;
-      margin-bottom: 2.1rem;
-      margin-top: 0;
-      text-align: center;
-      width: 100%;
-      text-shadow: 0 0 16px #0ffb, 0 0 4px #fff;
+      font-size: 2rem;
+      margin-bottom: 1.6rem;
+      text-shadow: 0 0 8px #0ff8;
+      letter-spacing: 1.4px;
     }
-    .reset-input {
-      width: 100%;
-      padding: 1.1rem;
-      font-size: 1.05rem;
+    input[type="text"], input[type="password"] {
+      display: block;
+      width: 90%;
+      margin: 1.1rem auto;
+      padding: 0.7rem;
+      font-size: 1.12rem;
       border-radius: 7px;
-      border: 1.5px solid #0ff;
-      background: #23333c;
+      border: 1.5px solid #0ff5;
+      background: #133;
       color: #fff;
-      margin-bottom: 2rem;
-      margin-top: 0.3rem;
-      box-shadow: 0 0 7px #0ff3;
-      outline: none;
+      font-family: 'Roboto', Arial, sans-serif;
+      box-shadow: 0 0 7px #0ff2;
     }
-    .reset-submit {
-      width: 65%;
-      padding: 1rem 0;
-      margin: 0 auto;
-      font-size: 1.25rem;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-weight: 800;
+    button[type="submit"], .logout-btn {
       background: #0ff;
-      color: #112;
-      border: none;
-      border-radius: 9px;
-      letter-spacing: 1.5px;
-      box-shadow: 0 0 13px #0ffb;
-      cursor: pointer;
-      transition: background 0.18s, color 0.18s, box-shadow 0.2s;
-      text-shadow: 0 0 2px #fff7;
-      display: block;
-    }
-    .reset-submit:hover {
-      background: #fff;
-      color: #088;
-      box-shadow: 0 0 28px #0ffb;
-    }
-    .reset-links {
-      margin-top: 2rem;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .reset-link {
-      color: #0ff;
+      color: #123;
       font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.04rem;
-      text-align: center;
-      text-decoration: underline;
+      font-weight: 700;
+      padding: 0.85rem 2.3rem;
+      border: none;
+      border-radius: 7px;
+      font-size: 1.08rem;
+      box-shadow: 0 0 12px #0ff7;
       cursor: pointer;
-      transition: color 0.17s;
-      display: block;
-      padding: 0.25em 0;
-      border-radius: 6px;
-      margin: 0.4em 0 0 0;
-      width: 100%;
+      transition: .2s;
+      margin-top: 1.1rem;
     }
-    .reset-link:hover {
-      color: #fff;
-      background: #0ff3;
-      text-decoration: none;
+    button[type="submit"]:hover, .logout-btn:hover {
+      background: #012f37;
+      color: #0ff;
     }
+    .error {
+      color: #ff7373;
+      margin: 0.6rem 0 0.2rem 0;
+      font-size: 1.02rem;
+      letter-spacing: .5px;
+      display: none;
+    }
+    .success {
+      color: #23fcb8;
+      margin: 1.2rem 0 0.5rem 0;
+      font-size: 1.09rem;
+      letter-spacing: .4px;
+      display: none;
+    }
+    .logout-btn {
+      margin-top: 2.3rem;
+      background: #122b36;
+      color: #0ff;
+      border: 1.5px solid #0ffb;
+      font-size: 1.08rem;
+    }
+    .logout-btn:hover { background: #0ff; color: #123; }
   </style>
 </head>
 <body>
-<nav>
-  <div class="nav-container">
-    <a href="index.html" class="nav-logo">CarpÉnergie</a>
-    <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
-    <ul id="nav-links">
-      <li><a href="batterie-nomade.html">Batterie nomade</a></li>
-      <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li style="position:relative;">
-        <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
-      </li>
-      <li style="margin-left: 1.5rem;">
-        <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
-      </li>
-    </ul>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">CarpÉnergie</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu"><i class="ri-menu-line"></i></button>
+      <ul id="nav-links">
+        <li><a href="batterie-nomade.html">Batterie nomade</a></li>
+        <li><a href="panneaux-solaire.html">Panneaux solaire</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li style="position:relative;">
+          <a href="cart.html" id="cart-btn">Panier 🛒<span class="cart-count" id="cart-count">0</span></a>
+        </li>
+        <li style="margin-left: 1.5rem;">
+          <a href="login.html" id="login-btn" style="background:#0ff; color:#102; border-radius:9px; font-weight:900; box-shadow:0 0 7px #0ff, 0 0 14px #0ff7; padding:0.8em 1.2em;">Connexion</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="login-container" id="login-box">
+    <h2>Connexion</h2>
+    <form id="login-form" autocomplete="off">
+      <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+      <input type="password" id="password" placeholder="Mot de passe" required>
+      <button type="submit">Se connecter</button>
+    </form>
+    <div class="error" id="login-error"></div>
+    <div class="success" id="login-success"></div>
   </div>
-</nav>
-  <!-- Connexion -->
-  <form class="login-box" id="login-form" autocomplete="off" style="display:block;">
-    <div class="login-title">Connexion</div>
-    <div class="login-error" id="login-error"></div>
-    <label for="login-user">Utilisateur</label>
-    <input type="text" id="login-user" required autocomplete="off" autofocus>
-    <label for="login-pass">Mot de passe</label>
-    <input type="password" id="login-pass" required>
-    <button type="submit">Se connecter</button>
-    <div class="login-links">
-      <span class="login-link" onclick="openResetPopup()">Mot de passe oublié ?</span>
-      <span class="login-link" onclick="openRegister()">Créer un compte</span>
-    </div>
-  </form>
-
-  <!-- Création de compte -->
-  <form class="register-box" id="register-form" autocomplete="off" style="display:none;">
-    <div class="register-title">Créer un compte</div>
-    <div class="login-error" id="register-error"></div>
-    <label for="register-user">Nom d'utilisateur</label>
-    <input type="text" id="register-user" required>
-    <label for="register-email">Votre email</label>
-    <input type="email" id="register-email" required>
-    <label for="register-pass">Mot de passe</label>
-    <input type="password" id="register-pass" required>
-    <button type="submit">Créer mon compte</button>
-    <div class="login-links" style="margin-top: 1.1rem;">
-      <span class="register-link" onclick="openLogin()">← Retour à la connexion</span>
-    </div>
-  </form>
-
-  <!-- Popup mot de passe oublié -->
-  <div class="reset-overlay" id="reset-overlay">
-    <div class="reset-popup">
-      <div class="reset-title">Réinitialisation du mot de passe</div>
-      <input type="email" class="reset-input" id="reset-email" placeholder="Votre adresse email" />
-      <button class="reset-submit" onclick="sendResetEmail()">Envoyer</button>
-      <div class="reset-links">
-        <span class="reset-link" onclick="closeResetPopup()">← Retour à la connexion</span>
-      </div>
-    </div>
+  <div class="login-container" id="logout-box" style="display:none;">
+    <h2>Vous êtes déjà connecté</h2>
+    <button class="logout-btn" id="logout-btn">Se déconnecter</button>
   </div>
-
   <script>
-    // --- NAV Responsive burger ---
+    // Burger menu JS
     const burger = document.getElementById('nav-burger');
     const navLinks = document.getElementById('nav-links');
     burger.onclick = function () {
@@ -455,84 +309,60 @@
         navLinks.classList.remove('show');
       });
     });
-    // Panier (pour la navbar)
-    const countEl = document.getElementById('cart-count');
+
+    // Compteur panier
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
-    countEl.textContent = cart.length;
+    document.getElementById('cart-count').textContent = cart.length || 0;
 
-    // Simple login/register/demo logic
-    const DEMO_USER = "admin";
-    const DEMO_PASS = "demo123";
-    let users = JSON.parse(localStorage.getItem('users') || '[]');
+    // Gestion connexion persistante
+    const loginBox = document.getElementById('login-box');
+    const logoutBox = document.getElementById('logout-box');
 
-    // Login
+    function showLogin() {
+      loginBox.style.display = '';
+      logoutBox.style.display = 'none';
+    }
+    function showLogout() {
+      loginBox.style.display = 'none';
+      logoutBox.style.display = '';
+    }
+    function isLoggedIn() {
+      return !!localStorage.getItem('user_logged_in');
+    }
+
+    // Afficher formulaire ou bouton déconnexion selon l'état
+    if(isLoggedIn()) showLogout();
+    else showLogin();
+
+    // Traitement du formulaire de connexion
     document.getElementById('login-form').onsubmit = function(e){
       e.preventDefault();
-      const user = document.getElementById('login-user').value.trim();
-      const pass = document.getElementById('login-pass').value;
-      const error = document.getElementById('login-error');
-      if((user === DEMO_USER && pass === DEMO_PASS) ||
-         users.find(u => u.user === user && u.pass === pass)){
-        localStorage.setItem('user', user);
-        window.location.href = "index.html";
-      } else {
-        error.textContent = "Identifiant ou mot de passe incorrect";
+      let user = document.getElementById('username').value.trim();
+      let pass = document.getElementById('password').value.trim();
+      // Remplace ce test par ton vrai système !
+      if(user && pass === 'carpenergie'){
+        localStorage.setItem('user_logged_in','1');
+        document.getElementById('login-success').textContent = "Connexion réussie !";
+        document.getElementById('login-success').style.display = '';
+        setTimeout(() => {
+          // Redirection : vers page précédente, ou accueil sinon
+          const params = new URLSearchParams(window.location.search);
+          const redirect = params.get('redirect');
+          window.location.href = redirect || "index.html";
+        }, 800);
+      }else{
+        document.getElementById('login-error').textContent = "Identifiants incorrects";
+        document.getElementById('login-error').style.display = '';
+        document.getElementById('login-success').style.display = 'none';
       }
     };
 
-    // Création de compte
-    document.getElementById('register-form').onsubmit = function(e){
-      e.preventDefault();
-      const user = document.getElementById('register-user').value.trim();
-      const email = document.getElementById('register-email').value.trim();
-      const pass = document.getElementById('register-pass').value;
-      const error = document.getElementById('register-error');
-      if (!user || !email || !pass) {
-        error.textContent = "Veuillez remplir tous les champs";
-        return;
-      }
-      if (users.find(u => u.user === user)) {
-        error.textContent = "Ce nom d'utilisateur existe déjà";
-        return;
-      }
-      users.push({user, email, pass});
-      localStorage.setItem('users', JSON.stringify(users));
-      error.textContent = "Compte créé ! Connectez-vous.";
-      setTimeout(() => {
-        openLogin();
-      }, 1300);
+    // Déconnexion
+    document.getElementById('logout-btn').onclick = function(){
+      localStorage.removeItem('user_logged_in');
+      showLogin();
     };
 
-    // Switch Login/Register
-    function openRegister() {
-      document.getElementById('login-form').style.display = "none";
-      document.getElementById('register-form').style.display = "flex";
-    }
-    function openLogin() {
-      document.getElementById('register-form').style.display = "none";
-      document.getElementById('login-form').style.display = "block";
-      closeResetPopup();
-    }
-
-    // Mot de passe oublié
-    function openResetPopup() {
-      document.getElementById('reset-overlay').style.display = 'flex';
-    }
-    function closeResetPopup() {
-      document.getElementById('reset-overlay').style.display = 'none';
-    }
-    function sendResetEmail() {
-      event.preventDefault();
-      const email = document.getElementById('reset-email').value.trim();
-      if (!email) {
-        alert("Merci de saisir votre adresse email.");
-        return;
-      }
-      closeResetPopup();
-      setTimeout(()=>{
-        alert("Un lien de réinitialisation a été envoyé à " + email);
-      }, 200);
-    }
   </script>
 </body>
 </html>
