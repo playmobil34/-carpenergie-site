@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; padding: 0;}
     body {
       min-height: 100vh;
@@ -99,6 +98,7 @@
       transition: background 0.16s, color 0.16s, box-shadow 0.19s;
       box-shadow: 0 0 0 transparent;
       display: block;
+      position: relative;
     }
     nav a:hover {
       background: rgba(0,255,255,0.12);
@@ -106,6 +106,7 @@
       box-shadow: 0 0 22px #0ffb, 0 2px 15px #0ff5;
       border: 1.3px solid #0ff;
     }
+
     .cart-count {
       position: absolute;
       top: 50%;
@@ -125,6 +126,7 @@
       pointer-events: none;
       border: 2px solid #022e;
     }
+
     @media (max-width: 900px) {
       .nav-container { height: 59px; }
       .nav-logo { margin-left: 12px; font-size: 1.14rem;}
@@ -158,7 +160,9 @@
         border-bottom-right-radius: 18px;
         border-top: 1px solid #0ff7;
       }
-      nav ul.show { display: flex; }
+      nav ul.show {
+        display: flex;
+      }
       nav li {
         width: 100%;
         text-align: left;
@@ -169,7 +173,10 @@
         padding: 1.08em 2.6em 1.08em 2.4em;
         font-size: 1.13rem;
       }
-      #cart-btn { position: relative; padding-right: 38px !important; }
+      #cart-btn {
+        position: relative;
+        padding-right: 38px !important;
+      }
       #cart-count {
         position: absolute !important;
         top: 50%;
@@ -188,7 +195,8 @@
       .nav-logo { left: 42px; font-size: 1rem;}
       .nav-burger { font-size: 2.0rem; }
     }
-    /* ---- Container ---- */
+
+    /* ---- FIN NAV ---- */
     .checkout-container {
       max-width: 950px;
       margin: 110px auto 32px auto;
@@ -196,6 +204,8 @@
       background: rgba(19,33,44,0.88);
       border-radius: 16px;
       box-shadow: 0 0 38px #00ffe746;
+      min-height: 500px;
+      position: relative;
     }
     .checkout-title {
       font-family: 'Orbitron', Arial, sans-serif;
@@ -207,113 +217,128 @@
       margin-bottom: 1.5rem;
       font-weight: 700;
     }
-    .checkout-summary {
-      margin-bottom: 2.4rem;
-      color: #bafaff;
-      font-size: 1.11rem;
+    .checkout-form label {
+      display: block;
+      font-family: 'Orbitron', Arial, sans-serif;
+      color: #0ff;
+      margin-top: 0.8rem;
+      margin-bottom: 0.2rem;
+      letter-spacing: 1px;
     }
-    .checkout-items {
+    .checkout-form input {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 7px;
+      border: 1.5px solid #0ff7;
+      background: #13252e;
+      color: #fff;
+      font-size: 1.09rem;
+      margin-bottom: 0.6rem;
+      font-family: 'Roboto', Arial, sans-serif;
+      box-shadow: 0 0 7px #0ff1;
+    }
+    .checkout-form input:focus { border-color: #fff; outline: none; }
+    .payment-methods {
+      margin-top: 2rem;
+      margin-bottom: 1.6rem;
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      font-family: 'Orbitron', Arial, sans-serif;
+      color: #0ff;
+      font-size: 1.15rem;
+    }
+    .payment-methods label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+    }
+    #recap-panier {
+      margin: 2.2rem 0 1.5rem 0;
+      border-radius: 12px;
+      background: #15232e;
+      padding: 1.5rem 0.6rem 0.8rem 0.6rem;
+      box-shadow: 0 0 14px #0ff3;
+    }
+    .recap-title {
+      color: #0ff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.17rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.7rem;
+      letter-spacing: 1px;
+    }
+    .recap-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 2.2rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      font-size: 1.08rem;
     }
-    .checkout-items th, .checkout-items td {
-      padding: 12px 9px;
+    .recap-table th, .recap-table td {
+      padding: 10px 6px;
       text-align: center;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.05rem;
-    }
-    .checkout-items th {
-      color: #0ff;
-      border-bottom: 2px solid #0ff;
-      font-size: 1.13rem;
-      letter-spacing: 1.1px;
-      background: rgba(10,35,35,0.19);
-    }
-    .checkout-items td {
       border-bottom: 1px solid #0ff2;
     }
-    .checkout-img {
-      width: 64px; height: 64px; object-fit: contain;
-      border-radius: 9px;
-      background: #111a;
-      box-shadow: 0 0 7px #0ff2;
-      margin: 0 auto;
+    .recap-table th {
+      color: #0ff;
+      font-size: 1.13rem;
+      background: rgba(10,35,35,0.13);
     }
-    .checkout-total-row td {
-      font-size: 1.15rem;
+    .recap-total-row td {
+      font-size: 1.2rem;
       font-weight: 700;
       color: #0ff;
       background: #111d;
       border-bottom: none;
     }
-    .checkout-form label {
+    .cart-btn {
+      padding: 1rem 2.6rem;
+      font-size: 1.13rem;
       font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 700;
+      background: #111822;
       color: #0ff;
-      font-size: 1.07rem;
-      margin-bottom: 7px;
-      display: block;
+      border: 1.5px solid #0ffb;
+      border-radius: 9px;
       letter-spacing: 1px;
-      font-weight: 700;
-      margin-top: 1rem;
-    }
-    .checkout-form input,
-    .checkout-form textarea {
-      width: 100%;
-      background: #10222c;
-      border: 1.5px solid #0ff7;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1.08rem;
-      padding: 0.9rem 1rem;
-      margin-bottom: 1.3rem;
-      font-family: 'Roboto', Arial, sans-serif;
-      box-shadow: 0 0 8px #0ff3;
-      transition: border-color 0.17s;
-      outline: none;
-    }
-    .checkout-form input:focus,
-    .checkout-form textarea:focus {
-      border-color: #fff;
-    }
-    .checkout-form textarea {
-      min-height: 80px;
-      max-height: 180px;
-      resize: none;
-    }
-    .checkout-btn {
-      width: 100%;
-      background: #0fa9b6;
-      color: #002d38;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.28rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 10px;
-      padding: 0.92rem 0;
-      margin: 2.1rem 0 1rem 0;
-      letter-spacing: 2px;
+      box-shadow: 0 0 13px #0ff4;
       cursor: pointer;
-      box-shadow: 0 0 18px #0ff7;
-      text-shadow: 0 0 3px #0ffb;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.19s, color 0.18s, box-shadow 0.21s, border-color 0.17s;
+      text-shadow: 0 0 3px #0ff6;
+      outline: none;
+      margin-top: 0.6rem;
+      margin-bottom: 1.2rem;
       display: block;
+      width: 80%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .checkout-btn:hover {
-      background: #0ff;
-      color: #012;
-      box-shadow: 0 0 32px #0ffb;
+    .cart-btn:disabled {
+      opacity: 0.6;
+      background: #11252e;
+      color: #6dd;
+      cursor: not-allowed;
     }
     @media (max-width: 700px) {
       .checkout-container { padding: 0.6rem; }
       .checkout-title { font-size: 1.3rem;}
-      .checkout-items th, .checkout-items td { padding: 7px 5px; font-size: 0.98rem; }
-      .checkout-img { width: 42px; height: 42px; }
-      .checkout-btn { font-size: 1.03rem; }
+      #recap-panier { padding: 0.5rem 0.2rem 0.6rem 0.2rem;}
+      .cart-btn { width: 100%; font-size: 1rem; }
     }
   </style>
 </head>
 <body>
+  <!-- Vérification de connexion (à placer en tout début de body) -->
+  <script>
+    if (!localStorage.getItem('user_logged_in')) {
+      window.location.href = 'login.html?redirect=checkout.html';
+    }
+  </script>
   <nav>
     <div class="nav-container">
       <a href="index.html" class="nav-logo">CarpÉnergie</a>
@@ -332,37 +357,32 @@
     </div>
   </nav>
   <div class="checkout-container">
-    <div class="checkout-title">Finalisation de votre commande</div>
-    <div class="checkout-summary">Vérifiez votre panier et renseignez vos informations pour finaliser la commande.</div>
-    <table id="checkout-table" class="checkout-items">
-      <thead>
-        <tr>
-          <th>Produit</th>
-          <th>Nom</th>
-          <th>Quantité</th>
-          <th>Prix</th>
-        </tr>
-      </thead>
-      <tbody id="checkout-body">
-        <!-- JS ajoute les lignes ici -->
-      </tbody>
-      <tfoot>
-        <tr class="checkout-total-row">
-          <td colspan="2"></td>
-          <td>Total</td>
-          <td id="checkout-total">0&nbsp;€</td>
-        </tr>
-      </tfoot>
-    </table>
-    <form class="checkout-form" autocomplete="off" onsubmit="event.preventDefault();alert('Merci ! Votre commande a bien été envoyée.');localStorage.removeItem('cart');window.location.href='index.html';">
-      <label for="client-nom">Nom complet</label>
-      <input type="text" id="client-nom" name="client-nom" placeholder="Votre nom" required>
-      <label for="client-email">Email</label>
-      <input type="email" id="client-email" name="client-email" placeholder="Votre email" required>
-      <label for="client-adresse">Adresse</label>
-      <textarea id="client-adresse" name="client-adresse" placeholder="Votre adresse de livraison" required></textarea>
-      <button type="submit" class="checkout-btn">Valider la commande</button>
+    <div class="checkout-title">Finalisation de la commande</div>
+    <!-- Formulaire adresse -->
+    <form id="address-form" class="checkout-form" autocomplete="off">
+      <label>Nom Prénom</label>
+      <input type="text" id="fullname" required placeholder="Votre nom complet">
+
+      <label>Adresse</label>
+      <input type="text" id="address" required placeholder="Adresse complète">
+
+      <label>Code postal</label>
+      <input type="text" id="postal" required placeholder="Code postal">
+
+      <label>Ville</label>
+      <input type="text" id="city" required placeholder="Ville">
+
+      <label>Téléphone</label>
+      <input type="tel" id="phone" required placeholder="Téléphone">
     </form>
+    <!-- Récap panier -->
+    <div id="recap-panier"></div>
+    <!-- Paiement -->
+    <div class="payment-methods">
+      <label><input type="radio" name="pay" value="cb" required> Carte bancaire</label>
+      <label><input type="radio" name="pay" value="paypal"> PayPal</label>
+    </div>
+    <button class="cart-btn" id="pay-btn" disabled>Payer</button>
   </div>
   <script>
     // Burger menu JS
@@ -377,7 +397,11 @@
       });
     });
 
-    // Produit base simulée (doit matcher avec cart.js)
+    // Compteur panier
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    document.getElementById('cart-count').textContent = cart.length || 0;
+
+    // Récapitulatif panier (produits de cart.html)
     const PRODUCTS = {
       'delta-2': {name:'EcoFlow Delta 2', price:699, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-2-reconditionnee-51660433260891_2000x.png?v=1691740784"},
       'delta-3': {name:'EcoFlow Delta 3', price:999, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-de-la-gamme-ecoflow-delta-3-reconditionnee-1155248231_2000x.png?v=1744283242"},
@@ -390,41 +414,81 @@
       'delta-3-pro': {name:'EcoFlow Delta 3 Pro', price:2199, img:"https://fr.ecoflow.com/cdn/shop/files/station-electrique-portable-ecoflow-delta-pro-3-56959613829467_2000x.png?v=1726241887"},
       'panneau-160w': {name:'Panneau Solaire 160W EcoFlow', price:399, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-de-160-w-38953167519970_2000x.png?v=1708331506"},
       'panneau-400w': {name:'Panneau Solaire 400W EcoFlow', price:999, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-portable-de-400-w-38953197011170_2000x.png?v=1675839414"},
-      'panneau-220w-bifacial': {name:'Panneau Solaire 220W Bifacial EcoFlow', price:599, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-double-face-de-220-w-38953189408994_2000x.png?v=1708331616"},
-      // Ajoute ici tous tes produits si besoin...
+      'panneau-220w-bifacial': {name:'Panneau Solaire 220W Bifacial EcoFlow', price:599, img:"https://fr.ecoflow.com/cdn/shop/products/panneau-solaire-double-face-de-220-w-38953189408994_2000x.png?v=1708331616"}
     };
-    // Charger le panier
-    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
-    // Compter les quantités par produit
-    let map = {};
-    for(const p of cart) map[p.id] = (map[p.id]||0)+1;
-    function renderCheckout() {
-      const tbody = document.getElementById('checkout-body');
-      tbody.innerHTML = '';
+
+    function renderRecap() {
+      let map = {};
+      for(const p of cart) map[p.id] = (map[p.id]||0)+1;
       let total = 0;
       let n = 0;
+      let html = `<div class="recap-title">Récapitulatif de votre panier</div>
+      <table class="recap-table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Nom</th>
+            <th>Qté</th>
+            <th>Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+      `;
       for(const id in map){
         if(PRODUCTS[id]){
           n++;
           let item = PRODUCTS[id];
           let qty = map[id];
-          let line = document.createElement('tr');
-          line.innerHTML = `
-            <td><img src="${item.img}" class="checkout-img" alt="${item.name}"></td>
-            <td>${item.name}</td>
-            <td>${qty}</td>
-            <td>${(item.price*qty).toLocaleString()}&nbsp;€</td>
+          html += `
+            <tr>
+              <td><img src="${item.img}" style="width:54px; height:54px; border-radius:7px; background:#111a;"></td>
+              <td>${item.name}</td>
+              <td>${qty}</td>
+              <td>${(item.price*qty).toLocaleString()}&nbsp;€</td>
+            </tr>
           `;
-          tbody.appendChild(line);
           total += item.price * qty;
         }
       }
-      document.getElementById('checkout-total').innerHTML = total.toLocaleString()+"&nbsp;€";
-      document.getElementById('checkout-table').style.display = n>0 ? '' : 'none';
+      html += `
+        </tbody>
+        <tfoot>
+          <tr class="recap-total-row">
+            <td colspan="2"></td>
+            <td>Total</td>
+            <td>${total.toLocaleString()}&nbsp;€</td>
+          </tr>
+        </tfoot>
+      </table>
+      `;
+      document.getElementById('recap-panier').innerHTML = n>0 ? html : `<div class="cart-empty">Votre panier est vide.</div>`;
+      // Désactive paiement si panier vide
+      document.getElementById('pay-btn').disabled = (n === 0);
     }
-    // Affiche le nombre d'items dans le panier sur l'icône panier
-    document.getElementById('cart-count').textContent = cart.length || 0;
-    renderCheckout();
+    renderRecap();
+
+    // Activer bouton payer seulement si tout le formulaire + paiement est rempli
+    const form = document.getElementById('address-form');
+    const payBtn = document.getElementById('pay-btn');
+    function checkForm() {
+      let ok = form.checkValidity() && document.querySelector('input[name="pay"]:checked') && cart.length > 0;
+      payBtn.disabled = !ok;
+    }
+    document.querySelectorAll('.checkout-form input').forEach(input => {
+      input.addEventListener('input', checkForm);
+    });
+    document.querySelectorAll('input[name="pay"]').forEach(radio => {
+      radio.addEventListener('change', checkForm);
+    });
+
+    // Action sur "Payer"
+    payBtn.onclick = function(e) {
+      e.preventDefault();
+      // Ici tu peux intégrer un vrai paiement ou simuler
+      alert("Merci pour votre commande !");
+      localStorage.removeItem('cart');
+      window.location.href = "merci.html";
+    };
   </script>
 </body>
 </html>
